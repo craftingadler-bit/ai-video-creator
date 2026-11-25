@@ -3,12 +3,16 @@
 // Ergebnis: reels/<slug>/check/audio-report.txt + check/edges.png (Wellenform an jedem Szenenwechsel)
 //   Stimme: verschluckte/nicht erkannte Wörter (ASR), leise Wörter, Ein-/Ausblend-Effekt an Absätzen, Pausen an Szenenwechseln
 //   Sounds: Länge (hörbar), Pegel im Mix gegenüber der Stimme in dem Moment, Überlappung mit Sprache, Dichte
+//   Schnitte (kit/audio-qa.mjs): Geräusche im Vor-/Nachlauf, Pegel unter Raumton vor Einsätzen, langsame Absatz-Einstiege,
+//     Abbrüche, Klicks, digitale Löcher, Übersteuerung
+//   Video (kit/audio-qa.mjs, nur wenn <slug>.mp4 existiert): eingefrorene Bilder, Schwarzbilder, Lautheit, True Peak
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { pathToFileURL, fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 import { plan, sfxInfo } from './sfx-mix.mjs';
+import { seams, videoQa, pcm48 } from './audio-qa.mjs';
 
 const args = process.argv.slice(2);
 const dir = path.resolve(args.find(a => !a.startsWith('--')) || '');
@@ -118,6 +122,11 @@ for (const sc of TL.scenes) {
 L.push(`Pausen innerhalb von Szenen: ${innerP.length}, längste ${Math.max(0, ...innerP.map(p => p.len)).toFixed(2)} s, ${innerP.filter(p => p.len > .75).length}× über 0,75 s`);
 innerP.filter(p => p.len > .9).forEach(p => flag('!', `Stimme: ${p.len.toFixed(2)} s Pause in ${p.sc} bei ${p.t.toFixed(2)} s → zu lang`));
 
+// Schnitte & Störgeräusche (48 kHz, damit Klicks und digitale Null sichtbar bleiben)
+const SQ = seams(pcm48(path.join(dir, 'vo.wav')), TL);
+L.push('', `### Schnitte & Störgeräusche (Raumton ${SQ.floor.toFixed(1)} dB): ${SQ.flags.length ? SQ.flags.length + ' Befunde' : 'sauber'}`);
+SQ.flags.forEach(f => { L.push(`${f.t.toFixed(2).padStart(6)} s · ${f.msg}`); flag(f.sev, 'Schnitt: ' + f.msg); });
+
 /* ================= Sounds ================= */
 const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1080, height: 1920 } });
 await p.addInitScript(() => { window.__RENDER = true; });
@@ -155,6 +164,15 @@ if (strips.length) {
   strips.forEach(f => fs.rmSync(f, { force: true }));
   L.push('', 'Wellenform an jedem Szenenwechsel: check/edges.png (rote Linie = Ende der Szene, je 1,2 s davor und danach)');
 }
+
+/* ================= Video (ffmpeg) ================= */
+const mp4 = path.join(dir, path.basename(dir) + '.mp4');
+if (fs.existsSync(mp4)) {
+  const V = videoQa(mp4);
+  L.push('', `## Video (${path.basename(mp4)}, ${V.info.duration?.toFixed(1)} s, ${V.info.lufs ?? '?'} LUFS, True Peak ${V.info.truePeak ?? '?'} dBTP)`);
+  V.flags.forEach(f => { L.push(`${f.t.toFixed(2).padStart(6)} s · ${f.msg}`); flag(f.sev, 'Video: ' + f.msg); });
+  if (!V.flags.length) L.push('keine eingefrorenen Bilder, keine Schwarzbilder, Pegel ok');
+} else L.push('', `## Video: ${path.basename(mp4)} noch nicht gerendert (Video-QA übersprungen)`);
 
 const crit = flags.filter(f => f.startsWith('!!')).length;
 L.push('', `## Befunde (${crit} kritisch, ${flags.length - crit} Hinweise)`, ...flags);

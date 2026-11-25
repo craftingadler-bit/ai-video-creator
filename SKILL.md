@@ -164,10 +164,12 @@ Alles mit `!!` in `check/report.txt` beheben. Fixen, neu rendern, nochmal checke
 ### 4b. Audio-Review (Pflicht, siehe `guides/audio-review.md`)
 ```
 node kit/audio-review.mjs reels/<slug>          # Stimme + Sounds messen → check/audio-report.txt, check/edges.png
+node kit/audio-qa.mjs reels/<slug>              # nur Schnitte/Störgeräusche + Video-QA (läuft im Audio-Review mit)
 node kit/voice.mjs reels/<slug> --redo s7       # einen Absatz neu sprechen (verschluckte/verlesene Wörter)
 node kit/voice-polish.mjs reels/<slug>          # Pegel + Pausen neu (läuft nach voice.mjs automatisch)
 ```
-- `voice.mjs` bearbeitet die Stimme automatisch nach (`kit/voice-polish.mjs`): leise Wörter anheben (kein Ein-/Ausblend-Effekt), Pausen an Szenenwechseln auf ~0,45 s (0,38–0,62), Pausen in Szenen über 0,75 s auf 0,55 s kürzen, Atem vor Absätzen absenken. Rohfassung bleibt in `audio/vo_raw.wav`
+- `voice.mjs` bearbeitet die Stimme automatisch nach (`kit/voice-polish.mjs`): Absatz-Einsätze aus dem Pegel lesen (Whisper ist dort oft zu spät), digitale Stille durch Raumton ersetzen, leise Wörter anheben (kein Ein-/Ausblend-Effekt), Atem/Geräusche vor Absätzen und am Anfang auf Raumton absenken (nur durch echte Stille getrennte Blöcke, Wortanfang wird nie angefasst), Pausen an Szenenwechseln auf ~0,45 s (0,38–0,62), Pausen in Szenen über 0,75 s auf 0,55 s kürzen. Geschnitten wird nur in Stille mit ≥ 40 ms Abstand zur Sprache, eingesetzt wird Raumton, jeder Schnitt hat 20 ms Crossfade (`polish.xfade` in config.json, 15–40 ms). Rohfassung bleibt in `audio/vo_raw.wav`
+- Genauere Wortzeiten (optional): `pip install stable-ts` (oder `whisperx`), dann nutzt voice-polish automatisch Forced Alignment (`kit/align.py`, Ergebnis gecacht in `audio/timeline_aligned.json`). Ohne Paket bleibt alles wie gehabt. Abschalten: `"polish": { "align": "off" }`
 - Sounds mischt `render.mjs` nach festen Regeln (`kit/sfx-mix.mjs`): Effekte 0,5 s (mit `len` höchstens 0,8 s), über Sprache mind. 15 dB unter der Stimme, in Sprechpausen mind. 12 dB, Atmo −24 dB, nie zwei Sounds in 0,3 s. Sounds NACH der Pointe setzen (`WE(szene, wort)` = Wortende)
 - **Alle Sounds stehen in einer Liste** (`const SND = [...]` am Ende von `scenes.html`) mit Begründung pro Sound, `R.autoSfx(false)` schaltet die Helfer-Sounds ab. Ziel ~12–15 Effekte pro Minute, derselbe Sound höchstens 2–3×
 - Dann **4 Prüfer-Subagenten** (Mix, Cutter, Dialog, Endabnahme) laufen lassen, bis alle ≥ 7/10. Prompts in `guides/audio-review.md`

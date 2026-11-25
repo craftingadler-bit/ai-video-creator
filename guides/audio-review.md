@@ -27,7 +27,7 @@ Antworte genau so: SCORE: x/10 · BEGRÜNDUNG (2–3 Sätze) · MUSS GEÄNDERT W
 
 Bei neuem Feedback des Users: Feedback-Text in die Prompts von Rolle 4 (und der passenden Rolle) aufnehmen.
 
-## Offene Pflicht-Checks (Feedback 24.11., noch nicht im Messskript)
-- Jeder Schnitt der Nachbearbeitung (Pausen, `--redo`) darf nicht hörbar sein: kein Abhacken, kein Klick, kein Fade-in
-- Erste Sekunde und letzte Sekunde der Tonspur auf Geräusche prüfen
-- Dialog-Editor und Endabnahme bekommen diese Punkte als eigene Checkliste
+## Schnitt-Checks (seit 25.11. im Messskript, `kit/audio-qa.mjs`)
+`audio-review.mjs` prüft jetzt selbst und schreibt es unter „Schnitte & Störgeräusche“ in den Bericht: Geräusche im Vor-/Nachlauf, Pegel unter Raumton direkt vor einem Einsatz (= abgehackter Wortanfang), Absatz-Einstiege, die > 150 ms bis zur Sprechlautstärke brauchen (Fade-in), Abbrüche, Klicks, digitale Löcher (exakte Null), Übersteuerung. Wenn `<slug>.mp4` existiert, dazu Video-QA per ffmpeg: eingefrorene Bilder (≥ 1,5 s), Schwarzbilder, Lautheit (−14 LUFS), True Peak (≤ −1 dBTP), Länge Bild vs. Ton.
+- Einzeln: `node kit/audio-qa.mjs reels/<slug>`
+- Dialog-Editor und Endabnahme bekommen diese Befunde als eigene Checkliste. Ein „enger Schnitt“-Hinweis aus voice-polish heißt: Stelle anhören, sonst `--redo`
