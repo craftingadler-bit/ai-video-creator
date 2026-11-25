@@ -161,7 +161,7 @@ if (!fs.existsSync(scenesFile) && ['audio', 'render', 'check'].some(wanted)) {
 
 /* 3. Audio-Review (vor dem Render, damit ein Final-Render mit kaputter Stimme gar nicht erst startet) */
 const auditKey = H(fileHash(path.join(dir, 'vo.wav')), fileHash(path.join(dir, 'timeline.json')), fileHash(scenesFile), dirHash(path.join(dir, 'sfx')),
-  cfg.audio, ...['audio-review.mjs', 'sfx-mix.mjs', 'runtime.js'].map(f => fileHash(path.join(KIT, f))), dirHash(path.join(KIT, 'sfx')), has('--no-asr'));
+  cfg.audio, ...['audio-review.mjs', 'audio-qa.mjs', 'sfx-mix.mjs', 'runtime.js'].map(f => fileHash(path.join(KIT, f))), dirHash(path.join(KIT, 'sfx')), has('--no-asr'));
 if (wanted('audio')) {
   if (fakeVoice) done('audio', '·', 'Fake-Stimme, kein Audio-Review');
   else {
