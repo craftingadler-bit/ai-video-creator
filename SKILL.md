@@ -73,6 +73,21 @@ Die Szenenzeiten in `timeline.json` kommen aus dem Ton. **Animationen immer rela
 <script> R.scenes([['s1','g1'], ['s2','g2','zoom'], …]); /* Animationen */ R.start(); </script>
 ```
 Fehlt `kit/vendor/`: `node kit/build-vendor.mjs`.
+
+**Bausteine zuerst (`kit/blocks.js`, Vorlage `reels/_vorlage/scenes.html`).** Fertige Szenentypen aus Rom/Capybaras, spart pro Reel viel Code. Einbinden nach runtime/figures/props (und map.js): `<script src="../../kit/blocks.js"></script>`, Styles per `<link rel="stylesheet" href="../../kit/base.css">`. Gruppen per `B.group('g3', 'linear-gradient(…)')` + `B.scenes([...])` statt HTML. Zeit überall gleich: Zahl = s nach Szenenstart, `'Wort'`, `['Wort', dt, n]`, `{end:'Wort'}`, `{abs: 12}`.
+| Baustein | Zweck |
+|---|---|
+| `B.title(g, {lines:[{text,size,color,box,at,fx}]})` | Hook-Titel, Zeilen mit up/chars/pop/slam |
+| `B.map(g, {view, fills, labels, star, views, route})` | Karte mit echten Grenzen, Länder färben sich aufs Wort, Schilder, Stern, Zoom |
+| `B.closeup(g, {at, mood, moods, cam})` | Reaktionsgesicht schiebt rein, Mimik auf Wörter, Kamera ran |
+| `B.counter(g, {at, from, to, suffix, label})` | große Zahl zählt hoch, Punch am Ende |
+| `B.stamp(g, {text, at, x, y, r})` | Stempel knallt rein |
+| `B.quote(g, {text, who, at})` | Zitat-Karte, Text tippt sich |
+| `B.sign(g, {from, to, strike, flip})` | Ortsschild fällt rein, wird durchgestrichen, dreht sich |
+| `B.board(g, {text, at, title})` | Fallblatt-Anzeige |
+| `B.bubble`, `B.confetti`, `B.rise` | Sprechblase, Konfetti, aufsteigende Herzen |
+| `B.enter(id, t, 'left')`, `B.hero`, `B.at`, `B.put`, `B.rnd`, `B.WE` | Helfer, die bisher jedes Reel selbst definiert hat |
+Bausteine sind die Grundlage, nicht das ganze Reel: Umgebung, Figuren und Gags kommen weiter pro Szene dazu (Regeln unten gelten). Fehlt ein Szenentyp, der in 2+ Reels vorkommt → als Baustein in blocks.js ergänzen.
 Bühne: 1080×1920 px, absolute Pixel. Safe Zone: x 60–960, y 180–1600. Untertitel macht die Runtime automatisch bei y≈1390 → dort keine wichtigen Inhalte. Visuals in y 250–1250.
 
 Runtime-API (`R`):
@@ -180,6 +195,7 @@ node kit/check.mjs reels/<slug>
 Dem User melden: Pfad zur MP4, Länge, was der Check sagt, was du nicht prüfen konntest (z. B. wie die Stimme klingt). Ehrlich bleiben, nichts als geprüft verkaufen, was nicht geprüft wurde.
 
 ### 6. Feedback ("mach den Hook knackiger")
+**Review-Seite:** `node kit/review.mjs reels/<slug>` (oder `npm run review`) öffnet lokal eine Seite: Video abspielen, `N` setzt eine Notiz mit Zeit, Szene, gesprochenen Wörtern und Standbild. „Exportieren“ schreibt `reels/<slug>/review.md` (Aufgabenliste, Bilder in `check/review/`) und hängt Notizen mit Haken „Regel für alle Reels“ oben an `guides/learnings.md`. Liegt eine `review.md` vor: die abarbeiten, Haken setzen.
 Feedback wie ein Editor umsetzen: nur das Genannte ändern, betroffene Szene mit `--only` neu sprechen, neu rendern. Wenn das Feedback eine allgemeine Regel ist ("immer kürzere Sätze"), in `guides/learnings.md` eintragen. Davon lebt das System.
 
 ## VoiceStudio direkt (MCP)

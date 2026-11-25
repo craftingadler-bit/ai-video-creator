@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reel-Review</title>
+<style>
+  :root { --bg:#14111F; --panel:#1F1A30; --line:#342C4D; --tx:#EDE9F7; --mut:#9C93B8; --ac:#FFD23F; --re:#FF4D2E; --ok:#2EAF5A; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--tx); font:15px/1.4 system-ui, -apple-system, sans-serif; height:100vh; display:flex; flex-direction:column; }
+  header { display:flex; gap:12px; align-items:center; padding:10px 16px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  header h1 { font-size:16px; font-weight:800; margin-right:8px; }
+  select, button, textarea, input { font:inherit; color:inherit; }
+  select, button { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:6px 10px; cursor:pointer; }
+  button:hover { border-color:var(--mut); }
+  button.main { background:var(--ac); color:#141022; border-color:var(--ac); font-weight:700; }
+  .hint { color:var(--mut); font-size:13px; margin-left:auto; }
+  kbd { background:var(--panel); border:1px solid var(--line); border-radius:4px; padding:0 5px; font-size:12px; }
+  main { flex:1; display:flex; min-height:0; }
+  #left { flex:0 0 auto; display:flex; flex-direction:column; align-items:center; padding:14px; gap:10px; }
+  video { height:calc(100vh - 190px); max-width:calc(100vw - 460px); aspect-ratio:9/16; background:#000; border-radius:10px; }
+  #strip { position:relative; width:100%; height:44px; background:var(--panel); border-radius:8px; cursor:pointer; overflow:hidden; }
+  #strip .sc { position:absolute; top:0; bottom:0; border-right:1px solid var(--line); font-size:11px; color:var(--mut); padding:3px 4px; overflow:hidden; white-space:nowrap; }
+  #strip .sc.on { background:rgba(255,210,63,.12); color:var(--tx); }
+  #strip .mk { position:absolute; bottom:0; width:3px; height:18px; background:var(--re); translate:-1px 0; }
+  #strip .mk.rule { background:var(--ac); }
+  #strip .ph { position:absolute; top:0; bottom:0; width:2px; background:#fff; pointer-events:none; }
+  #now { font-size:13px; color:var(--mut); min-height:2.8em; text-align:center; max-width:100%; }
+  #now b { color:var(--tx); }
+  #right { flex:1; min-width:340px; border-left:1px solid var(--line); display:flex; flex-direction:column; min-height:0; }
+  #notes { flex:1; overflow:auto; padding:12px; display:flex; flex-direction:column; gap:10px; }
+  .note { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:10px; display:grid; grid-template-columns:96px 1fr; gap:10px; }
+  .note.sel { border-color:var(--ac); }
+  .note img { width:96px; border-radius:6px; cursor:pointer; display:block; }
+  .note .top { display:flex; gap:8px; align-items:center; flex-wrap:wrap; font-size:13px; }
+  .note .tm { font-weight:800; color:var(--ac); cursor:pointer; }
+  .note .wd { color:var(--mut); font-size:12px; margin:4px 0; }
+  .note textarea { width:100%; min-height:58px; resize:vertical; background:var(--bg); border:1px solid var(--line); border-radius:6px; padding:6px 8px; }
+  .note select { padding:2px 6px; font-size:12px; }
+  .note label { font-size:12px; color:var(--mut); display:flex; gap:4px; align-items:center; cursor:pointer; }
+  .note .x { margin-left:auto; padding:2px 8px; font-size:12px; }
+  .empty { color:var(--mut); padding:30px 10px; text-align:center; }
+  footer { border-top:1px solid var(--line); padding:10px 12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+  #msg { font-size:13px; color:var(--mut); }
+  @media (max-width: 900px) { main { flex-direction:column; overflow:auto; } video { height:auto; width:100%; max-width:420px; } #right { border-left:0; border-top:1px solid var(--line); } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Reel-Review</h1>
+  <select id="pick"></select>
+  <button id="add" class="main" title="Taste N">+ Notiz hier</button>
+  <span class="hint"><kbd>Leertaste</kbd> Play · <kbd>N</kbd> Notiz · <kbd>←</kbd><kbd>→</kbd> 1 s · <kbd>,</kbd><kbd>.</kbd> Einzelbild · <kbd>Esc</kbd> zurück zum Video</span>
+</header>
+<main>
+  <div id="left">
+    <video id="v" controls preload="auto" playsinline></video>
+    <div id="strip"><div class="ph" id="ph"></div></div>
+    <div id="now"></div>
+  </div>
+  <div id="right">
+    <div id="notes"></div>
+    <footer>
+      <button id="exp" class="main">Exportieren</button>
+      <button id="copy">Als Text kopieren</button>
+      <span id="msg"></span>
+    </footer>
+  </div>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const v = $('v'), CATS = ['Bild', 'Ton', 'Stimme', 'Untertitel', 'Timing', 'Text/Inhalt', 'Sonstiges'];
+let slug = '', TL = { scenes: [], words: [] }, data = { notes: [] }, video = '', saveT = 0, sel = -1;
+const fmt = t => `${Math.floor(t / 60)}:${(t % 60).toFixed(1).padStart(4, '0')}`;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const sceneAt = t => TL.scenes.find(s => t >= s.start && t < s.end) || TL.scenes[TL.scenes.length - 1];
+const wordsAt = t => TL.words.filter(w => w.end >= t - 1.6 && w.start <= t + .4).map(w => w.w).join(' ');
+const msg = m => { $('msg').textContent = m; };
+
+async function init() {
+  const r = await (await fetch('/api/reels')).json();
+  $('pick').innerHTML = r.reels.map(x => `<option value="${esc(x.slug)}" ${x.video ? '' : 'disabled'}>${esc(x.slug)}${x.video ? '' : ' (keine mp4)'}${x.notes ? ` · ${x.notes} Notizen` : ''}</option>`).join('');
+  const want = decodeURIComponent(location.hash.slice(1)) || r.start || (r.reels.find(x => x.video) || {}).slug;
+  if (want) { $('pick').value = want; load(want); }
+}
+async function load(s) {
+  slug = s; location.hash = s;
+  TL = await (await fetch(`/api/${encodeURIComponent(s)}/timeline`)).json(); TL.scenes ||= []; TL.words ||= [];
+  data = await (await fetch(`/api/${encodeURIComponent(s)}/notes`)).json(); data.notes ||= [];
+  v.src = `/api/${encodeURIComponent(s)}/video`; video = s;
+  sel = -1; renderNotes(); msg('');
+}
+v.addEventListener('loadedmetadata', () => { data.video = v.currentSrc.split('/').slice(-2)[0]; drawStrip(); });
+
+function drawStrip() {
+  const D = v.duration || TL.total || 1, st = $('strip');
+  st.querySelectorAll('.sc,.mk').forEach(e => e.remove());
+  TL.scenes.forEach(s => st.insertAdjacentHTML('beforeend', `<div class="sc" data-id="${s.id}" style="left:${s.start / D * 100}%;width:${(s.end - s.start) / D * 100}%" title="${esc(s.id + ' ' + (s.title || ''))}">${esc(s.id)} ${esc(s.title || '')}</div>`));
+  data.notes.forEach(n => st.insertAdjacentHTML('beforeend', `<div class="mk ${n.rule ? 'rule' : ''}" style="left:${n.t / D * 100}%"></div>`));
+}
+$('strip').addEventListener('click', e => { const r = $('strip').getBoundingClientRect(); v.currentTime = (e.clientX - r.left) / r.width * (v.duration || 0); });
+function tick() {
+  const t = v.currentTime || 0, D = v.duration || 1, s = sceneAt(t);
+  $('ph').style.left = (t / D * 100) + '%';
+  document.querySelectorAll('#strip .sc').forEach(e => e.classList.toggle('on', s && e.dataset.id === s.id));
+  $('now').innerHTML = `<b>${fmt(t)}</b>${s ? ` · ${esc(s.id)} ${esc(s.title || '')}` : ''}<br>${esc(wordsAt(t))}`;
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+
+function grab() {
+  try {
+    const c = document.createElement('canvas'); c.width = 360; c.height = Math.round(360 * (v.videoHeight / v.videoWidth || 16 / 9));
+    c.getContext('2d').drawImage(v, 0, 0, c.width, c.height); return c.toDataURL('image/jpeg', .72);
+  } catch { return null; }
+}
+function addNote() {
+  if (!video) return;
+  v.pause();
+  const t = +v.currentTime.toFixed(2), s = sceneAt(t);
+  data.notes.push({ t, scene: s ? s.id : '', words: wordsAt(t), cat: 'Bild', text: '', rule: false, frame: grab(), created: new Date().toISOString() });
+  data.notes.sort((a, b) => a.t - b.t); sel = data.notes.findIndex(n => n.t === t);
+  renderNotes(); save();
+  const ta = document.querySelector(`.note[data-i="${sel}"] textarea`); if (ta) { ta.focus(); ta.scrollIntoView({ block: 'nearest' }); }
+}
+function renderNotes() {
+  const box = $('notes');
+  if (!data.notes.length) box.innerHTML = '<div class="empty">Noch keine Notizen.<br>Video abspielen und bei einer Stelle <kbd>N</kbd> drücken oder auf „+ Notiz hier“ klicken.</div>';
+  else box.innerHTML = data.notes.map((n, i) => `<div class="note ${i === sel ? 'sel' : ''}" data-i="${i}">
+    <div>${n.frame ? `<img src="${n.frame}" data-jump="${i}" alt="">` : ''}</div>
+    <div>
+      <div class="top"><span class="tm" data-jump="${i}">${fmt(n.t)}</span><span>${esc(n.scene || '')}</span>
+        <select data-f="cat">${CATS.map(c => `<option ${c === n.cat ? 'selected' : ''}>${c}</option>`).join('')}</select>
+        <label title="Landet beim Export als Regel in guides/learnings.md"><input type="checkbox" data-f="rule" ${n.rule ? 'checked' : ''}> Regel für alle Reels${n.exported ? ' ✓' : ''}</label>
+        <button class="x" data-del="${i}" title="Löschen">✕</button></div>
+      ${n.words ? `<div class="wd">„${esc(n.words)}“</div>` : ''}
+      <textarea data-f="text" placeholder="Was passt nicht? z. B. Karte zu klein, Sound zu laut, Pointe zu spät …">${esc(n.text)}</textarea>
+    </div></div>`).join('');
+  drawStrip();
+}
+$('notes').addEventListener('input', e => {
+  const el = e.target, i = +el.closest('.note')?.dataset.i, f = el.dataset.f; if (!f || isNaN(i)) return;
+  data.notes[i][f] = el.type === 'checkbox' ? el.checked : el.value;
+  if (f === 'rule') drawStrip();
+  save();
+});
+$('notes').addEventListener('click', e => {
+  const j = e.target.dataset.jump, d = e.target.dataset.del;
+  if (j != null) { v.currentTime = data.notes[+j].t; sel = +j; document.querySelectorAll('.note').forEach(x => x.classList.toggle('sel', +x.dataset.i === sel)); }
+  if (d != null) { data.notes.splice(+d, 1); sel = -1; renderNotes(); save(); }
+});
+function save() {
+  clearTimeout(saveT); msg('…');
+  saveT = setTimeout(async () => {
+    const r = await fetch(`/api/${encodeURIComponent(slug)}/notes`, { method: 'POST', body: JSON.stringify(data) });
+    msg(r.ok ? `gespeichert (${data.notes.length})` : 'Speichern fehlgeschlagen');
+  }, 400);
+}
+function asText() {
+  return [`Review ${slug}:`, ...data.notes.map(n => `- ${fmt(n.t)} (${n.scene}${n.cat ? ', ' + n.cat : ''}) ${n.text.trim() || '(ohne Text)'}${n.rule ? ' [Regel]' : ''}${n.words ? ` – gesprochen: „${n.words}“` : ''}`)].join('\n');
+}
+$('copy').onclick = async () => { try { await navigator.clipboard.writeText(asText()); msg('kopiert'); } catch { msg('Kopieren ging nicht, nimm den Export'); } };
+$('exp').onclick = async () => {
+  clearTimeout(saveT);
+  const r = await fetch(`/api/${encodeURIComponent(slug)}/export`, { method: 'POST', body: JSON.stringify(data) });
+  if (!r.ok) return msg('Export fehlgeschlagen');
+  const j = await r.json(); data = j.data; renderNotes();
+  msg(`→ ${j.md}${j.rules ? ` · ${j.rules} Regel(n) in guides/learnings.md` : ''}`);
+};
+$('add').onclick = addNote;
+$('pick').onchange = e => load(e.target.value);
+addEventListener('keydown', e => {
+  const typing = /TEXTAREA|INPUT|SELECT/.test(document.activeElement.tagName);
+  if (e.key === 'Escape') { document.activeElement.blur(); return; }
+  if (typing) return;
+  const fr = 1 / 30;
+  if (e.key === ' ') { e.preventDefault(); v.paused ? v.play() : v.pause(); }
+  else if (e.key === 'n' || e.key === 'N') { e.preventDefault(); addNote(); }
+  else if (e.key === 'ArrowLeft') { e.preventDefault(); v.currentTime -= 1; }
+  else if (e.key === 'ArrowRight') { e.preventDefault(); v.currentTime += 1; }
+  else if (e.key === ',') { v.pause(); v.currentTime -= fr; }
+  else if (e.key === '.') { v.pause(); v.currentTime += fr; }
+});
+init();
+</script>
+</body>
+</html>
