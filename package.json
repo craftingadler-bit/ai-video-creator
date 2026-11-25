@@ -9,7 +9,8 @@
     "vendor": "node kit/build-vendor.mjs",
     "lint": "node kit/lint-script.mjs --all",
     "report": "node kit/report.mjs",
-    "test": "node --test test/*.test.mjs"
+    "test": "node --test test/*.test.mjs",
+    "review": "node kit/review.mjs"
   },
   "dependencies": {
     "d3-array": "^3.2.5",

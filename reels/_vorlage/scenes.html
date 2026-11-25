@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bausteine-Vorlage</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../kit/base.css">
+</head>
+<body>
+<!-- Vorlage für neue Reels: Gruppen, Hintergründe und Bausteine kommen aus kit/blocks.js, HTML bleibt fast leer.
+     Kopieren nach reels/<slug>/, script.md schreiben, Bausteine austauschen. Eigenes Zeug (Figuren, Requisiten) wie gewohnt dazu. -->
+<div id="stage"><div class="kick">WHAT IF … <b>ROME</b></div><div id="world"></div></div>
+<script src="timeline.js"></script>
+<script src="../../kit/vendor/gsap-all.js"></script>
+<script src="../../kit/runtime.js"></script>
+<script src="../../kit/figures.js"></script><script src="../../kit/props.js"></script>
+<script src="../../kit/geo-lib.js"></script><script src="../../kit/geo-data-50m.js"></script><script src="../../kit/map.js"></script>
+<script src="../../kit/blocks.js"></script>
+<script>
+const { put, at, hero } = B;
+R.autoSfx(false);
+
+/* Gruppen + Hintergründe */
+B.group('g1', 'linear-gradient(#2B1B4A 0%, #7A2E5C 45%, #E0704E 75%, #F6B25E 100%)');
+B.group('g2', 'linear-gradient(#141B33, #1E2A4C)');
+B.group('g3', 'linear-gradient(#7CC4F0, #CDEBF7 60%)');
+B.group('g4', 'linear-gradient(#3A2A5A, #6A3A6A)');
+B.group('g5', 'linear-gradient(#141B33, #2A1F44)');
+B.scenes([['s1', 'g1'], ['s2', 'g2', 'zoom'], ['s3', 'g3', 'whip'], ['s4', 'g4', 'push'], ['s5', 'g5', 'iris']]);
+
+/* s1 Hook: Tempel + Titel */
+B.add('g1', `<svg class="b-svg"><g id="temple1">${at(540, 1260, .78, PROPS.temple(820))}</g></svg>`);
+R.gfromTo('temple1', { y: 700 }, { y: 0, duration: .7, ease: 'back.out(1.3)' }, .05);
+B.title('g1', { lines: [
+  { text: 'What if', size: 80 },
+  { text: 'ROME', size: 150, box: 'var(--re)', at: 'Rome', fx: 'chars' },
+  { text: 'never fell?', size: 84, color: 'var(--ye)', at: 'never' }] });
+
+/* s2 Karte + Close-up */
+B.map('g2', { view: { center: [20, 42], zoom: 2.6 },
+  fills: [[['Italy', 'Spain', 'France', 'Germany', 'Portugal', 'Greece'], 'Europe'], [['Morocco', 'Algeria', 'Tunisia', 'Libya', 'Egypt'], 'North']],
+  labels: [['EUROPE', [8, 52], 'Europe', { out: 'capital' }], ['NORTH AFRICA', [12, 27], 'North', { out: 'capital' }]],
+  star: [[12.5, 41.9], ['Rome', 0, 1]], views: [['capital', .9, { center: [14, 42], zoom: 5 }]] });
+B.closeup('g2', { at: 'Shocking', mood: 'annoyed', cam: true });
+
+/* s3 Ortsschild + Stempel */
+B.sign('g3', { from: ['Federal Republic of', 'GERMANY'], to: ['Province of', 'GERMANIA'], strike: 'doesn', flip: 'Germania' });
+B.stamp('g3', { text: 'PROVINCE', at: 'province', y: 360 });
+
+/* s4 Zähler + Sprechblase + Konfetti */
+B.add('g4', `<svg class="b-svg"><g id="hero4">${hero('du4', 540, 1290, .9)}</g></svg>`);
+B.enter('hero4', .1, 'bottom', { s: 's4' });
+B.counter('g4', { at: 'three', from: 0, to: 3, suffix: ' years', y: 420, label: 'PROCESSING TIME' });
+B.bubble('g4', { text: 'Seriously?!', at: 'years', x: 680, y: 700 });
+B.confetti('g4', { at: 'paid', y: 900 });
+FIG.mood('du4', [[0, 'neutral'], [B.time('s4', 'three'), 'shock'], [B.time('s4', 'paid'), 'bliss']]);
+
+/* s5 Zitat + Anzeigetafel + Herzen */
+B.quote('g5', { text: 'I came, I saw, I filed a form.', who: 'Caesar (probably)', at: 'came', y: 300 });
+B.board('g5', { text: 'VIA APPIA EXPRESS', at: 'Via', y: 980, title: 'NEXT TRAIN', show: 'Next' });
+B.rise('g5', { at: 'Express', x: 900, y: 1300 });
+
+R.start();
+</script>
+</body>
+</html>
