@@ -47,6 +47,12 @@ Regeln:
 - Letzte Szene: Pointe + CTA (Frage an die Comments oder "Schick's an …")
 - Ton aus `guides/humor.md` (kurz, sarkastisch, Selbstironie, keine Chatbot-Wörter)
 
+**Vor der Aufnahme immer linten** (kostet nichts, keine KI):
+```
+node kit/lint-script.mjs reels/<slug>      # alle: npm run lint
+```
+Prüft Format, Wortzahl, geschätzte Länge (±4 s), Hook ≤ 12 Wörter, Satzlänge, Schlagwörter, Pausen mitten im Satz, CTA, verbotene Wörter (`guides/humor.md`), Aussprache-Liste (`guides/pronunciation.md`). Alle `!!` fixen, bevor `voice.mjs` läuft. Das spart Aufnahmen.
+
 Script dem User kurz zeigen (nur die VO-Zeilen) und direkt weitermachen, außer er will vorher drüberschauen.
 
 ### 2. Voiceover → `vo.wav`, `timeline.json`, `timeline.js`
@@ -175,8 +181,9 @@ node kit/voice-polish.mjs reels/<slug>          # Pegel + Pausen neu (läuft nac
 ### 5. Finale
 ```
 node kit/render.mjs reels/<slug>
-node kit/check.mjs reels/<slug>
+node kit/report.mjs reels/<slug> --run      # check.mjs + audio-review.mjs + Report in einem
 ```
+`check/report.html` = eine Seite mit Ampel (Länge, Bildwechsel-Takt, Lautheit, Motion-Check, Audio-Review, Script-Lint), Zeitleiste und allen Befunden mit Zeitstempel. Klick springt im Video hin. Für mich: **`check/quality.json` lesen statt alle Einzelreports**, dann nur die Kontaktbögen zu den gemeldeten Zeitstempeln anschauen. Schlägt der Report neue Einträge für `guides/pronunciation.md` vor, eintragen. Ohne `--run` liest der Report nur ein, was schon da ist (z. B. nach `--draft`).
 Dem User melden: Pfad zur MP4, Länge, was der Check sagt, was du nicht prüfen konntest (z. B. wie die Stimme klingt). Ehrlich bleiben, nichts als geprüft verkaufen, was nicht geprüft wurde.
 
 ### 6. Feedback ("mach den Hook knackiger")

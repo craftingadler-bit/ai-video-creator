@@ -6,7 +6,10 @@
     "setup": "npm install && npx playwright install chromium && node kit/build-geo.mjs && node kit/build-vendor.mjs && node kit/setup-check.mjs",
     "check-setup": "node kit/setup-check.mjs",
     "geo": "node kit/build-geo.mjs",
-    "vendor": "node kit/build-vendor.mjs"
+    "vendor": "node kit/build-vendor.mjs",
+    "lint": "node kit/lint-script.mjs --all",
+    "report": "node kit/report.mjs",
+    "test": "node --test test/*.test.mjs"
   },
   "dependencies": {
     "d3-array": "^3.2.5",
