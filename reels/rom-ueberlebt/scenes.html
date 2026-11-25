@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Rom überlebt</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root { --bg1:#1B1530; --bg2:#3A2350; --or:#FF7A3D; --ye:#FFD23F; --re:#FF4D2E; --bl:#7FD3FF; --ink:#141022; --gold:#E8B83A; --stone:#E9E1CF; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:100%; height:100%; background:#000; overflow:hidden; font-family:Poppins, system-ui, sans-serif; }
+  #stage { position:relative; width:1080px; height:1920px; overflow:hidden; background:linear-gradient(#1B1530, #3A2350 70%, #5A2E4A); }
+  #world, .sc { position:absolute; inset:0; }
+  svg { position:absolute; inset:0; width:1080px; height:1920px; overflow:visible; }
+  .t { position:absolute; left:60px; right:60px; text-align:center; color:#fff; font-weight:900; line-height:1.08; letter-spacing:-.02em; }
+  .box { display:inline-block; padding:.04em .3em; border-radius:.18em; }
+  .kick { position:absolute; top:110px; left:50%; translate:-50% 0; background:rgba(0,0,0,.45); color:#fff; font:800 30px Poppins; letter-spacing:.14em; padding:10px 28px; border-radius:99px; white-space:nowrap; z-index:40; }
+  .kick b { color:var(--ye); }
+  .stamp { position:absolute; color:var(--re); border:12px solid var(--re); border-radius:22px; font:900 110px Poppins; padding:0 30px; letter-spacing:.02em; white-space:nowrap; }
+  .card { position:absolute; background:#FBF8F1; border-radius:22px; box-shadow:0 20px 0 rgba(0,0,0,.25); color:var(--ink); }
+  .sign { position:absolute; background:#FFD23F; border:12px solid #141022; border-radius:20px; color:#141022; text-align:center; font-weight:900; }
+  .bob { animation:bob 3s ease-in-out infinite; }
+  .blink { animation:blink 4s infinite; transform-box:fill-box; transform-origin:center; }
+  .star { animation:tw 2.4s ease-in-out infinite; }
+  @keyframes bob { 50% { transform:translateY(-18px); } }
+  @keyframes blink { 0%,93%,100% { transform:scaleY(1); } 96% { transform:scaleY(.1); } }
+  @keyframes tw { 50% { opacity:.3; } }
+</style>
+</head>
+<body>
+<div id="stage"><div id="world">
+  <svg id="stars"></svg>
+  <div class="kick">WAS WÄRE WENN … <b>ROM</b></div>
+
+  <!-- s1 Hook -->
+  <div class="sc" id="g1">
+    <svg>
+      <g id="col1a"><g id="colL"></g></g>
+      <g id="col1b"><g id="colR"></g></g>
+      <g id="laurel1"><g class="bob"><g id="laurel"></g>
+        <text x="540" y="1060" text-anchor="middle" font-size="96" font-weight="900" fill="var(--gold)" letter-spacing="6">SPQR</text></g></g>
+    </svg>
+    <div class="t" id="h1a" style="top:270px;font-size:76px">Was wäre, wenn das</div>
+    <div class="t" id="h1b" style="top:370px;font-size:124px;line-height:1"><span class="box" style="background:var(--re);padding:.08em .3em">RÖMISCHE<br>REICH</span></div>
+    <div class="t" id="h1c" style="top:665px;font-size:66px">nie untergegangen wäre?</div>
+  </div>
+
+  <!-- s2 Karte -->
+  <div class="sc" id="g2">
+    <svg>
+      <rect x="90" y="420" width="900" height="760" rx="40" fill="#2C4A7A"/>
+      <path d="M170 560 Q220 450 380 470 Q520 430 660 480 Q720 540 690 640 Q640 720 560 760 L520 800 Q470 760 420 780 Q330 800 250 760 Q160 700 170 560Z" fill="#6B6380"/>
+      <path d="M720 470 Q850 430 960 470 L960 1000 Q900 1030 820 990 Q740 920 750 820 Q720 700 740 620 Q710 540 720 470Z" fill="#6B6380"/>
+      <path d="M120 930 Q300 890 500 910 Q650 890 780 950 L780 1150 L120 1150Z" fill="#6B6380"/>
+      <path id="eu" d="M170 560 Q220 450 380 470 Q520 430 660 480 Q720 540 690 640 Q640 720 560 760 L520 800 Q470 760 420 780 Q330 800 250 760 Q160 700 170 560Z" fill="#C8302A"/>
+      <path id="af" d="M120 930 Q300 890 500 910 Q650 890 780 950 L780 1150 L120 1150Z" fill="#C8302A"/>
+      <path id="as" d="M720 470 Q790 448 845 450 L845 1012 Q830 1004 820 990 Q740 920 750 820 Q720 700 740 620 Q710 540 720 470Z" fill="#C8302A"/>
+      <path d="M845 450 V1012" stroke="#fff" stroke-width="6" stroke-dasharray="14 12" id="halfline"/>
+      <text x="420" y="630" text-anchor="middle" font-size="44" font-weight="900" fill="#fff">EUROPA</text>
+      <text x="450" y="1050" text-anchor="middle" font-size="44" font-weight="900" fill="#fff">NORDAFRIKA</text>
+      <text x="850" y="740" text-anchor="middle" font-size="40" font-weight="900" fill="#fff">ASIEN</text>
+      <text id="halb" x="782" y="900" text-anchor="middle" font-size="36" font-weight="800" fill="var(--ye)">(halb)</text>
+      <g id="romstar"><path d="M470 670 L486 712 L530 714 L496 742 L508 786 L470 760 L432 786 L444 742 L410 714 L454 712Z" fill="var(--ye)" stroke="#141022" stroke-width="5"/></g>
+    </svg>
+    <div class="t" id="h2a" style="top:290px;font-size:66px">IMPERIUM <span style="color:var(--ye)">ROMANUM</span></div>
+    <div class="card" id="cap2" style="left:300px;top:1205px;width:480px;padding:14px 0;text-align:center;font:900 46px Poppins;background:var(--ye)">Hauptstadt: ROM</div>
+  </div>
+
+  <!-- s3 Germania -->
+  <div class="sc" id="g3">
+    <svg><rect x="300" y="800" width="26" height="460" fill="#9AA0AE"/><rect x="754" y="800" width="26" height="460" fill="#9AA0AE"/></svg>
+    <div class="sign" id="sign1" style="left:150px;top:520px;width:780px;height:300px;padding-top:60px">
+      <div style="font-size:40px">Bundesrepublik</div><div style="font-size:96px;line-height:1.1">DEUTSCHLAND</div>
+    </div>
+    <svg><path id="strike" d="M170 820 L910 520" stroke="var(--re)" stroke-width="34" stroke-linecap="round" fill="none"/></svg>
+    <div class="sign" id="sign2" style="left:150px;top:520px;width:780px;height:300px;padding-top:56px">
+      <div style="font-size:40px">Provinz</div><div style="font-size:112px;line-height:1.1">GERMANIA</div>
+    </div>
+    <div class="stamp" id="st3" style="left:250px;top:330px;rotate:-8deg">PROVINZ</div>
+    <div class="card" id="ew3" style="left:200px;top:900px;width:680px;padding:24px;text-align:center;font:800 44px Poppins">Einwohner: 12<br><span style="color:#2E8B3A">Kühe: 340</span></div>
+  </div>
+
+  <!-- s4 Latein -->
+  <div class="sc" id="g4">
+    <svg><g id="stud4"></g></svg>
+    <div class="card" id="bub4" style="left:330px;top:420px;width:420px;padding:30px 0;text-align:center;font:900 96px Poppins;border-radius:60px">SALVE!</div>
+    <div class="card" id="zeug4" style="left:150px;top:300px;width:780px;height:330px;padding:40px;text-align:center;rotate:-3deg">
+      <div style="font:600 36px Poppins;color:#777">Zeugnis</div>
+      <div style="font:900 80px Poppins;margin-top:6px">Großes Latinum</div>
+      <div style="font:600 34px Poppins;color:#777;margin-top:10px">Nutzen bisher: 0</div>
+    </div>
+    <div class="stamp" id="st4" style="left:200px;top:540px;rotate:-10deg;color:#2EAF5A;border-color:#2EAF5A">SINNVOLL</div>
+  </div>
+
+  <!-- s5 Bürokratie -->
+  <div class="sc" id="g5">
+    <div class="card" id="scroll5" style="left:170px;top:300px;width:740px;padding:30px 40px;text-align:center;background:#F3E3BF;border-radius:30px;border-left:26px solid #C9A86A;border-right:26px solid #C9A86A">
+      <div style="font:900 72px Poppins">ANTRAG XIV</div>
+      <div style="font:600 34px Poppins;color:#6B5531">auf Genehmigung eines Antrags</div>
+    </div>
+    <svg>
+      <g id="route5">
+        <path id="path5" d="M250 720 Q330 950 560 960 Q780 970 820 1170" stroke="#fff" stroke-width="10" stroke-dasharray="4 26" stroke-linecap="round" fill="none" opacity=".7"/>
+        <circle cx="250" cy="720" r="22" fill="var(--bl)"/><text x="215" y="735" text-anchor="end" font-size="40" font-weight="900" fill="#fff">Germania</text>
+        <circle cx="820" cy="1170" r="22" fill="var(--ye)"/><text x="870" y="1180" text-anchor="start" font-size="40" font-weight="900" fill="#fff">Rom</text>
+        <g id="bote"><g id="boteFig"></g></g>
+      </g>
+    </svg>
+    <div class="stamp" id="st5" style="left:330px;top:560px;rotate:-9deg;font-size:96px">© ROM</div>
+    <div class="t" id="bz5" style="top:760px;font-size:56px;color:#cfc6e8">Bearbeitungszeit</div>
+    <div class="t" id="jr5" style="top:850px;font-size:190px;color:var(--ye)">0 Jahre</div>
+  </div>
+
+  <!-- s6 Bahn -->
+  <div class="sc" id="g6">
+    <div class="t" id="h6" style="top:300px;font-size:80px">DIE <span class="box" style="background:var(--re)">BAHN</span></div>
+    <div class="card" id="board6" style="left:90px;top:480px;width:900px;padding:40px 46px;background:#13235E;color:#fff">
+      <div style="font:800 36px Poppins;color:#B8C4F0">Abfahrt 07:42 · Gleis IV</div>
+      <div id="via6" style="font:900 64px Poppins;color:var(--ye);margin-top:10px;min-height:76px"></div>
+      <div style="font:800 44px Poppins;margin-top:6px">Germania → Roma</div>
+    </div>
+    <div class="card" id="vsp6" style="left:90px;top:860px;width:900px;padding:30px 46px;background:#1E1838;color:#fff;text-align:center">
+      <div style="font:800 44px Poppins;color:#B8C4F0">Verspätung</div>
+      <div id="jh6" style="font:900 130px Poppins;color:var(--re);line-height:1.1">+0 Jahre</div>
+    </div>
+  </div>
+
+  <!-- s7 Duales Studium -->
+  <div class="sc" id="g7">
+    <svg><g id="kol7"><g id="kolosseum"></g></g><g id="stud7"></g><g id="cent7"></g></svg>
+    <div class="t" id="d7" style="top:620px;font-size:110px">DUALES<br><span class="box" style="background:var(--or)">STUDIUM</span></div>
+    <div class="t" id="l7a" style="top:300px;font-size:72px">Theoriephase: <span style="color:var(--ye)">Kolosseum</span></div>
+    <div class="t" id="l7b" style="top:300px;font-size:72px">Praxisphase: <span class="box" style="background:var(--re)">Legion</span></div>
+    <div class="card" id="tag7" style="left:560px;top:450px;width:430px;padding:18px 0;text-align:center;font:800 40px Poppins;background:var(--ye)">Ausbilder:<br><span style="font-size:58px;font-weight:900">Centurio</span></div>
+  </div>
+
+  <!-- s8 Freizeit -->
+  <div class="sc" id="g8">
+    <div class="card" id="score8" style="left:120px;top:290px;width:840px;padding:28px;text-align:center;background:#101820;color:#fff">
+      <div style="font:800 40px Poppins;color:#B8C4F0">FREITAGABEND · LIVE</div>
+      <div id="wr8" style="font:900 84px Poppins;color:var(--ye)">WAGENRENNEN</div>
+      <div id="bl8" style="font:800 50px Poppins;color:#777;text-decoration:line-through;text-decoration-color:var(--re);text-decoration-thickness:8px">Bundesliga</div>
+    </div>
+    <div class="t" id="var8" style="top:640px;font-size:52px"><span class="box" style="background:#2A2A3A;border:5px solid var(--bl)">VIDEOBEWEIS</span></div>
+    <svg><g id="kaiser8"></g><g id="thumbW"><g id="thumb"></g></g></svg>
+  </div>
+
+  <!-- s9 Mathe -->
+  <div class="sc" id="g9">
+    <div class="t" id="h9" style="top:290px;font-size:80px">MATHE</div>
+    <div class="card" id="board9" style="left:90px;top:420px;width:900px;height:680px;background:#24533A;border:22px solid #8A5A34;color:#F4F4EC;text-align:center;padding-top:60px">
+      <div id="rz9" style="font:800 70px Poppins;letter-spacing:.06em">I · II · III · IV · V</div>
+      <div style="margin-top:80px;font:900 120px Poppins"><span id="eq9"></span><span id="q9" style="display:inline-block;color:var(--ye)">?</span></div>
+    </div>
+    <div class="stamp" id="st9" style="left:170px;top:800px;rotate:-10deg;font-size:120px">VIEL SPASS</div>
+  </div>
+
+  <!-- s10 Fazit -->
+  <div class="sc" id="g10">
+    <svg><g class="bob"><g id="col10"></g></g></svg>
+    <div class="t" id="yr10" style="top:290px;font-size:120px;color:var(--ye)">0 Jahre</div>
+    <div class="t" id="ub10" style="top:430px;font-size:56px">Imperium: überlebt</div>
+    <div class="card" id="pb10" style="left:500px;top:640px;width:440px;height:520px;padding:36px;rotate:5deg">
+      <div style="font:900 50px Poppins">Praxis&shy;bericht</div>
+      <div style="font:600 34px Poppins;color:#888;margin-top:10px">Seite 1 von 40</div>
+      <div style="margin-top:30px;height:14px;background:#ddd;border-radius:7px"></div>
+      <div style="margin-top:22px;height:14px;width:70%;background:#ddd;border-radius:7px"></div>
+      <div style="margin-top:22px;height:14px;width:40%;background:#ddd;border-radius:7px"></div>
+    </div>
+    <div class="stamp" id="st10" style="left:470px;top:820px;rotate:-12deg;font-size:140px">NICHT.</div>
+  </div>
+
+  <!-- s11 CTA -->
+  <div class="sc" id="g11">
+    <div class="t" style="top:360px;font-size:80px">In welcher <span style="color:var(--ye)">Provinz</span><br>würdest du wohnen?</div>
+    <div class="card" id="cbox" style="left:120px;top:760px;width:840px;height:150px;border-radius:80px;padding:44px 60px;font:600 48px Poppins;color:#999">Germania Inferior<span id="caret">|</span></div>
+    <svg><g id="arrow"><g class="bob"><path d="M540 960 V1180 M460 1100 L540 1180 L620 1100" stroke="var(--ye)" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" fill="none"/></g></g></svg>
+  </div>
+</div></div>
+
+<script src="timeline.js"></script>
+<script src="../../kit/runtime.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+
+/* Sterne */
+let st = ''; for (let i = 0; i < 70; i++) { const x = Math.random() * 1080, y = Math.random() * 1300, r = Math.random() * 2.4 + .8; st += `<circle class="star" style="animation-delay:-${(Math.random() * 2.4).toFixed(2)}s" cx="${x}" cy="${y}" r="${r}" fill="#fff" opacity=".7"/>`; }
+$('stars').innerHTML = st;
+
+/* Säule */
+const column = (x, y, h, w = 130) => `<g transform="translate(${x} ${y})">
+  <rect x="${-w / 2 - 22}" y="-30" width="${w + 44}" height="34" rx="6" fill="var(--stone)"/>
+  <rect x="${-w / 2 - 12}" y="4" width="${w + 24}" height="22" fill="#D4C9B0"/>
+  <rect x="${-w / 2}" y="26" width="${w}" height="${h}" fill="var(--stone)"/>
+  ${[-.3, 0, .3].map(k => `<rect x="${k * w - 7}" y="40" width="14" height="${h - 28}" rx="7" fill="#D4C9B0"/>`).join('')}
+  <rect x="${-w / 2 - 22}" y="${h + 26}" width="${w + 44}" height="40" rx="6" fill="#D4C9B0"/>
+</g>`;
+$('colL').innerHTML = column(150, 820, 380);
+$('colR').innerHTML = column(930, 820, 380);
+$('col10').innerHTML = column(270, 700, 470, 150);
+
+/* Lorbeerkranz */
+let lr = '';
+for (let i = 0; i < 13; i++) {
+  const a0 = (200 - i * 12.5) * Math.PI / 180;
+  [[1, a0], [-1, Math.PI - a0]].forEach(([sgn, a]) => {
+    const x = 540 + Math.cos(a) * 190, y = 1030 + Math.sin(a) * -190 * -1;
+    const deg = a * 180 / Math.PI + (sgn > 0 ? 60 : 120);
+    lr += `<ellipse cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" rx="40" ry="17" transform="rotate(${deg.toFixed(0)} ${x.toFixed(0)} ${y.toFixed(0)})" fill="${i % 2 ? '#6FAE4A' : '#8CC65A'}"/>`;
+  });
+}
+$('laurel').innerHTML = lr;
+
+/* Kolosseum */
+let ko = `<path d="M180 1180 L180 760 Q540 640 900 760 L900 1180 Z" fill="#D9C7A0"/><path d="M180 760 Q540 640 900 760 L900 800 Q540 690 180 800Z" fill="#C2AD80"/>`;
+[[820, 950], [960, 1090]].forEach(([y0], r) => { for (let i = 0; i < 7; i++) { const x = 230 + i * 100; ko += `<path d="M${x} ${y0 + 110} V${y0 + 40} Q${x + 30} ${y0} ${x + 60} ${y0 + 40} V${y0 + 110}Z" fill="#5A4A38"/>`; } });
+ko += `<rect x="180" y="940" width="720" height="16" fill="#C2AD80"/><rect x="180" y="1080" width="720" height="16" fill="#C2AD80"/>`;
+$('kolosseum').innerHTML = ko;
+
+/* Figur: der Student, optional mit Helm / Lorbeer */
+const helmet = crest => `<path d="M-86 -30 Q-92 -146 0 -146 Q92 -146 86 -30 L64 -30 L64 -66 L-64 -66 L-64 -30Z" fill="#B8B8C4"/>
+  <rect x="-90" y="-72" width="180" height="16" rx="8" fill="#9696A6"/>
+  ${crest ? `<path d="M-84 -150 Q0 -250 84 -150 Q0 -180 -84 -150Z" fill="var(--re)"/>` : `<rect x="-10" y="-186" width="20" height="44" rx="8" fill="var(--re)"/>`}`;
+const laurelHead = `<path d="M-74 -96 Q0 -150 74 -96" stroke="#6FAE4A" stroke-width="22" fill="none" stroke-dasharray="26 6" stroke-linecap="round"/>`;
+const student = (x, y, mouthId, s = 1, o = {}) => `<g transform="translate(${x} ${y}) scale(${s})">
+  <path d="M-95 260 L-80 95 Q-70 40 0 38 Q70 40 80 95 L95 260 Z" fill="${o.body || 'var(--or)'}"/>
+  <rect x="-22" y="10" width="44" height="40" fill="#D9976C"/>
+  <circle cy="-40" r="78" fill="#E8A97E"/>
+  <path d="M-80 -36 Q-88 -128 0 -126 Q88 -128 80 -36 Q70 -78 34 -86 Q12 -66 -14 -80 Q-46 -86 -62 -66 Z" fill="${o.hair || '#2B1E3F'}"/>
+  <g class="blink"><ellipse cx="-28" cy="-36" rx="8" ry="10" fill="#141022"/><ellipse cx="28" cy="-36" rx="8" ry="10" fill="#141022"/></g>
+  ${o.angry ? '<path d="M-48 -62 L-12 -50 M48 -62 L12 -50" stroke="#141022" stroke-width="8" stroke-linecap="round"/>' : '<path d="M-40 -18 Q-28 -12 -16 -18 M16 -18 Q28 -12 40 -18" stroke="#B87150" stroke-width="4" fill="none" stroke-linecap="round"/>'}
+  <ellipse ${mouthId ? `id="${mouthId}"` : ''} cy="12" rx="16" ry="12" fill="#5A1A1A"/>
+  ${o.helmet ? helmet(o.crest) : ''}${o.laurel ? laurelHead : ''}
+</g>`;
+$('stud4').innerHTML = student(540, 990, 'm4', 1.4);
+$('boteFig').innerHTML = student(250, 680, null, .38);
+$('stud7').innerHTML = student(300, 1000, 'm7', .95, { helmet: 1 });
+$('cent7').innerHTML = student(770, 1000, null, 1.1, { helmet: 1, crest: 1, angry: 1, body: '#A3222A' });
+$('kaiser8').innerHTML = student(330, 1010, 'm8', 1.05, { laurel: 1, body: '#6A2A8A', hair: '#B9B9B9' });
+
+/* Daumen (zeigt nach oben, wird gedreht) */
+$('thumb').innerHTML = `<g transform="translate(780 960) scale(1.5)">
+  <rect x="-80" y="-30" width="160" height="150" rx="36" fill="#E8A97E" stroke="#141022" stroke-width="8"/>
+  <path d="M-80 10 H40 M-80 50 H40 M-80 88 H40" stroke="#141022" stroke-width="6"/>
+  <rect x="-40" y="-150" width="66" height="140" rx="33" fill="#E8A97E" stroke="#141022" stroke-width="8"/>
+</g>`;
+
+/* ===== Choreografie: alles relativ zum Voiceover ===== */
+for (let i = 1; i <= 11; i++) R.sceneGroup('g' + i, 's' + i, i === 1 ? 'fade' : 'slide');
+
+// s1 Hook
+R.up('h1a', R.at('s1', .05)); R.slam('h1b', R.word('s1', 'Römische')); R.pop('h1c', R.word('s1', 'nie'));
+R.up('col1a', R.at('s1', .1)); R.up('col1b', R.at('s1', .25));
+R.tw('laurel1', R.at('s1'), 3, { s: .7, o: 0 }, { s: 1, o: 1 }, 'out');
+R.tw('col1a', R.word('s1', 'untergegangen'), 1, {}, { r: -8, y: 30 }, 'out');
+
+// s2 Karte: Regionen färben sich auf das gesprochene Wort
+R.up('h2a', R.at('s2', .05));
+R.fadeIn('eu', R.word('s2', 'Europa'), .3); R.sfx(R.word('s2', 'Europa'), 'pop', .6);
+R.fadeIn('af', R.word('s2', 'Nordafrika'), .3); R.sfx(R.word('s2', 'Nordafrika'), 'pop', .6);
+R.fadeIn('as', R.word('s2', 'halb'), .3); R.sfx(R.word('s2', 'halb'), 'pop', .6);
+R.fadeIn('halfline', R.word('s2', 'halb')); R.pop('halb', R.word('s2', 'Asien'), null);
+R.pop('romstar', R.word('s2', 'Hauptstadt'), 'ding'); R.pop('cap2', R.word('s2', 'Rom', 1));
+R.tw('romstar', R.word('s2', 'Überraschung'), .5, { r: 0, s: 1.4 }, { r: 360, s: 1 }, 'out');
+
+// s3 Germania
+R.slideIn('sign1', R.at('s3', .05)); R.draw('strike', R.word('s3', 'nicht'), .3); R.sfx(R.word('s3', 'nicht'), 'fail', .6);
+R.fadeOut('sign1', R.word('s3', 'Germania') - .1); R.init('strike', {}); R.fadeOut('strike', R.word('s3', 'Germania') - .1);
+R.slam('sign2', R.word('s3', 'Germania'));
+R.slam('st3', R.word('s3', 'Provinz')); R.up('ew3', R.word('s3', 'Wortwörtlich'));
+
+// s4 Latein
+R.mouth('m4', ['s4']); R.up('stud4', R.at('s4', .05));
+R.pop('bub4', R.word('s4', 'reden')); R.fadeOut('bub4', R.word('s4', 'Endlich') - .1);
+R.pop('zeug4', R.word('s4', 'Großes')); R.slam('st4', R.word('s4', 'Sinn'));
+R.tw('stud4', R.word('s4', 'Sinn'), .35, { s: 1.08 }, { s: 1 }, 'back');
+
+// s5 Bürokratie
+R.pop('scroll5', R.at('s5', .1)); R.slam('st5', R.word('s5', 'erfunden')); R.fadeOut('st5', R.word('s5', 'Dein') - .1);
+R.up('route5', R.word('s5', 'Dein'));
+const p5 = $('path5'), L5 = p5.getTotalLength(), tb = R.word('s5', 'Bote');
+R.during(tb, R.word('s5', 'Bearbeitungszeit') - tb - .1, p => { const pt = p5.getPointAtLength(R.E.inout(p) * L5); $('bote').style.translate = `${pt.x - 250}px ${pt.y - 720}px`; });
+R.fadeOut('route5', R.word('s5', 'Bearbeitungszeit') - .1);
+R.up('bz5', R.word('s5', 'Bearbeitungszeit')); R.pop('jr5', R.word('s5', 'Bearbeitungszeit') + .2);
+R.count('jr5', R.word('s5', 'drei') - .3, .5, 0, 3, v => Math.round(v) + ' Jahre');
+R.tw('jr5', R.word('s5', 'Jahre'), .3, { s: 1.3 }, { s: 1 }, 'back'); R.sfx(R.word('s5', 'Jahre'), 'ding', .6);
+
+// s6 Bahn
+R.pop('h6', R.word('s6', 'Bahn'));
+R.slideIn('board6', R.at('s6', .1)); R.type('via6', R.word('s6', 'Via'), .7, 'VIA APPIA EXPRESS'); R.sfx(R.word('s6', 'Via'), 'type', .5);
+R.pop('vsp6', R.word('s6', 'Verspätung'));
+R.count('jh6', R.word('s6', 'zwei'), .8, 0, 200, v => '+' + Math.round(v) + ' Jahre');
+R.shake(R.word('s6', 'Jahrhunderte') + .4); R.sfx(R.word('s6', 'Jahrhunderte') + .4, 'fail', .6);
+
+// s7 Duales Studium
+R.pop('d7', R.at('s7', .05)); R.fadeOut('d7', R.word('s7', 'Theoriephase') - .15);
+R.pop('kol7', R.word('s7', 'Theoriephase')); R.up('l7a', R.word('s7', 'Theoriephase'));
+R.fadeOut('kol7', R.word('s7', 'Praxisphase') - .1); R.fadeOut('l7a', R.word('s7', 'Praxisphase') - .4, .25);
+R.up('l7b', R.word('s7', 'Praxisphase') + .05); R.slideIn('stud7', R.word('s7', 'Praxisphase'), -1); R.mouth('m7', ['s7']);
+R.pop('cent7', R.word('s7', 'Ausbilder')); R.pop('tag7', R.word('s7', 'Centurio'));
+R.tw('stud7', R.word('s7', 'Centurio') + .2, .4, {}, { s: .9, x: -30 }, 'out');
+
+// s8 Freizeit
+R.pop('score8', R.at('s8', .05)); R.init('wr8', { o: 0 }); R.pop('wr8', R.word('s8', 'Wagenrennen')); R.fadeIn('bl8', R.word('s8', 'Bundesliga'));
+R.pop('var8', R.word('s8', 'Videobeweis')); R.up('kaiser8', R.word('s8', 'Kaiser') - .3); R.mouth('m8', ['s8']);
+R.pop('thumbW', R.word('s8', 'Daumen') - .5);
+R.tw('thumb', R.word('s8', 'Daumen'), .35, { r: 0 }, { r: 180 }, 'back'); R.sfx(R.word('s8', 'Daumen'), 'slam'); R.shake(R.word('s8', 'Daumen') + .25);
+
+// s9 Mathe
+R.pop('h9', R.word('s9', 'Mathe')); R.slideIn('board9', R.at('s9', .05));
+R.init('rz9', { o: 0 }); R.fadeIn('rz9', R.word('s9', 'römischen'));
+R.type('eq9', R.word('s9', 'Teil'), 1.1, 'XL ÷ XII = '); R.sfx(R.word('s9', 'Teil'), 'type', .5);
+R.pop('q9', R.word('s9', 'zwölf') + .3); R.slam('st9', R.word('s9', 'Viel'));
+
+// s10 Fazit
+R.up('col10', R.at('s10', .05)); R.pop('yr10', R.at('s10', .1));
+R.count('yr10', R.word('s10', 'zweitausend'), .9, 0, 2000, v => Math.round(v).toLocaleString('de-DE') + ' Jahre');
+R.up('ub10', R.word('s10', 'überlebt'));
+R.slideIn('pb10', R.word('s10', 'Praxisbericht'));
+R.slam('st10', R.word('s10', 'nicht'));
+R.tw('pb10', R.word('s10', 'nicht') + .35, .5, {}, { y: 500, r: 40, o: 0 }, 'grav'); R.sfx(R.word('s10', 'nicht') + .35, 'drop', .6);
+
+// s11 CTA
+R.pop('cbox', R.at('s11', .1)); R.pop('arrow', R.word('s11', 'Kommentare'));
+R.during(R.at('s11'), 99, (p, now) => { $('caret').style.opacity = Math.floor(now * 2.5) % 2; });
+
+R.start();
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+node_modules/
+reels/*/audio/
+reels/*/check/
+reels/*/*_draft.mp4
+.mix.raw
+.venv-earshot/
+
+.DS_Store
+*.mp4
+reels/*/vo.wav
+reels/_stimmtest/
+.claude/settings.local.json

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rome Survives v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root { --or:#FF7A3D; --ye:#FFD23F; --re:#FF4D2E; --bl:#7FD3FF; --ink:#141022; --gold:#E8B83A; --stone:#E9E1CF; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:100%; height:100%; background:#000; overflow:hidden; font-family:Poppins, system-ui, sans-serif; }
+  #stage { position:relative; width:1080px; height:1920px; overflow:hidden; background:#120E20; }
+  #world, .sc, .bg { position:absolute; inset:0; }
+  .sc { overflow:hidden; }
+  svg { position:absolute; inset:0; width:1080px; height:1920px; overflow:visible; }
+  .t { position:absolute; left:60px; right:60px; text-align:center; color:#fff; font-weight:900; line-height:1.05; letter-spacing:-.02em; text-shadow:0 8px 0 rgba(0,0,0,.25); }
+  .box { display:inline-block; padding:.04em .3em; border-radius:.18em; }
+  .kick { position:absolute; top:110px; left:50%; translate:-50% 0; background:rgba(0,0,0,.45); color:#fff; font:800 30px Poppins; letter-spacing:.14em; padding:10px 28px; border-radius:99px; white-space:nowrap; z-index:45; }
+  .kick b { color:var(--ye); }
+  .stamp { position:absolute; color:var(--re); border:12px solid var(--re); border-radius:22px; font:900 110px Poppins; padding:0 30px; letter-spacing:.02em; white-space:nowrap; background:rgba(255,255,255,.08); }
+  .card { position:absolute; background:#FBF8F1; border-radius:24px; box-shadow:0 18px 0 rgba(0,0,0,.25); color:var(--ink); }
+  .sign { position:absolute; background:#FFD23F; border:12px solid #141022; border-radius:20px; color:#141022; text-align:center; font-weight:900; backface-visibility:hidden; }
+  .bubble { position:absolute; background:#fff; color:var(--ink); border-radius:40px; font:900 64px Poppins; padding:18px 34px; box-shadow:0 12px 0 rgba(0,0,0,.2); white-space:nowrap; }
+  .bubble::after { content:''; position:absolute; bottom:-30px; left:var(--tail, 60px); border:18px solid transparent; border-top:26px solid #fff; }
+  .flap { display:inline-block; width:50px; margin:0 3px; background:#0A1230; border-radius:8px; text-align:center; color:var(--ye); box-shadow:inset 0 -3px 0 rgba(0,0,0,.5); }
+  .blink { animation:blink 4s infinite; transform-box:fill-box; transform-origin:center; }
+  .gallop { animation:gallop .28s ease-in-out infinite alternate; transform-box:fill-box; transform-origin:50% 0; }
+  .spin { animation:spin .5s linear infinite; transform-box:fill-box; transform-origin:center; }
+  .sway { animation:sway 3.2s ease-in-out infinite alternate; transform-box:fill-box; transform-origin:50% 100%; }
+  @keyframes blink { 0%,93%,100% { transform:scaleY(1); } 96% { transform:scaleY(.1); } }
+  @keyframes gallop { to { transform:skewX(-14deg) scaleY(.94); } }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  @keyframes sway { to { transform:rotate(3deg); } }
+</style>
+</head>
+<body>
+<div id="stage">
+<div class="kick">WHAT IF … <b>ROME</b></div>
+<div id="world">
+
+  <!-- s1 Hook: Tempel im Sonnenuntergang, kippt fast um -->
+  <div class="sc" id="g1">
+    <div class="bg" style="background:linear-gradient(#2B1B4A 0%, #7A2E5C 45%, #E0704E 75%, #F6B25E 100%)"></div>
+    <svg>
+      <circle cx="540" cy="1080" r="230" fill="#FFD9A0" opacity=".55"/><circle cx="540" cy="1080" r="160" fill="#FFE7B8"/>
+      <g id="cl1a"><g transform="translate(200 820)"></g></g>
+      <g id="cl1b"></g>
+      <path d="M0 1260 Q270 1200 540 1240 T1080 1220 V1920 H0Z" fill="#3A1F3A"/>
+      <g id="temple1"><g id="temple1in"></g></g>
+      <g id="dust1" opacity="0"></g>
+    </svg>
+    <div class="t" id="h1a" style="top:250px;font-size:72px">What if the</div>
+    <div class="t" id="h1b" style="top:340px;font-size:128px;line-height:.98"><span class="box" style="background:var(--re);padding:.06em .28em">ROMAN<br>EMPIRE</span></div>
+    <div class="t" id="h1c" style="top:620px;font-size:80px;color:var(--ye)">never fell?</div>
+  </div>
+
+  <!-- s2 Karte + Reaktions-Close-up -->
+  <div class="sc" id="g2">
+    <div class="bg" style="background:linear-gradient(#141B33, #1E2A4C)"></div>
+    <svg id="map2"></svg>
+    <div class="t" id="h2a" style="top:270px;font-size:68px">IMPERIUM <span style="color:var(--ye)">ROMANUM</span></div>
+    <div class="card" id="cap2" style="left:300px;top:1215px;width:480px;padding:14px 0;text-align:center;font:900 46px Poppins;background:var(--ye)">Capital: ROME</div>
+    <svg><g id="face2"><g transform="translate(250 1010) scale(.62)" id="face2in"></g></g></svg>
+  </div>
+
+  <!-- s3 Germania: Ortsschild, Hügel, Kühe -->
+  <div class="sc" id="g3">
+    <div class="bg" style="background:linear-gradient(#7CC4F0, #CDEBF7 60%)"></div>
+    <svg>
+      <g id="cl3"></g>
+      <path d="M-40 1020 Q250 900 560 990 T1120 960 V1920 H-40Z" fill="#7DBE5E"/>
+      <g id="pines3"></g>
+      <path d="M-40 1120 Q300 1060 600 1110 T1120 1090 V1920 H-40Z" fill="#5FA548"/>
+      <path d="M470 1920 L520 1110 L560 1110 L700 1920Z" fill="#C9A26A" opacity=".8"/>
+      <rect x="300" y="760" width="26" height="440" fill="#8F96A6"/><rect x="754" y="760" width="26" height="440" fill="#8F96A6"/>
+      <g id="cowsBack"></g><g id="cowsFront"></g>
+    </svg>
+    <div style="position:absolute;inset:0;perspective:1600px">
+      <div class="sign" id="sign1" style="left:150px;top:480px;width:780px;height:300px;padding-top:60px">
+        <div style="font-size:40px">Federal Republic of</div><div style="font-size:110px;line-height:1.1">GERMANY</div></div>
+      <div class="sign" id="sign2" style="left:150px;top:480px;width:780px;height:300px;padding-top:56px">
+        <div style="font-size:40px">Province of</div><div style="font-size:112px;line-height:1.1">GERMANIA</div></div>
+    </div>
+    <svg><path id="strike" d="M170 780 L910 480" stroke="var(--re)" stroke-width="34" stroke-linecap="round" fill="none"/></svg>
+    <div class="stamp" id="st3" style="left:250px;top:300px;rotate:-8deg">PROVINCE</div>
+    <div class="card" id="pop3" style="left:250px;top:830px;width:580px;padding:22px;text-align:center;font:800 46px Poppins">Population: <span style="color:var(--re)">12</span><br>Cows: <span id="cows3n" style="color:#2E8B3A">0</span></div>
+  </div>
+
+  <!-- s4 Latein: Straßencafé, alle sagen SALVE -->
+  <div class="sc" id="g4">
+    <div class="bg" style="background:linear-gradient(#F2C98A, #E8A86A)"></div>
+    <svg>
+      <g fill="#D88E58"></g>
+      <g id="arches4"></g>
+      <rect x="0" y="1180" width="1080" height="740" fill="#B9774A"/><rect x="0" y="1180" width="1080" height="18" fill="#9C5E38"/>
+      <g id="awning4"></g>
+      <g id="npc4a"></g><g id="npc4b"></g>
+      <g id="hero4"><g id="hero4in"></g></g>
+      <g id="conf4"></g>
+    </svg>
+    <div class="bubble" id="b4a" style="left:70px;top:430px;--tail:80px">SALVE!</div>
+    <div class="bubble" id="b4b" style="left:560px;top:430px;--tail:300px">PECUNIA!</div>
+    <div class="card" id="ex4" style="left:190px;top:270px;width:700px;padding:22px 30px;display:flex;gap:24px;align-items:center;background:#fff;border-radius:34px">
+      <div style="width:90px;height:90px;border-radius:50%;background:#FF7A9A;display:grid;place-items:center;font:900 46px Poppins;color:#fff">❤</div>
+      <div><div style="font:700 32px Poppins;color:#888">Ex · now</div><div style="font:900 54px Poppins">VALE. ✋</div></div></div>
+    <div class="card" id="cert4" style="left:150px;top:300px;width:780px;padding:36px;text-align:center;rotate:-3deg;border:10px solid var(--gold)">
+      <div style="font:600 34px Poppins;color:#777">Certificate</div>
+      <div style="font:900 78px Poppins;margin-top:6px">6 Years of Latin</div>
+      <div style="font:600 34px Poppins;color:#777;margin-top:10px">Finally useful</div></div>
+    <div class="stamp" id="st4" style="left:230px;top:520px;rotate:-10deg;color:#2EAF5A;border-color:#2EAF5A">WORTH IT</div>
+  </div>
+
+  <!-- s5 Bürokratie: Büro → Karte → Kalender -->
+  <div class="sc" id="g5">
+    <div class="sc" id="g5a">
+      <div class="bg" style="background:linear-gradient(#3B3357, #2A2442)"></div>
+      <svg><rect x="80" y="1130" width="920" height="40" rx="10" fill="#8A5A34"/><rect x="120" y="1170" width="40" height="260" fill="#6E4628"/><rect x="920" y="1170" width="40" height="260" fill="#6E4628"/>
+        <g id="stacks5"></g></svg>
+      <div class="card" id="scroll5" style="left:190px;top:300px;width:700px;padding:30px 40px;text-align:center;background:#F3E3BF;border-radius:30px;border-top:26px solid #C9A86A;border-bottom:26px solid #C9A86A">
+        <div style="font:900 76px Poppins">FORM XIV</div>
+        <div style="font:600 36px Poppins;color:#6B5531;margin-top:4px">Application to file<br>an application</div>
+        <div style="margin:20px auto 0;height:12px;width:80%;background:#D9C59A;border-radius:6px"></div>
+        <div style="margin:16px auto 0;height:12px;width:60%;background:#D9C59A;border-radius:6px"></div></div>
+      <div class="stamp" id="st5" style="left:310px;top:600px;rotate:-9deg;font-size:96px">© ROME</div>
+    </div>
+    <div class="sc" id="g5b">
+      <div class="bg" style="background:#141B33"></div>
+      <svg id="map5"></svg>
+      <div class="t" id="alps5" style="top:290px;font-size:64px">On <span class="box" style="background:var(--re)">foot.</span> Over the <span style="color:var(--bl)">Alps.</span></div>
+    </div>
+    <div class="sc" id="g5c">
+      <div class="bg" style="background:linear-gradient(#3B3357, #2A2442)"></div>
+      <div class="t" style="top:300px;font-size:60px;color:#cfc6e8">Processing time</div>
+      <div class="card" id="cal5" style="left:290px;top:420px;width:500px;height:520px;overflow:hidden;border-radius:30px">
+        <div style="height:120px;background:var(--re);border-radius:30px 30px 0 0"></div>
+        <div id="calpages" style="position:absolute;left:0;right:0;top:120px;bottom:0"></div></div>
+      <div class="t" id="jr5" style="top:990px;font-size:150px;color:var(--ye)">0 years</div>
+    </div>
+  </div>
+
+  <!-- s6 Bahnsteig: Fallblatt-Anzeige, Bart wächst -->
+  <div class="sc" id="g6">
+    <div class="bg" style="background:linear-gradient(#232A4A, #3A4470)"></div>
+    <svg>
+      <rect x="0" y="1180" width="1080" height="740" fill="#5A5F78"/><rect x="0" y="1180" width="1080" height="24" fill="#FFD23F"/>
+      <rect x="0" y="1204" width="1080" height="10" fill="#141022"/>
+      <rect x="640" y="1040" width="320" height="26" rx="10" fill="#8A5A34"/><rect x="660" y="1066" width="20" height="120" fill="#6E4628"/><rect x="920" y="1066" width="20" height="120" fill="#6E4628"/>
+      <g id="clock6"><g transform="translate(250 900)" id="clock6in"></g></g>
+      <g id="hero6"><g id="hero6in"></g></g>
+    </svg>
+    <div class="card" id="board6" style="left:70px;top:270px;width:940px;padding:30px 34px;background:#13235E;color:#fff">
+      <div style="font:800 34px Poppins;color:#B8C4F0">07:42 · Platform IV · Germania → Roma</div>
+      <div id="via6" style="font:900 64px Poppins;margin-top:12px;white-space:nowrap"></div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:14px">
+        <div style="font:800 40px Poppins;color:#B8C4F0">Delay</div><div id="jh6" style="font:900 74px Poppins;color:var(--re)">+0 years</div></div>
+      <div id="db6" style="margin-top:12px;padding-top:12px;border-top:3px dashed #2C3E86;font:800 40px Poppins;color:#8FA0D8">German train: <span style="color:var(--re)">cancelled</span></div>
+    </div>
+  </div>
+
+  <!-- s7 College: Kolosseum, Lottie-Figur zeigt, Centurio -->
+  <div class="sc" id="g7">
+    <div class="bg" style="background:linear-gradient(#6FB6EE, #BFE3F7 70%)"></div>
+    <svg><g id="cl7"></g><g id="kol7"><g id="kol7in"></g></g>
+      <rect x="0" y="1200" width="1080" height="720" fill="#D9B77A"/><rect x="0" y="1200" width="1080" height="16" fill="#C29A5A"/></svg>
+    <div id="walker7" style="position:absolute;left:-260px;top:400px;width:1440px;height:810px"></div>
+    <div class="t" id="d7" style="top:260px;font-size:116px"><span class="box" style="background:var(--or)">COLLEGE?</span></div>
+    <svg><g id="stud7"><g id="stud7in"></g></g><g id="cent7"><g id="cent7in"></g></g><g id="lap7"><g transform="translate(330 1060) scale(.6)"></g></g></svg>
+    <div class="card" id="tag7" style="left:560px;top:300px;width:430px;padding:18px 0;text-align:center;font:800 40px Poppins;background:var(--ye)">Your boss:<br><span style="font-size:58px;font-weight:900">Centurion</span></div>
+    <div class="stamp" id="st7" style="left:95px;top:470px;rotate:-6deg;font-size:76px">NO HOME OFFICE</div>
+  </div>
+
+  <!-- s8 Arena: Wagenrennen, Videobeweis, Daumen -->
+  <div class="sc" id="g8">
+    <div class="bg" style="background:linear-gradient(#F0A860, #F6CF8E 60%)"></div>
+    <svg><g id="crowd8"></g>
+      <rect x="0" y="1000" width="1080" height="920" fill="#E2C08A"/><path d="M0 1000 H1080" stroke="#B8935A" stroke-width="10"/>
+      <g id="lines8" opacity="0"></g>
+      <g id="ch8a"><g transform="translate(0 1180) scale(.62)" id="ch8ain"></g></g>
+      <g id="ch8b"><g transform="translate(0 1080) scale(.5)" id="ch8bin"></g></g></svg>
+    <div class="card" id="score8" style="left:120px;top:270px;width:840px;padding:24px;text-align:center;background:#101820;color:#fff">
+      <div style="font:800 36px Poppins;color:#B8C4F0">FRIDAY NIGHT · LIVE</div>
+      <div style="font:900 84px Poppins;color:var(--ye)">CHARIOT RACE</div>
+      <div id="fb8" style="font:800 46px Poppins;color:#777;text-decoration:line-through;text-decoration-color:var(--re);text-decoration-thickness:8px">Football</div></div>
+    <div id="tv8" style="position:absolute;left:90px;top:250px;width:900px;height:900px">
+      <div style="position:absolute;inset:0;background:#101820;border-radius:40px;border:16px solid #2A2A3A"></div>
+      <div style="position:absolute;left:40px;top:40px;background:var(--re);color:#fff;font:900 44px Poppins;padding:8px 22px;border-radius:12px">● VIDEO REVIEW</div>
+      <svg viewBox="0 0 900 900" style="width:900px;height:900px"><rect x="16" y="16" width="868" height="868" rx="30" fill="#4A2A6A"/><circle cx="450" cy="420" r="300" fill="#6A3A8A" opacity=".6"/>
+        <g id="emp8"><g id="emp8in"></g></g></svg>
+    </div>
+    <svg><g id="thumb8"><g transform="translate(760 820)"><g id="thumbRot"><g id="thumbIn"></g></g></g></g></svg>
+    <div class="stamp" id="st8" style="left:170px;top:980px;rotate:-8deg;font-size:96px">NO APPEALS</div>
+  </div>
+
+  <!-- s9 Mathe: Tafel, Schwitz-Close-up, Uhr -->
+  <div class="sc" id="g9">
+    <div class="bg" style="background:linear-gradient(#5A4A6E, #3E3354)"></div>
+    <div class="card" id="board9" style="left:70px;top:250px;width:940px;height:600px;background:#24533A;border:22px solid #8A5A34;color:#F4F4EC;text-align:center;padding-top:50px;border-radius:20px">
+      <div id="rz9" style="font:800 66px Poppins;letter-spacing:.06em">I · II · III · IV · V</div>
+      <div style="margin-top:70px;font:900 120px Poppins;white-space:nowrap"><span id="eq9"></span><span id="q9" style="display:inline-block;color:var(--ye)">?</span></div></div>
+    <svg><g id="face9"><g transform="translate(540 1110) scale(.7)" id="face9in"></g></g><g id="sweat9"></g>
+      <g id="clock9"><g transform="translate(860 960) scale(.9)" id="clock9in"></g></g></svg>
+    <div class="stamp" id="st9" style="left:170px;top:560px;rotate:-10deg;font-size:120px">GOOD LUCK</div>
+  </div>
+
+  <!-- s10 Fazit: Zeitstrahl, Praktikumsbericht -->
+  <div class="sc" id="g10">
+    <div class="bg" style="background:linear-gradient(#1B1530, #3A2350)"></div>
+    <div class="t" id="yr10" style="top:270px;font-size:124px;color:var(--ye)">0 years</div>
+    <div class="t" id="ub10" style="top:410px;font-size:54px">Empire: <span class="box" style="background:#2EAF5A">still standing</span></div>
+    <svg><rect x="120" y="580" width="840" height="26" rx="13" fill="#2A2442"/><rect id="bar10" x="120" y="580" width="840" height="26" rx="13" fill="var(--re)"/>
+      <g id="col10"><g transform="translate(540 1230) scale(.9)" id="col10in"></g></g>
+      <g id="hero10"><g id="hero10in"></g></g><g id="lap10"><g transform="translate(620 1220)" id="lap10in"></g></g></svg>
+    <div class="stamp" id="st10" style="left:200px;top:640px;rotate:-10deg;font-size:100px">NOT DONE.</div>
+  </div>
+
+  <!-- s11 CTA: Handy mit Kommentaren -->
+  <div class="sc" id="g11">
+    <div class="bg" style="background:linear-gradient(#2B1B4A, #4A2A5A)"></div>
+    <div class="t" id="q11" style="top:260px;font-size:76px">Which <span style="color:var(--ye)">province</span><br>would you live in?</div>
+    <div id="phone11" style="position:absolute;left:110px;top:520px;width:560px;height:760px;background:#141022;border-radius:70px;padding:26px">
+      <div style="position:absolute;inset:26px;background:#FBF8F1;border-radius:50px;overflow:hidden;padding:60px 34px">
+        <div style="font:900 40px Poppins;color:var(--ink)">Comments</div>
+        <div id="c11a" style="margin-top:26px;font:700 32px Poppins;color:#555"><b style="color:var(--ink)">@marcus</b> Gallia. For the cheese.</div>
+        <div id="c11b" style="margin-top:22px;font:700 32px Poppins;color:#555"><b style="color:var(--ink)">@livia</b> Britannia, I like rain</div>
+        <div id="cbox" style="position:absolute;left:30px;right:30px;bottom:40px;height:96px;border-radius:50px;background:#EEE9DE;padding:24px 30px;font:700 36px Poppins;color:var(--ink);white-space:nowrap"><span id="typ11"></span><span id="caret">|</span></div>
+      </div>
+    </div>
+    <svg><g id="hearts11"></g><g id="hero11"><g id="hero11in"></g></g>
+      <g id="arrow"><path d="M390 1290 V1340 M350 1300 L390 1340 L430 1300" stroke="var(--ye)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" fill="none"/></g></svg>
+  </div>
+
+</div></div>
+
+<script src="timeline.js"></script>
+<script src="../../kit/vendor/gsap-all.js"></script>
+<script src="../../kit/vendor/lottie.js"></script>
+<script src="../../kit/lottie/mascot-walk.js"></script>
+<script src="../../kit/runtime.js"></script>
+<script src="../../kit/figures.js"></script>
+<script src="../../kit/props.js"></script>
+<script src="../../kit/geo-lib.js"></script>
+<script src="../../kit/geo-data-50m.js"></script>
+<script src="../../kit/map.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+const W = R.word, AT = R.at;
+R.autoSfx(false);   // Sounds nur aus der Sound-Liste unten
+const WE = (sid, text, nth = 0) => {             // Ende eines Wortes: Sounds kommen NACH der Pointe, nicht drauf
+  const hits = R.TL.words.filter(w => w.scene === sid && w.w.toLowerCase().replace(/[^\p{L}\p{N}]/gu, '').startsWith(text.toLowerCase()));
+  return hits[nth] ? hits[nth].end : R.at(sid);
+};
+const put = (id, html) => ($(id).innerHTML = html);
+const at = (x, y, s, inner) => `<g transform="translate(${x} ${y}) scale(${Array.isArray(s) ? s.join(' ') : s})">${inner}</g>`;
+let seed = 7; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+const hero = (id, x, y, s, o = {}) => at(x, y, s, FIG.human({ id, mood: o.mood || 'neutral', hoodie: o.hoodie, hoodieD: o.hoodieD, arm: o.arm })
+  + (o.hat ? `<g transform="translate(0 -452)">${o.hat}</g>` : '') + (o.beard ? `<g transform="translate(0 -452)"><g id="${o.beard}">${PROPS.beard()}</g></g>` : ''));
+
+/* ===== Szenen + Übergänge (GSAP) + leichte Kamerafahrt pro Szene ===== */
+R.scenes([['s1', 'g1'], ['s2', 'g2', 'zoom'], ['s3', 'g3', 'whip'], ['s4', 'g4', 'push'], ['s5', 'g5', 'iris'],
+  ['s6', 'g6', 'whip'], ['s7', 'g7', 'spin'], ['s8', 'g8', 'push'], ['s9', 'g9', 'flash'], ['s10', 'g10', 'zoom'], ['s11', 'g11', 'drop']]);
+
+/* ---------- s1 Hook ---------- */
+put('temple1in', at(540, 1260, .78, PROPS.temple(820)));
+put('cl1a', at(220, 860, 1, PROPS.cloud(300))); put('cl1b', at(880, 960, 1, PROPS.cloud(220)));
+R.g('cl1a', { x: 120, duration: 6, ease: 'none' }, 0); R.g('cl1b', { x: -90, duration: 6, ease: 'none' }, 0);
+R.gfromTo('temple1', { y: 700 }, { y: 0, duration: .7, ease: 'back.out(1.3)' }, .05);
+R.up('h1a', AT('s1', .05)); R.hide('h1b'); R.chars('h1b', W('s1', 'Roman') - .1, { stagger: .025, y: 90 });
+R.popIn('h1c', W('s1', 'never'), { sfx: 'pop' });
+// kippt bei "fell?" … und richtet sich bei "never." trotzig wieder auf
+R.g('temple1in', { rotation: 9, duration: .5, ease: 'power2.in', transformOrigin: '0% 100%' }, W('s1', 'fell'));
+R.g('temple1in', { rotation: 0, duration: .9, ease: 'elastic.out(1.2,.35)', transformOrigin: '0% 100%' }, W('s1', 'never', 1) - .1);
+ R.shake(W('s1', 'never', 1) + .1, .25, 10);
+R.wiggle('temple1', W('s1', 'little'), { a: 2.5, n: 5, d: .6 });
+R.cam(W('s1', 'never'), .25, { x: 540, y: 560, s: 1.1 }, 'out');
+
+/* ---------- s2 Karte ---------- */
+const RED = '#C8302A';
+const m2 = MAP.create('map2', { box: [40, 400, 1000, 790], projection: 'naturalEarth', view: { center: [38, 44], zoom: 2.5 },
+  style: { ocean: '#1E3554', land: '#5E5878', border: '#2A2440' } });
+const EU = ['Portugal', 'Spain', 'France', 'Ireland', 'United Kingdom', 'Iceland', 'Belgium', 'Netherlands', 'Luxembourg', 'Germany', 'Switzerland', 'Italy', 'Austria', 'Denmark', 'Norway', 'Sweden', 'Czechia', 'Poland', 'Slovenia', 'Croatia', 'Hungary', 'Slovakia', 'Bosnia and Herz.', 'Serbia', 'Montenegro', 'Albania', 'Kosovo', 'Macedonia', 'Greece', 'Bulgaria', 'Romania', 'Moldova', 'Ukraine', 'Belarus', 'Lithuania', 'Latvia', 'Estonia', 'Finland', 'Malta', 'Andorra', 'Monaco', 'San Marino', 'Liechtenstein', 'Vatican', 'Åland', 'Faeroe Is.'];
+const AF = ['W. Sahara', 'Morocco', 'Algeria', 'Tunisia', 'Libya', 'Egypt'];
+const AS = ['Cyprus', 'N. Cyprus', 'Turkey', 'Georgia', 'Armenia', 'Azerbaijan', 'Syria', 'Lebanon', 'Israel', 'Palestine', 'Jordan', 'Iraq', 'Saudi Arabia', 'Kuwait', 'Bahrain', 'Qatar', 'United Arab Emirates', 'Oman', 'Yemen', 'Iran', 'Russia', 'Kazakhstan', 'Turkmenistan', 'Uzbekistan', 'Kyrgyzstan', 'Tajikistan', 'Afghanistan', 'Pakistan'];
+R.up('h2a', AT('s2', .05));
+const tE = W('s2', 'Europe'), tA = W('s2', 'North'), tH = W('s2', 'half');
+m2.fill(EU, tE - .15, RED, .3, .45 / EU.length);
+m2.fill(AF, tA - .1, RED, .3, .06);
+m2.fill(AS, tH - .1, RED, .3, .02);
+m2.view(AT('s2'), 1.2, { center: [40, 44], zoom: 2.3 });
+m2.view(W('s2', 'capital') - .2, .9, { center: [16, 42], zoom: 5 });
+const pl2 = m2.layer();
+pl2.insertAdjacentHTML('beforeend', `<g id="romstar"><path d="M0 -44 L13 -14 L44 -12 L20 8 L28 40 L0 22 L-28 40 L-20 8 L-44 -12 L-13 -14Z" fill="#FFD23F" stroke="#141022" stroke-width="5"/></g>
+  <g id="lblE"><rect x="-110" y="-30" width="220" height="60" rx="30" fill="#fff"/><text y="12" text-anchor="middle" font-size="36" font-weight="900" fill="#141022">EUROPE</text></g>
+  <g id="lblA"><rect x="-170" y="-30" width="340" height="60" rx="30" fill="#fff"/><text y="12" text-anchor="middle" font-size="36" font-weight="900" fill="#141022">NORTH AFRICA</text></g>
+  <g id="lblH"><rect x="-150" y="-30" width="300" height="60" rx="30" fill="#FFD23F"/><text y="12" text-anchor="middle" font-size="36" font-weight="900" fill="#141022">½ ASIA</text></g>`);
+m2.pin('romstar', [12.5, 41.9]); m2.pin('lblE', [8, 52]); m2.pin('lblA', [12, 27]); m2.pin('lblH', [62, 48]);
+R.pop('lblE', tE, null); R.pop('lblA', tA, null); R.pop('lblH', W('s2', 'Asia'), null);
+['lblE', 'lblA', 'lblH'].forEach(id => R.fadeOut(id, W('s2', 'capital') - .2));
+R.pop('romstar', W('s2', 'Rome', 1), 'ding'); R.pop('cap2', W('s2', 'Rome', 1) + .1);
+R.tw('romstar', W('s2', 'Shocking'), .5, { r: 0, s: 1.5 }, { r: 360, s: 1 }, 'out');
+// Reaktion: genervtes Close-up, Kamera fährt dramatisch ran
+put('face2in', FIG.humanFace({ id: 'f2', mood: 'annoyed' }));
+R.gfromTo('face2', { y: 700 }, { y: 0, duration: .45, ease: 'back.out(1.6)' }, W('s2', 'Shocking') - .1);
+R.hide('face2'); R.gset('face2', { autoAlpha: 1 }, W('s2', 'Shocking') - .1);
+FIG.mood('f2', [[0, 'annoyed'], [W('s2', 'nobody'), 'neutral'], [W('s2', 'coming'), 'annoyed']]);
+R.cam(W('s2', 'nobody'), 1.3, { x: 360, y: 900, s: 1.2 }, 'inout');
+
+/* ---------- s3 Germania ---------- */
+put('cl3', at(200, 380, 1, PROPS.cloud(280)) + at(860, 300, .8, PROPS.cloud(260)));
+let pines = ''; [[60, 1010, 1], [140, 990, .8], [960, 980, .9], [1030, 1000, 1.1], [880, 1000, .7]].forEach(([x, y, s]) => pines += at(x, y, s, PROPS.tree(280, 'pine')));
+put('pines3', pines);
+R.gfromTo('sign1', { y: -900 }, { y: 0, duration: .8, ease: 'bounce.out' }, AT('s3', .05));
+R.draw('strike', W('s3', 'doesn') - .05, .3);
+// Schild dreht sich um: GERMANY → GERMANIA
+const tG = W('s3', 'Germania');
+R.g('sign1', { rotationY: 90, duration: .18, ease: 'power2.in' }, tG - .2);
+R.gset('strike', { autoAlpha: 0 }, tG - .2);
+R.hide('sign2'); R.gset('sign2', { autoAlpha: 1 }, tG - .02);
+R.gfromTo('sign2', { rotationY: -90 }, { rotationY: 0, duration: .35, ease: 'back.out(2)' }, tG - .02);
+R.slam('st3', W('s3', 'province'));
+R.popIn('pop3', W('s3', 'Population'), { r: 4 });
+R.count('cows3n', W('s3', 'lot'), 1.2, 0, 340, v => Math.round(v));
+// Kühe: vorne fallen 4 rein (Squash), hinten ploppen viele kleine auf
+let cf = '', cb = '';
+[[200, 1300, .62], [430, 1340, .7], [690, 1310, .64], [900, 1350, .7]].forEach(([x, y, s], i) => cf += `<g id="cowF${i}">${at(x, y, [s * (i % 2 ? -1 : 1), s], PROPS.cow('cf' + i))}</g>`);
+for (let i = 0; i < 14; i++) cb += `<g id="cowB${i}">${at(60 + i * 70 + rnd() * 30, 1060 + rnd() * 40, [.2 * (rnd() > .5 ? 1 : -1), .2], PROPS.cow('cb' + i))}</g>`;
+put('cowsFront', cf); put('cowsBack', cb);
+const tc = W('s3', 'cows');
+for (let i = 0; i < 4; i++) { R.hide('cowF' + i); R.dropIn('cowF' + i, W('s3', 'lot') - .3 + i * .16, { d: .7, sfx: i ? false : 'drop' }); }
+for (let i = 0; i < 14; i++) { R.hide('cowB' + i); R.popIn('cowB' + i, tc + i * .035, { sfx: i % 4 ? false : 'pop', r: 0 }); }
+R.cam(W('s3', 'Population'), 1.6, { x: 540, y: 1100, s: 1.12 }, 'inout');
+
+/* ---------- s4 Latein ---------- */
+let arch = ''; for (let i = 0; i < 4; i++) arch += `<path d="M${40 + i * 260} 1180 V820 Q${150 + i * 260} 690 ${260 + i * 260} 820 V1180Z" fill="#C67F4C"/><path d="M${70 + i * 260} 1180 V840 Q${150 + i * 260} 740 ${230 + i * 260} 840 V1180Z" fill="#5A3A44" opacity=".55"/>`;
+put('arches4', arch);
+let aw = ''; for (let i = 0; i < 12; i++) aw += `<path d="M${i * 90} 640 h90 v60 q-45 30 -90 0z" fill="${i % 2 ? '#FBF8F1' : '#2E7D5A'}"/>`;
+put('awning4', aw);
+put('npc4a', hero('waiter', 200, 1250, .72, { hoodie: '#FBF8F1', hoodieD: '#D8D2C4', mood: 'happy' }));
+put('npc4b', hero('landlord', 880, 1250, .8, { hoodie: '#6A4A8A', hoodieD: '#4A2F66', mood: 'annoyed' }));
+put('hero4in', hero('du4', 540, 1290, .9, { mood: 'neutral' }));
+R.gfrom('hero4', { y: 900, duration: .5, ease: 'back.out(1.4)' }, AT('s4', .1));
+R.hide('npc4a'); R.hide('npc4b'); R.hide('b4a'); R.hide('b4b');
+R.gset('npc4a', { autoAlpha: 1 }, W('s4', 'waiter') - .15); R.gfrom('npc4a', { x: -500, duration: .4, ease: 'power3.out' }, W('s4', 'waiter') - .15);
+R.popIn('b4a', W('s4', 'waiter') + .15, { r: -8 });
+R.gset('npc4b', { autoAlpha: 1 }, W('s4', 'landlord') - .15); R.gfrom('npc4b', { x: 500, duration: .4, ease: 'power3.out' }, W('s4', 'landlord') - .15);
+R.popIn('b4b', W('s4', 'landlord') + .15, { r: 8 });
+R.hide('ex4'); R.gset('ex4', { autoAlpha: 1 }, W('s4', 'ex') - .1); R.gfrom('ex4', { y: -400, duration: .45, ease: 'back.out(1.5)' }, W('s4', 'ex') - .1);
+FIG.mood('du4', [[0, 'neutral'], [W('s4', 'ex'), 'shock'], [W('s4', 'paid'), 'bliss']]);
+R.wiggle('hero4', W('s4', 'ex') + .1, { a: 6, n: 7, d: .6 });
+// Zertifikat, Freudensprung, Konfetti
+const tAll = W('s4', 'All');
+['npc4a', 'npc4b', 'b4a', 'b4b', 'ex4'].forEach((id, i) => R.g(id, { autoAlpha: 0, y: -60, duration: .25, ease: 'power2.in' }, tAll - .2 + i * .03));
+R.hide('cert4'); R.gset('cert4', { autoAlpha: 1 }, tAll); R.gfrom('cert4', { y: -1200, rotation: -20, duration: .7, ease: 'bounce.out' }, tAll);
+R.slam('st4', W('s4', 'paid'));
+R.g('hero4', { y: -140, duration: .22, ease: 'power2.out', yoyo: true, repeat: 1 }, W('s4', 'paid') + .05); R.squash('hero4', W('s4', 'paid') + .5);
+let conf = ''; for (let i = 0; i < 40; i++) conf += `<rect id="cf4_${i}" x="535" y="800" width="${14 + rnd() * 10}" height="${22 + rnd() * 12}" rx="4" fill="${['#FFD23F', '#FF4D2E', '#7FD3FF', '#2EAF5A', '#FF7A9A'][i % 5]}"/>`;
+put('conf4', conf);
+for (let i = 0; i < 40; i++) {
+  R.hide('cf4_' + i); R.gset('cf4_' + i, { autoAlpha: 1 }, W('s4', 'paid') + .1);
+  R.g('cf4_' + i, { duration: 1.6, physics2D: { velocity: 900 + rnd() * 700, angle: -90 + (rnd() - .5) * 110, gravity: 1800 }, rotation: rnd() * 720 - 360, ease: 'none' }, W('s4', 'paid') + .1);
+}
+
+/* ---------- s5 Bürokratie ---------- */
+let stk = ''; for (let i = 0; i < 5; i++) { const h = 160 + rnd() * 240; stk += `<g id="stk${i}"><g transform="translate(${170 + i * 180} 1130)">${Array.from({ length: Math.round(h / 22) }, (_, k) => `<rect x="${-70 + (rnd() - .5) * 14}" y="${-22 * (k + 1)}" width="140" height="20" rx="3" fill="${k % 2 ? '#F3E3BF' : '#E6D3A8'}"/>`).join('')}</g></g>`; }
+put('stacks5', stk);
+R.gfromTo('scroll5', { scaleY: 0, transformOrigin: '50% 0%' }, { scaleY: 1, duration: .55, ease: 'back.out(1.4)' }, AT('s5', .1));
+for (let i = 0; i < 5; i++) R.gfromTo('stk' + i, { scaleY: 0, transformOrigin: '50% 100%' }, { scaleY: 1, duration: .5, ease: 'back.out(2)' }, W('s5', 'bureaucracy') - .2 + i * .09);
+R.slam('st5', W('s5', 'invented'));
+R.wiggle('stk2', W('s5', 'bureaucracy') + .6, { a: 4, n: 4 });
+// Karte: Bote läuft Germania → Rom über die Alpen
+R.hide('g5b'); R.hide('g5c');
+R.trans('whip', 'g5a', 'g5b', W('s5', 'Your') - .25, .45);
+const m5 = MAP.create('map5', { box: [90, 420, 900, 820], projection: 'mercator', view: { center: [9.8, 46.4], zoom: 11 },
+  style: { ocean: '#1E3554', land: '#5E5878', border: '#2A2440' } });
+m5.fill('Italy', -1, '#C8302A', .01); m5.fill('Germany', -1, '#4C6A9A', .01); m5.fill(['Switzerland', 'Austria'], -1, '#6A6488', .01);
+const pl5 = m5.layer();
+const mtn = (x, y) => `<g transform="translate(${x} ${y})"><path d="M-60 0 L0 -90 L60 0Z" fill="#9AA6C8"/><path d="M-20 -60 L0 -90 L20 -60 L8 -54 L0 -62 L-8 -54Z" fill="#fff"/></g>`;
+pl5.insertAdjacentHTML('beforeend', `<g id="alpsI">${mtn(-70, 10)}${mtn(10, -10)}${mtn(80, 14)}</g>
+  <circle id="dotG" r="14" fill="#7FD3FF" stroke="#fff" stroke-width="5"/><circle id="dotR" r="14" fill="#FFD23F" stroke="#fff" stroke-width="5"/>
+  <g id="lblG"><rect x="-110" y="-30" width="220" height="60" rx="30" fill="#fff"/><text y="12" text-anchor="middle" font-size="36" font-weight="900" fill="#141022">Germania</text></g>
+  <g id="lblR"><rect x="-80" y="-30" width="160" height="60" rx="30" fill="#FFD23F"/><text y="12" text-anchor="middle" font-size="36" font-weight="900" fill="#141022">Rome</text></g>
+  <g id="bote"><g id="boteBob">${at(0, 0, .2, FIG.human({ id: 'boteF', mood: 'annoyed' }) + `<g transform="translate(110 -330)"><rect x="-30" y="-40" width="60" height="80" rx="8" fill="#F3E3BF" stroke="#C9A86A" stroke-width="6"/></g>`)}</g></g>`);
+const COL = [6.96, 50.94], ROM = [12.5, 41.9];
+m5.pin('dotG', COL); m5.pin('dotR', ROM); m5.pin('lblG', COL, -150, 0); m5.pin('lblR', ROM, 110, 0); m5.pin('alpsI', [10.2, 46.6]);
+const tb = W('s5', 'travels'), te = W('s5', 'Processing') - .35;
+m5.route('r5', [COL, [8.6, 47.4], [9.2, 45.5], [11.3, 43.8], ROM], tb, te - tb, { head: 'bote', rotate: false, keepHead: true, color: '#fff', width: 8 });
+R.bob('boteBob', tb, te, { a: -14, d: .18 });
+m5.view(tb, te - tb, { center: [10.6, 45], zoom: 13 });
+R.hide('alpsI'); R.popIn('alpsI', W('s5', 'Alps') - .2, { sfx: 'pop' });
+R.hide('alps5'); R.popIn('alps5', W('s5', 'On') - .05, { r: -4, sfx: false });
+FIG.mood('boteF', [[0, 'annoyed'], [W('s5', 'Alps'), 'shock']]);
+// Kalender: Blätter fliegen weg, Jahre zählen hoch
+R.trans('zoom', 'g5b', 'g5c', W('s5', 'Processing') - .3, .45);
+let pages = ''; for (let i = 0; i < 12; i++) pages += `<div id="pg${i}" style="position:absolute;inset:0;background:#FBF8F1;border-top:3px solid #ddd;display:grid;place-items:center;font:900 200px Poppins;color:var(--ink)">${['JAN', 'MAR', 'JUN', 'SEP', 'DEC', 'I', 'II', 'III'][i % 8]}</div>`;
+put('calpages', pages);
+for (let i = 11; i >= 0; i--) R.g('pg' + i, { y: -700, x: (rnd() - .5) * 500, rotation: (rnd() - .5) * 90, autoAlpha: 0, duration: .45, ease: 'power2.in' }, W('s5', 'time') + (11 - i) * .1);
+R.count('jr5', W('s5', 'three') - .6, .8, 0, 3, v => Math.round(v) + ' years');
+R.tw('jr5', W('s5', 'years'), .3, { s: 1.35 }, { s: 1 }, 'back');
+
+/* ---------- s6 Bahnsteig ---------- */
+put('clock6in', PROPS.clock('ck6'));
+put('hero6in', hero('du6', 800, 1180, .85, { mood: 'neutral', beard: 'beard6' }));
+R.gfrom('hero6', { x: 600, duration: .5, ease: 'power3.out' }, AT('s6', .1));
+R.gfromTo('board6', { rotationX: -90, transformOrigin: '50% 0%', transformPerspective: 1200 }, { rotationX: 0, duration: .6, ease: 'back.out(1.6)' }, AT('s6', .05));
+// Fallblatt-Effekt: Buchstaben rattern, bis sie stehen
+const VIA = 'VIA APPIA EXPRESS', ABC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+R.during(W('s6', 'Via') - .2, 1.1, (p, now) => {
+  $('via6').innerHTML = [...VIA].map((c, i) => {
+    if (c === ' ') return '<span style="display:inline-block;width:22px"></span>';
+    const done = p >= .25 + i / VIA.length * .7, k = (i * 7 + Math.floor(now * 24)) % 26;
+    return `<span class="flap">${p <= 0 ? '&nbsp;' : done ? c : ABC[k]}</span>`;
+  }).join('');
+});
+
+R.count('jh6', W('s6', 'two') - .1, 1.2, 0, 200, v => '+' + Math.round(v) + ' years');
+R.g('ck6_m', { rotation: 360 * 14, duration: 1.4, ease: 'power2.inOut', svgOrigin: '0 0' }, W('s6', 'two') - .2);
+R.g('ck6_h', { rotation: 360 * 2, duration: 1.4, ease: 'power2.inOut', svgOrigin: '0 0' }, W('s6', 'two') - .2);
+R.gfromTo('beard6', { scaleY: 0, transformOrigin: '50% 0%' }, { scaleY: 1.25, duration: 1.3, ease: 'power1.in' }, W('s6', 'two') - .1);
+FIG.mood('du6', [[0, 'neutral'], [W('s6', 'Delay'), 'annoyed'], [W('s6', 'centuries') + .4, 'sad'], [W('s6', 'Still'), 'happy']]);
+R.shake(W('s6', 'centuries') + .4);
+R.hide('db6'); R.gset('db6', { autoAlpha: 1 }, W('s6', 'German') - .1); R.gfrom('db6', { x: 200, duration: .35, ease: 'back.out(2)' }, W('s6', 'German') - .1);
+R.squash('hero6', W('s6', 'beats'));
+
+/* ---------- s7 College ---------- */
+put('cl7', at(240, 520, 1, PROPS.cloud(280)) + at(860, 620, .9, PROPS.cloud(220)));
+let ko = `<path d="M120 1200 L120 760 Q540 620 960 760 L960 1200 Z" fill="#D9C7A0"/><path d="M120 760 Q540 620 960 760 L960 800 Q540 680 120 800Z" fill="#C2AD80"/><path d="M760 700 Q880 720 960 760 L960 1200 L840 1200Z" fill="#B59D6E" opacity=".6"/>`;
+[[820], [960]].forEach(([y0]) => { for (let i = 0; i < 8; i++) { const x = 160 + i * 100; ko += `<path d="M${x} ${y0 + 110} V${y0 + 40} Q${x + 30} ${y0} ${x + 60} ${y0 + 40} V${y0 + 110}Z" fill="#5A4A38"/>`; } });
+ko += `<rect x="120" y="940" width="840" height="16" fill="#C2AD80"/><rect x="120" y="1080" width="840" height="16" fill="#C2AD80"/>`;
+put('kol7in', ko);
+R.popIn('d7', AT('s7', .05), { r: -6 }); R.g('d7', { autoAlpha: 0, y: -80, duration: .25 }, W('s7', 'Lectures') - .2);
+R.hide('kol7'); R.gset('kol7', { autoAlpha: 1 }, W('s7', 'Lectures') - .3);
+R.gfrom('kol7', { y: 900, duration: .6, ease: 'back.out(1.2)' }, W('s7', 'Lectures') - .3);
+// Lottie-Figur läuft rein und zeigt aufs Kolosseum
+const walker = R.lottie('walker7', 'mascot-walk', {});
+walker.play(W('s7', 'Lectures') - .2, 92, 224, { speed: 1.4 });
+R.hide('walker7'); R.gset('walker7', { autoAlpha: 1 }, W('s7', 'Lectures') - .2); R.g('walker7', { autoAlpha: 0, duration: .2 }, W('s7', 'Internship') - .2);
+// Praktikum bei der Legion
+put('stud7in', hero('du7', 330, 1240, .78, { hat: PROPS.helmet(false), mood: 'happy' }));
+put('cent7in', hero('cent', 760, 1260, 1.05, { hat: PROPS.helmet(true), hoodie: '#A3222A', hoodieD: '#7A161D', mood: 'annoyed' }));
+R.hide('stud7'); R.gset('stud7', { autoAlpha: 1 }, W('s7', 'Internship') - .1); R.gfrom('stud7', { x: -700, duration: .45, ease: 'power3.out' }, W('s7', 'Internship') - .1);
+R.hide('cent7'); R.dropIn('cent7', W('s7', 'boss') - .2, { d: .7 }); R.shake(W('s7', 'boss') + .25, .3, 14);
+R.popIn('tag7', W('s7', 'centurion'), { r: 6 }); R.g('tag7', { autoAlpha: 0, duration: .2 }, W('s7', 'office'));
+FIG.mood('du7', [[0, 'happy'], [W('s7', 'boss'), 'shock'], [W('s7', 'home'), 'sad']]);
+R.g('stud7in', { scale: .85, transformOrigin: '50% 100%', duration: .4, ease: 'power2.out' }, W('s7', 'centurion'));
+put('lap7', at(330, 1100, .55, PROPS.laptop('lp7')));
+R.hide('lap7'); R.popIn('lap7', W('s7', 'home') - .3, { sfx: 'pop' });
+R.g('lap7', { duration: 1.2, physics2D: { velocity: 1500, angle: -60, gravity: 2600 }, rotation: 540, ease: 'none' }, W('s7', 'office') + .05);
+ R.squash('cent7', W('s7', 'office'));
+R.slam('st7', W('s7', 'office') + .25);
+
+/* ---------- s8 Arena ---------- */
+let crowd = ''; for (let r = 0; r < 6; r++) for (let i = 0; i < 18; i++) crowd += `<circle cx="${i * 62 + (r % 2) * 30}" cy="${700 + r * 50}" r="20" fill="${['#C46A4A', '#8A4A6A', '#4A6A8A', '#E0A060', '#6A8A4A'][(i + r * 3) % 5]}"/>`;
+put('crowd8', `<rect x="0" y="660" width="1080" height="340" fill="#7A4A3A"/>${crowd}`);
+put('ch8ain', PROPS.chariot('chA', '#E0342A')); put('ch8bin', PROPS.chariot('chB', '#2F6FD8'));
+let ln = ''; for (let i = 0; i < 9; i++) ln += `<rect x="${rnd() * 1080}" y="${1040 + rnd() * 200}" width="${200 + rnd() * 200}" height="8" rx="4" fill="#fff" opacity=".7"/>`;
+put('lines8', ln);
+R.popIn('score8', AT('s8', .05), { r: -3 });
+R.hide('fb8'); R.gset('fb8', { autoAlpha: 1 }, W('s8', 'football') - .1);
+const tCh = W('s8', 'chariot') - .6;
+R.gfromTo('ch8a', { x: -500 }, { x: 1500, duration: 1.8, ease: 'none' }, tCh);
+R.gfromTo('ch8b', { x: -800 }, { x: 1500, duration: 2.1, ease: 'none' }, tCh + .1);
+R.gset('lines8', { autoAlpha: 1 }, tCh + .3); R.g('lines8', { x: -400, duration: 1.4, ease: 'none' }, tCh + .3); R.gset('lines8', { autoAlpha: 0 }, tCh + 1.7);
+ R.shake(tCh + .5, .6, 8);
+// Videobeweis
+put('emp8in', hero('emp', 450, 860, 1.05, { hat: PROPS.laurelHat(), hoodie: '#6A2A8A', hoodieD: '#4A1A66', mood: 'neutral' }));
+put('thumbIn', PROPS.thumb());
+R.g('score8', { autoAlpha: 0, scale: .8, duration: .25 }, W('s8', 'Video') - .2);
+R.hide('tv8'); R.gset('tv8', { autoAlpha: 1 }, W('s8', 'Video') - .2);
+R.gfromTo('tv8', { scale: 0, rotation: -8 }, { scale: 1, rotation: 0, duration: .5, ease: 'back.out(1.7)' }, W('s8', 'Video') - .2);
+FIG.mood('emp', [[0, 'neutral'], [W('s8', 'thumb'), 'annoyed']]);
+R.hide('thumb8'); R.popIn('thumb8', W('s8', 'With') + .2, { sfx: 'pop', r: 0 });
+R.g('thumbRot', { rotation: 180, duration: .45, ease: 'back.out(2.2)', svgOrigin: '0 0' }, W('s8', 'thumb'));
+ R.shake(W('s8', 'thumb') + .25);
+R.wiggle('thumb8', W('s8', 'thumb') + .45, { a: 5, n: 5, d: .5, origin: '50% 50%' });
+R.slam('st8', W('s8', 'No'));
+R.cam(W('s8', 'emperor'), 1.2, { x: 560, y: 820, s: 1.12 }, 'inout');
+
+/* ---------- s9 Mathe ---------- */
+put('face9in', FIG.humanFace({ id: 'f9', mood: 'neutral' }));
+put('clock9in', PROPS.clock('ck9'));
+R.gfromTo('board9', { y: -1000 }, { y: 0, duration: .7, ease: 'bounce.out' }, AT('s9', .05));
+R.init('rz9', { o: 0 }); R.fadeIn('rz9', W('s9', 'Roman'));
+R.type('eq9', W('s9', 'Try'), 1.1, 'XL ÷ XII = ');
+R.hide('q9'); R.popIn('q9', W('s9', 'twelve') + .3, { r: 20 });
+R.hide('face9'); R.gset('face9', { autoAlpha: 1 }, W('s9', 'dividing'));
+R.gfrom('face9', { y: 900, duration: .45, ease: 'back.out(1.5)' }, W('s9', 'dividing'));
+FIG.mood('f9', [[0, 'neutral'], [W('s9', 'twelve'), 'shock'], [W('s9', 'wait'), 'annoyed']]);
+let sw = ''; for (let i = 0; i < 6; i++) sw += `<g id="sw9_${i}">${at(i % 2 ? 690 : 390, 920, .9, PROPS.sweat())}</g>`;
+put('sweat9', sw);
+for (let i = 0; i < 6; i++) { R.hide('sw9_' + i); R.gset('sw9_' + i, { autoAlpha: 1 }, W('s9', 'twelve') + .2 + i * .25);
+  R.g('sw9_' + i, { duration: .9, physics2D: { velocity: 300, angle: i % 2 ? -40 : -140, gravity: 1600 }, ease: 'none' }, W('s9', 'twelve') + .2 + i * .25); }
+R.wiggle('face9', W('s9', 'twelve') + .1, { a: 4, n: 8, d: .8, prop: 'x' });
+R.slam('st9', W('s9', 'Good'));
+R.hide('clock9'); R.popIn('clock9', W('s9', 'ill') - .1);
+R.g('ck9_m', { rotation: 360 * 10, duration: 1.2, ease: 'power1.in', svgOrigin: '0 0' }, W('s9', 'wait'));
+R.g('ck9_h', { rotation: 360, duration: 1.2, ease: 'power1.in', svgOrigin: '0 0' }, W('s9', 'wait'));
+
+/* ---------- s10 Fazit ---------- */
+put('col10in', PROPS.column(420, 150));
+R.popIn('yr10', AT('s10', .1), { r: 0 });
+R.count('yr10', W('s10', 'two') - .1, 1, 0, 2000, v => Math.round(v).toLocaleString('en-US') + ' years');
+R.gfromTo('bar10', { scaleX: 0, transformOrigin: '0% 50%' }, { scaleX: 1, duration: 1.4, ease: 'power2.inOut' }, W('s10', 'empire'));
+R.hide('ub10'); R.popIn('ub10', W('s10', 'survive'), { r: 3 });
+R.hide('col10'); R.dropIn('col10', W('s10', 'empire') - .1, { d: .6 }); R.wiggle('col10', W('s10', 'years'), { a: 3, n: 5 });
+R.g('col10', { x: -900, rotation: -30, duration: .4, ease: 'power3.in' }, W('s10', 'Your') - .4);
+put('hero10in', hero('du10', 360, 1260, .8, { mood: 'neutral' }));
+put('lap10in', PROPS.laptop('lp10'));
+$('lp10_screen').insertAdjacentHTML('beforeend', `<text x="0" y="-150" text-anchor="middle" font-size="34" font-weight="900" fill="#141022">Report</text><text x="0" y="-100" text-anchor="middle" font-size="26" font-weight="700" fill="#141022">Page 1 of 40</text>`);
+R.hide('hero10'); R.hide('lap10');
+R.gset(['hero10', 'lap10'], { autoAlpha: 1 }, W('s10', 'Your') - .15);
+R.gfrom('hero10', { x: -600, duration: .45, ease: 'power3.out' }, W('s10', 'Your') - .15);
+R.gfrom('lap10', { y: 700, duration: .45, ease: 'back.out(1.4)' }, W('s10', 'Your'));
+FIG.mood('du10', [[0, 'neutral'], [W('s10', 'Still'), 'sad']]);
+R.g('hero10in', { rotation: 24, transformOrigin: '50% 100%', duration: .35, ease: 'power3.in' }, W('s10', 'done') - .05);
+ R.shake(W('s10', 'done') + .3, .25, 10);
+R.slam('st10', WE('s10', 'done') + .05);
+R.bob('hero10', W('s10', 'Your'), W('s10', 'Still'), { a: -6, d: .25 });
+
+/* ---------- s11 CTA ---------- */
+put('hero11in', hero('du11', 850, 1260, .8, { mood: 'happy', arm: 'wave' }));
+R.popIn('q11', AT('s11', .05), { r: 0 });
+R.gfromTo('phone11', { y: 900, rotation: 8 }, { y: 0, rotation: -2, duration: .6, ease: 'back.out(1.4)' }, AT('s11', .15));
+R.hide('c11a'); R.hide('c11b'); R.popIn('c11a', W('s11', 'Tell'), { r: 0 }); R.popIn('c11b', W('s11', 'comments'), { r: 0 });
+R.gfrom('hero11', { x: 500, duration: .5, ease: 'power3.out' }, AT('s11', .3));
+R.wiggle('hero11', W('s11', 'taking'), { a: 4, n: 4 });
+R.type('typ11', W('s11', 'taking'), .9, 'Germania Inferior ✋');
+let hs = ''; for (let i = 0; i < 10; i++) hs += `<g id="ht${i}">${at(560 + rnd() * 120, 1100, .7 + rnd() * .5, PROPS.heart())}</g>`;
+put('hearts11', hs);
+for (let i = 0; i < 10; i++) { const t = W('s11', 'Germania') + i * .18; R.hide('ht' + i); R.gset('ht' + i, { autoAlpha: 1 }, t);
+  R.g('ht' + i, { y: -600 - rnd() * 300, x: (rnd() - .5) * 200, autoAlpha: 0, duration: 1.4, ease: 'power1.out' }, t); }
+R.bob('arrow', AT('s11', .5), R.TOTAL, { a: 16, d: .4 });
+R.during(AT('s11'), 99, (p, now) => { $('caret').style.opacity = Math.floor(now * 2.5) % 2; });
+
+/* ===== Sounddesign: die EINZIGE Stelle für Sounds (Dateien in sfx/, Mix-Regeln in kit/sfx-mix.mjs) =====
+   Jeder Sound braucht einen Grund: etwas passiert im Bild, das man hören soll. Sonst weglassen. */
+const SND = [
+  [W('s1', 'fell'), 'creak', .9, 'Tempel kippt', { len: .4 }],
+  [WE('s3', 'Germany') + .05, 'fail', .6, 'GERMANY wird durchgestrichen (nach dem Wort)'],
+  [W('s3', 'province'), 'slam', .8, 'Stempel PROVINCE'],
+  [WE('s3', 'cows') + .05, 'moo', .5, 'Kühe (nach der Pointe)', { len: .35 }],
+  [WE('s4', 'ex') + .05, 'ding', .7, 'Nachricht vom Ex (nach dem Wort)', { len: .3 }],
+  [WE('s4', 'off') + .05, 'popper', .7, 'Konfetti (nach "paid off")', { len: .3 }],
+  [W('s5', 'travels'), 'steps', .8, 'Bote läuft', { len: .35 }],
+  [W('s5', 'time'), 'pages', 1, 'Kalenderblätter fliegen', { len: .35 }],
+  [W('s6', 'Via') - .1, 'flaps', .8, 'Anzeigetafel klackert'],
+  [W('s6', 'two') - .2, 'clockfast', .9, 'Uhr rast, Bart wächst', { len: .4 }],
+  [W('s7', 'boss') + .1, 'drop', .8, 'Centurio landet'],
+  [W('s7', 'office') + .8, 'crash', .8, 'Laptop schlägt auf'],
+  [W('s8', 'chariot') - .4, 'hooves', .7, 'Streitwagen', { len: .35 }],
+  [WE('s8', 'appeals') + .05, 'boo', .8, 'Menge buht (nach "No appeals", erzählt den Daumen)'],
+  [WE('s10', 'done') + .05, 'slam', .8, 'Stempel NOT DONE (nach der Pointe)'],
+];
+SND.forEach(([t, name, vol, why, o]) => R.sfx(t, name, vol, { ...(o || {}), why }));
+R.start();
+</script>
+</body>
+</html>

@@ -1,0 +1,696 @@
+{
+ "total": 41.05,
+ "scenes": [
+  {
+   "id": "s1",
+   "title": "Hook",
+   "bild": "Mars riesig, Titel knallt rein, kleine Flagge",
+   "voStart": 0.25,
+   "voEnd": 4.46,
+   "vo": "Was wäre, wenn Deutschland als Erstes auf dem Mars landet?",
+   "start": 0,
+   "end": 4.57
+  },
+  {
+   "id": "s2",
+   "title": "Der Plan",
+   "bild": "Jahreszahl wechselt auf jedes gesprochene Jahr, Stempel VERSCHOBEN",
+   "voStart": 4.68,
+   "voEnd": 8.89,
+   "vo": "Start geplant für 2031. Dann 2034. Dann 2038. Verschoben.",
+   "start": 4.57,
+   "end": 9
+  },
+  {
+   "id": "s3",
+   "title": "Papierkram",
+   "bild": "Formular slidet rein, Stapel ×3, Stempel FAX",
+   "voStart": 9.11,
+   "voEnd": 13.86,
+   "vo": "Vorher braucht die Rakete einen Antrag. In dreifacher Ausführung. Per Fax.",
+   "start": 9,
+   "end": 13.97
+  },
+  {
+   "id": "s4",
+   "title": "Der Start",
+   "bild": "Rakete, Zahl zählt runter, Anzeigetafel ploppt auf",
+   "voStart": 14.079999999999998,
+   "voEnd": 18.29,
+   "vo": "Countdown. Zehn, neun, acht. Abbruch. Verzögerungen im Betriebsablauf.",
+   "start": 13.97,
+   "end": 18.4
+  },
+  {
+   "id": "s5",
+   "title": "Tag eins",
+   "bild": "Student auf dem Mars, Flagge, vier Tonnen fahren hoch",
+   "voStart": 18.509999999999998,
+   "voEnd": 25.06,
+   "vo": "Tag eins auf dem Mars. Andere Länder stecken eine Flagge rein. Wir trennen erst mal Müll.",
+   "start": 18.4,
+   "end": 25.17
+  },
+  {
+   "id": "s6",
+   "title": "Der duale Student",
+   "bild": "Kaffeetasse fliegt Erde → Mars, Zähler 7 Monate",
+   "voStart": 25.279999999999998,
+   "voEnd": 30.749999999999996,
+   "vo": "Dann kommt der erste duale Student. Aufgabe: Kaffee holen. Lieferzeit: sieben Monate.",
+   "start": 25.17,
+   "end": 30.86
+  },
+  {
+   "id": "s7",
+   "title": "Fazit",
+   "bild": "Mars, Text, NIE als Stempel",
+   "voStart": 30.97,
+   "voEnd": 36.44,
+   "vo": "Fazit: Wir wären die Ersten auf dem Mars. Fertig wären wir trotzdem nie.",
+   "start": 30.86,
+   "end": 36.55
+  },
+  {
+   "id": "s8",
+   "title": "CTA",
+   "bild": "Kommentar-Feld, Pfeil nach unten",
+   "voStart": 36.66,
+   "voEnd": 40.15,
+   "vo": "Welches Klischee fehlt noch? Ab in die Kommentare.",
+   "start": 36.55,
+   "end": 41.05
+  }
+ ],
+ "words": [
+  {
+   "w": "Was",
+   "kw": false,
+   "scene": "s1",
+   "start": 0.3,
+   "end": 0.506
+  },
+  {
+   "w": "wäre,",
+   "kw": false,
+   "scene": "s1",
+   "start": 0.524,
+   "end": 1.074
+  },
+  {
+   "w": "wenn",
+   "kw": false,
+   "scene": "s1",
+   "start": 1.122,
+   "end": 1.397
+  },
+  {
+   "w": "Deutschland",
+   "kw": true,
+   "scene": "s1",
+   "start": 1.421,
+   "end": 2.177
+  },
+  {
+   "w": "als",
+   "kw": false,
+   "scene": "s1",
+   "start": 2.243,
+   "end": 2.449
+  },
+  {
+   "w": "Erstes",
+   "kw": false,
+   "scene": "s1",
+   "start": 2.467,
+   "end": 2.88
+  },
+  {
+   "w": "auf",
+   "kw": false,
+   "scene": "s1",
+   "start": 2.915,
+   "end": 3.122
+  },
+  {
+   "w": "dem",
+   "kw": false,
+   "scene": "s1",
+   "start": 3.14,
+   "end": 3.346
+  },
+  {
+   "w": "Mars",
+   "kw": false,
+   "scene": "s1",
+   "start": 3.364,
+   "end": 3.639
+  },
+  {
+   "w": "landet?",
+   "kw": false,
+   "scene": "s1",
+   "start": 3.663,
+   "end": 4.35
+  },
+  {
+   "w": "Start",
+   "kw": false,
+   "scene": "s2",
+   "start": 4.73,
+   "end": 5.04
+  },
+  {
+   "w": "geplant",
+   "kw": false,
+   "scene": "s2",
+   "start": 5.067,
+   "end": 5.501
+  },
+  {
+   "w": "für",
+   "kw": false,
+   "scene": "s2",
+   "start": 5.539,
+   "end": 5.724
+  },
+  {
+   "w": "2031.",
+   "kw": false,
+   "scene": "s2",
+   "start": 5.741,
+   "end": 6.237
+  },
+  {
+   "w": "Dann",
+   "kw": false,
+   "scene": "s2",
+   "start": 6.28,
+   "end": 6.528
+  },
+  {
+   "w": "2034.",
+   "kw": false,
+   "scene": "s2",
+   "start": 6.549,
+   "end": 7.045
+  },
+  {
+   "w": "Dann",
+   "kw": false,
+   "scene": "s2",
+   "start": 7.088,
+   "end": 7.336
+  },
+  {
+   "w": "2038.",
+   "kw": false,
+   "scene": "s2",
+   "start": 7.358,
+   "end": 7.854
+  },
+  {
+   "w": "Verschoben.",
+   "kw": true,
+   "scene": "s2",
+   "start": 7.897,
+   "end": 8.765
+  },
+  {
+   "w": "Vorher",
+   "kw": false,
+   "scene": "s3",
+   "start": 9.16,
+   "end": 9.512
+  },
+  {
+   "w": "braucht",
+   "kw": false,
+   "scene": "s3",
+   "start": 9.542,
+   "end": 9.952
+  },
+  {
+   "w": "die",
+   "kw": false,
+   "scene": "s3",
+   "start": 9.988,
+   "end": 10.164
+  },
+  {
+   "w": "Rakete",
+   "kw": false,
+   "scene": "s3",
+   "start": 10.179,
+   "end": 10.531
+  },
+  {
+   "w": "einen",
+   "kw": false,
+   "scene": "s3",
+   "start": 10.561,
+   "end": 10.854
+  },
+  {
+   "w": "Antrag.",
+   "kw": false,
+   "scene": "s3",
+   "start": 10.88,
+   "end": 11.466
+  },
+  {
+   "w": "In",
+   "kw": false,
+   "scene": "s3",
+   "start": 11.517,
+   "end": 11.634
+  },
+  {
+   "w": "dreifacher",
+   "kw": false,
+   "scene": "s3",
+   "start": 11.644,
+   "end": 12.23
+  },
+  {
+   "w": "Ausführung.",
+   "kw": false,
+   "scene": "s3",
+   "start": 12.281,
+   "end": 13.102
+  },
+  {
+   "w": "Per",
+   "kw": false,
+   "scene": "s3",
+   "start": 13.173,
+   "end": 13.349
+  },
+  {
+   "w": "Fax.",
+   "kw": true,
+   "scene": "s3",
+   "start": 13.364,
+   "end": 13.774
+  },
+  {
+   "w": "Countdown.",
+   "kw": false,
+   "scene": "s4",
+   "start": 14.13,
+   "end": 14.737
+  },
+  {
+   "w": "Zehn,",
+   "kw": false,
+   "scene": "s4",
+   "start": 14.79,
+   "end": 15.163
+  },
+  {
+   "w": "neun,",
+   "kw": false,
+   "scene": "s4",
+   "start": 15.196,
+   "end": 15.569
+  },
+  {
+   "w": "acht.",
+   "kw": false,
+   "scene": "s4",
+   "start": 15.601,
+   "end": 15.975
+  },
+  {
+   "w": "Abbruch.",
+   "kw": false,
+   "scene": "s4",
+   "start": 16.007,
+   "end": 16.521
+  },
+  {
+   "w": "Verzögerungen",
+   "kw": false,
+   "scene": "s4",
+   "start": 16.566,
+   "end": 17.172
+  },
+  {
+   "w": "im",
+   "kw": false,
+   "scene": "s4",
+   "start": 17.225,
+   "end": 17.319
+  },
+  {
+   "w": "Betriebsablauf.",
+   "kw": false,
+   "scene": "s4",
+   "start": 17.327,
+   "end": 18.167
+  },
+  {
+   "w": "Tag",
+   "kw": false,
+   "scene": "s5",
+   "start": 18.56,
+   "end": 18.774
+  },
+  {
+   "w": "eins",
+   "kw": false,
+   "scene": "s5",
+   "start": 18.793,
+   "end": 19.079
+  },
+  {
+   "w": "auf",
+   "kw": false,
+   "scene": "s5",
+   "start": 19.104,
+   "end": 19.318
+  },
+  {
+   "w": "dem",
+   "kw": false,
+   "scene": "s5",
+   "start": 19.337,
+   "end": 19.552
+  },
+  {
+   "w": "Mars.",
+   "kw": false,
+   "scene": "s5",
+   "start": 19.57,
+   "end": 20.142
+  },
+  {
+   "w": "Andere",
+   "kw": false,
+   "scene": "s5",
+   "start": 20.192,
+   "end": 20.621
+  },
+  {
+   "w": "Länder",
+   "kw": false,
+   "scene": "s5",
+   "start": 20.658,
+   "end": 21.087
+  },
+  {
+   "w": "stecken",
+   "kw": false,
+   "scene": "s5",
+   "start": 21.124,
+   "end": 21.625
+  },
+  {
+   "w": "eine",
+   "kw": false,
+   "scene": "s5",
+   "start": 21.668,
+   "end": 21.954
+  },
+  {
+   "w": "Flagge",
+   "kw": false,
+   "scene": "s5",
+   "start": 21.979,
+   "end": 22.408
+  },
+  {
+   "w": "rein.",
+   "kw": false,
+   "scene": "s5",
+   "start": 22.446,
+   "end": 23.017
+  },
+  {
+   "w": "Wir",
+   "kw": false,
+   "scene": "s5",
+   "start": 23.067,
+   "end": 23.282
+  },
+  {
+   "w": "trennen",
+   "kw": false,
+   "scene": "s5",
+   "start": 23.3,
+   "end": 23.801
+  },
+  {
+   "w": "erst",
+   "kw": false,
+   "scene": "s5",
+   "start": 23.844,
+   "end": 24.13
+  },
+  {
+   "w": "mal",
+   "kw": false,
+   "scene": "s5",
+   "start": 24.155,
+   "end": 24.37
+  },
+  {
+   "w": "Müll.",
+   "kw": true,
+   "scene": "s5",
+   "start": 24.388,
+   "end": 24.96
+  },
+  {
+   "w": "Dann",
+   "kw": false,
+   "scene": "s6",
+   "start": 25.33,
+   "end": 25.552
+  },
+  {
+   "w": "kommt",
+   "kw": false,
+   "scene": "s6",
+   "start": 25.571,
+   "end": 25.849
+  },
+  {
+   "w": "der",
+   "kw": false,
+   "scene": "s6",
+   "start": 25.873,
+   "end": 26.04
+  },
+  {
+   "w": "erste",
+   "kw": false,
+   "scene": "s6",
+   "start": 26.054,
+   "end": 26.332
+  },
+  {
+   "w": "duale",
+   "kw": false,
+   "scene": "s6",
+   "start": 26.356,
+   "end": 26.633
+  },
+  {
+   "w": "Student.",
+   "kw": false,
+   "scene": "s6",
+   "start": 26.657,
+   "end": 27.268
+  },
+  {
+   "w": "Aufgabe:",
+   "kw": false,
+   "scene": "s6",
+   "start": 27.321,
+   "end": 27.932
+  },
+  {
+   "w": "Kaffee",
+   "kw": false,
+   "scene": "s6",
+   "start": 27.985,
+   "end": 28.318
+  },
+  {
+   "w": "holen.",
+   "kw": false,
+   "scene": "s6",
+   "start": 28.347,
+   "end": 28.846
+  },
+  {
+   "w": "Lieferzeit:",
+   "kw": false,
+   "scene": "s6",
+   "start": 28.89,
+   "end": 29.667
+  },
+  {
+   "w": "sieben",
+   "kw": false,
+   "scene": "s6",
+   "start": 29.735,
+   "end": 30.068
+  },
+  {
+   "w": "Monate.",
+   "kw": false,
+   "scene": "s6",
+   "start": 30.097,
+   "end": 30.652
+  },
+  {
+   "w": "Fazit:",
+   "kw": false,
+   "scene": "s7",
+   "start": 31.02,
+   "end": 31.664
+  },
+  {
+   "w": "Wir",
+   "kw": false,
+   "scene": "s7",
+   "start": 31.72,
+   "end": 31.935
+  },
+  {
+   "w": "wären",
+   "kw": false,
+   "scene": "s7",
+   "start": 31.954,
+   "end": 32.312
+  },
+  {
+   "w": "die",
+   "kw": false,
+   "scene": "s7",
+   "start": 32.343,
+   "end": 32.558
+  },
+  {
+   "w": "Ersten",
+   "kw": false,
+   "scene": "s7",
+   "start": 32.577,
+   "end": 33.006
+  },
+  {
+   "w": "auf",
+   "kw": false,
+   "scene": "s7",
+   "start": 33.043,
+   "end": 33.258
+  },
+  {
+   "w": "dem",
+   "kw": false,
+   "scene": "s7",
+   "start": 33.277,
+   "end": 33.492
+  },
+  {
+   "w": "Mars.",
+   "kw": false,
+   "scene": "s7",
+   "start": 33.51,
+   "end": 34.083
+  },
+  {
+   "w": "Fertig",
+   "kw": false,
+   "scene": "s7",
+   "start": 34.133,
+   "end": 34.563
+  },
+  {
+   "w": "wären",
+   "kw": false,
+   "scene": "s7",
+   "start": 34.6,
+   "end": 34.958
+  },
+  {
+   "w": "wir",
+   "kw": false,
+   "scene": "s7",
+   "start": 34.989,
+   "end": 35.204
+  },
+  {
+   "w": "trotzdem",
+   "kw": false,
+   "scene": "s7",
+   "start": 35.223,
+   "end": 35.795
+  },
+  {
+   "w": "nie.",
+   "kw": true,
+   "scene": "s7",
+   "start": 35.845,
+   "end": 36.346
+  },
+  {
+   "w": "Welches",
+   "kw": false,
+   "scene": "s8",
+   "start": 36.71,
+   "end": 37.156
+  },
+  {
+   "w": "Klischee",
+   "kw": false,
+   "scene": "s8",
+   "start": 37.194,
+   "end": 37.703
+  },
+  {
+   "w": "fehlt",
+   "kw": false,
+   "scene": "s8",
+   "start": 37.748,
+   "end": 38.066
+  },
+  {
+   "w": "noch?",
+   "kw": false,
+   "scene": "s8",
+   "start": 38.094,
+   "end": 38.603
+  },
+  {
+   "w": "Ab",
+   "kw": false,
+   "scene": "s8",
+   "start": 38.647,
+   "end": 38.774
+  },
+  {
+   "w": "in",
+   "kw": false,
+   "scene": "s8",
+   "start": 38.786,
+   "end": 38.913
+  },
+  {
+   "w": "die",
+   "kw": false,
+   "scene": "s8",
+   "start": 38.924,
+   "end": 39.115
+  },
+  {
+   "w": "Kommentare.",
+   "kw": false,
+   "scene": "s8",
+   "start": 39.131,
+   "end": 40.023
+  }
+ ]
+}

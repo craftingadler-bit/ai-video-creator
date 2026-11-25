@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Mars-Kolonie</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root { --bg1:#1B1530; --bg2:#3A2350; --or:#FF7A3D; --ye:#FFD23F; --re:#FF4D2E; --bl:#7FD3FF; --ink:#141022; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:100%; height:100%; background:#000; overflow:hidden; font-family:Poppins, system-ui, sans-serif; }
+  #stage { position:relative; width:1080px; height:1920px; overflow:hidden; background:linear-gradient(#1B1530, #3A2350 70%, #5A2E4A); }
+  #world, .sc { position:absolute; inset:0; }
+  svg { position:absolute; inset:0; width:1080px; height:1920px; overflow:visible; }
+  .t { position:absolute; left:60px; right:60px; text-align:center; color:#fff; font-weight:900; line-height:1.08; letter-spacing:-.02em; }
+  .box { display:inline-block; padding:.04em .3em; border-radius:.18em; }
+  .kick { position:absolute; top:110px; left:50%; translate:-50% 0; background:rgba(0,0,0,.45); color:#fff; font:800 30px Poppins; letter-spacing:.14em; padding:10px 28px; border-radius:99px; white-space:nowrap; z-index:40; }
+  .kick b { color:var(--ye); }
+  .stamp { position:absolute; color:var(--re); border:12px solid var(--re); border-radius:22px; font:900 110px Poppins; padding:0 30px; letter-spacing:.02em; }
+  .card { position:absolute; background:#FBF8F1; border-radius:22px; box-shadow:0 20px 0 rgba(0,0,0,.25); color:var(--ink); }
+  .bob { animation:bob 3s ease-in-out infinite; }
+  .blink { animation:blink 4s infinite; transform-box:fill-box; transform-origin:center; }
+  .star { animation:tw 2.4s ease-in-out infinite; }
+  @keyframes bob { 50% { transform:translateY(-18px); } }
+  @keyframes blink { 0%,93%,100% { transform:scaleY(1); } 96% { transform:scaleY(.1); } }
+  @keyframes tw { 50% { opacity:.3; } }
+</style>
+</head>
+<body>
+<div id="stage"><div id="world">
+  <svg id="stars"></svg>
+  <div class="kick">WAS WÄRE WENN … <b>#1</b></div>
+
+  <!-- s1 Hook -->
+  <div class="sc" id="g1">
+    <svg><g id="mars1"><g class="bob">
+      <circle cx="540" cy="1010" r="270" fill="#C8552B"/>
+      <circle cx="450" cy="930" r="50" fill="#A8431F"/><circle cx="630" cy="1090" r="70" fill="#A8431F"/><circle cx="590" cy="890" r="26" fill="#A8431F"/>
+      <path d="M300 950 Q540 900 780 960" stroke="#E07A4A" stroke-width="22" fill="none" opacity=".5"/>
+    </g></g>
+    <g id="flag1"><rect x="690" y="640" width="10" height="150" fill="#ddd"/><rect x="700" y="640" width="110" height="24" fill="#111"/><rect x="700" y="664" width="110" height="24" fill="#DD0000"/><rect x="700" y="688" width="110" height="24" fill="#FFCE00"/></g></svg>
+    <div class="t" id="h1a" style="top:300px;font-size:84px">Was wäre, wenn</div>
+    <div class="t" id="h1b" style="top:405px;font-size:118px"><span class="box" style="background:var(--re)">DEUTSCHLAND</span></div>
+    <div class="t" id="h1c" style="top:560px;font-size:70px">als Erstes auf dem Mars landet?</div>
+  </div>
+
+  <!-- s2 Plan -->
+  <div class="sc" id="g2">
+    <div class="t" style="top:420px;font-size:70px;color:#cfc6e8">Geplanter Start:</div>
+    <div class="t" id="year" style="top:560px;font-size:250px">2031</div>
+    <div class="stamp" id="st2" style="left:150px;top:640px;rotate:-12deg">VERSCHOBEN</div>
+    <div class="t" id="fn2" style="top:1000px;font-size:46px;color:var(--ye)">Projektleitung: das Team vom BER</div>
+  </div>
+
+  <!-- s3 Antrag -->
+  <div class="sc" id="g3">
+    <div class="card" id="f3c" style="left:230px;top:480px;width:620px;height:720px;rotate:6deg;opacity:.6"></div>
+    <div class="card" id="f3b" style="left:220px;top:470px;width:620px;height:720px;rotate:-4deg;opacity:.8"></div>
+    <div class="card" id="f3a" style="left:210px;top:460px;width:620px;height:720px;padding:50px">
+      <div style="font:900 56px Poppins">ANTRAG M-42b</div>
+      <div style="font:600 30px Poppins;color:#666;margin-top:6px">auf Verlassen der Erdatmosphäre</div>
+      <div style="margin-top:50px;font:600 26px Poppins;color:#888;line-height:3.1">Name der Rakete ____________<br>Ziel (Planet) ______________<br>Anzahl Insassen ___________<br>Unterschrift (3-fach) ______</div>
+    </div>
+    <div class="t" id="x3" style="top:330px;font-size:90px;color:var(--ye)">× 3</div>
+    <div class="stamp" id="st3" style="left:560px;top:1000px;rotate:-14deg;font-size:130px">FAX</div>
+  </div>
+
+  <!-- s4 Start -->
+  <div class="sc" id="g4">
+    <svg><g id="rocket"><g transform="translate(540 1150)">
+      <path d="M0 -330 C 70 -250 80 -120 80 40 L -80 40 C -80 -120 -70 -250 0 -330 Z" fill="#EDEDF2"/>
+      <path d="M0 -330 C 40 -290 58 -250 66 -210 L -66 -210 C -58 -250 -40 -290 0 -330 Z" fill="var(--re)"/>
+      <rect x="-80" y="-60" width="160" height="20" fill="#111"/><rect x="-80" y="-40" width="160" height="20" fill="#DD0000"/><rect x="-80" y="-20" width="160" height="20" fill="#FFCE00"/>
+      <circle cy="-130" r="34" fill="var(--bl)" stroke="#fff" stroke-width="10"/>
+      <path d="M-80 -20 L-150 80 L-80 60 Z M80 -20 L150 80 L80 60 Z" fill="var(--re)"/>
+    </g></g></svg>
+    <div class="t" id="cd" style="top:300px;font-size:260px">10</div>
+    <div class="card" id="board" style="left:90px;top:520px;width:900px;padding:40px 46px;background:#13235E;color:#fff">
+      <div style="font:900 44px Poppins;color:var(--ye)">MARS-EXPRESS 1</div>
+      <div style="font:800 52px Poppins;margin-top:14px">Abfahrt: ca. 3 Jahre später</div>
+      <div style="font:600 38px Poppins;color:#B8C4F0;margin-top:10px">Grund: Verzögerungen im Betriebsablauf</div>
+    </div>
+  </div>
+
+  <!-- s5 Tag 1 -->
+  <div class="sc" id="g5">
+    <svg>
+      <path d="M0 1240 Q270 1180 540 1230 T1080 1220 V1920 H0 Z" fill="#B2482A"/>
+      <path d="M0 1330 Q300 1290 600 1330 T1080 1320 V1920 H0 Z" fill="#C8552B"/>
+      <g id="flag5"><rect x="110" y="900" width="10" height="330" fill="#ddd"/><rect x="120" y="900" width="150" height="34" fill="#3355cc"/><rect x="120" y="934" width="150" height="34" fill="#fff"/><rect x="120" y="968" width="150" height="34" fill="#cc3333"/><text x="195" y="880" text-anchor="middle" font-size="34" font-weight="800" fill="#fff">andere</text></g>
+      <g id="stud5"></g>
+      <g id="bins"></g>
+    </svg>
+    <div class="t" style="top:300px;font-size:96px;color:var(--ye)" id="tag1">TAG 1</div>
+  </div>
+
+  <!-- s6 Student -->
+  <div class="sc" id="g6">
+    <svg>
+      <circle cx="190" cy="760" r="110" fill="#3B7BD8"/><path d="M120 720 Q170 690 210 730 Q240 780 200 820 Q150 800 120 720Z" fill="#4FB06A"/>
+      <circle cx="890" cy="760" r="110" fill="#C8552B"/><circle cx="860" cy="730" r="22" fill="#A8431F"/>
+      <path id="route6" d="M300 760 Q540 560 780 760" stroke="#fff" stroke-width="8" stroke-dasharray="4 22" stroke-linecap="round" fill="none" opacity=".6"/>
+      <g id="cup"><g transform="translate(300 700)"><rect x="-40" y="-36" width="80" height="80" rx="14" fill="#fff"/><path d="M40 -16 q30 0 30 22 q0 22 -30 22" stroke="#fff" stroke-width="12" fill="none"/><rect x="-40" y="-36" width="80" height="20" rx="8" fill="#6B3E26"/></g></g>
+      <g id="stud6"></g>
+    </svg>
+    <div class="t" style="top:300px;font-size:66px">Aufgabe: <span class="box" style="background:var(--or)">Kaffee holen</span></div>
+    <div class="t" id="mon" style="top:860px;font-size:120px;color:var(--ye)">0 Monate</div>
+  </div>
+
+  <!-- s7 Fazit -->
+  <div class="sc" id="g7">
+    <svg><g class="bob"><circle cx="540" cy="1150" r="240" fill="#C8552B"/><circle cx="470" cy="1090" r="50" fill="#A8431F"/><circle cx="620" cy="1220" r="64" fill="#A8431F"/></g></svg>
+    <div class="t" id="h7a" style="top:330px;font-size:74px">Wir wären die Ersten auf dem Mars.</div>
+    <div class="t" id="h7b" style="top:560px;font-size:74px;color:#cfc6e8">Fertig wären wir trotzdem</div>
+    <div class="stamp" id="st7" style="left:290px;top:690px;rotate:-8deg;font-size:170px">NIE.</div>
+  </div>
+
+  <!-- s8 CTA -->
+  <div class="sc" id="g8">
+    <div class="t" style="top:380px;font-size:84px">Welches Klischee<br>fehlt noch?</div>
+    <div class="card" id="cbox" style="left:120px;top:760px;width:840px;height:150px;border-radius:80px;padding:44px 60px;font:600 48px Poppins;color:#999">Kommentar schreiben<span id="caret">|</span></div>
+    <svg><g id="arrow"><g class="bob"><path d="M540 960 V1180 M460 1100 L540 1180 L620 1100" stroke="var(--ye)" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" fill="none"/></g></g></svg>
+  </div>
+</div></div>
+
+<script src="timeline.js"></script>
+<script src="../../kit/runtime.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+
+/* Sterne */
+let st = ''; for (let i = 0; i < 90; i++) { const x = Math.random() * 1080, y = Math.random() * 1300, r = Math.random() * 2.6 + .8; st += `<circle class="star" style="animation-delay:-${(Math.random() * 2.4).toFixed(2)}s" cx="${x}" cy="${y}" r="${r}" fill="#fff" opacity=".8"/>`; }
+$('stars').innerHTML = st;
+
+/* Figur: der Student (Mund mit eigener id für Lippen-Sync) */
+const student = (x, y, mouthId, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})">
+  <path d="M-95 260 L-80 95 Q-70 40 0 38 Q70 40 80 95 L95 260 Z" fill="var(--or)"/>
+  <rect x="-22" y="10" width="44" height="40" fill="#D9976C"/>
+  <circle cy="-40" r="78" fill="#E8A97E"/>
+  <path d="M-80 -36 Q-88 -128 0 -126 Q88 -128 80 -36 Q70 -78 34 -86 Q12 -66 -14 -80 Q-46 -86 -62 -66 Z" fill="#2B1E3F"/>
+  <g class="blink"><ellipse cx="-28" cy="-36" rx="8" ry="10" fill="#141022"/><ellipse cx="28" cy="-36" rx="8" ry="10" fill="#141022"/></g>
+  <path d="M-40 -18 Q-28 -12 -16 -18 M16 -18 Q28 -12 40 -18" stroke="#B87150" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <ellipse id="${mouthId}" cy="12" rx="16" ry="12" fill="#5A1A1A"/>
+  <circle cx="-22" cy="-122" r="5" fill="#2B1E3F"/>
+</g>`;
+$('stud5').innerHTML = student(380, 1000, 'm5');
+$('stud6').innerHTML = student(540, 1110, 'm6', .75);
+
+/* Mülltonnen */
+const bins = [['#F2C230', 'Gelb'], ['#2F6FD8', 'Papier'], ['#7A4A2A', 'Bio'], ['#3A3A44', 'Rest']];
+$('bins').innerHTML = bins.map(([c, l], i) => { const x = 560 + i * 112, y = 1090;
+  return `<g id="bin${i}"><rect x="${x - 52}" y="${y}" width="104" height="140" rx="12" fill="${c}"/><rect x="${x - 60}" y="${y - 20}" width="120" height="28" rx="9" fill="${c}" opacity=".8"/><text x="${x}" y="${y + 82}" text-anchor="middle" font-size="26" font-weight="800" fill="#fff">${l}</text></g>`; }).join('');
+
+/* ===== Choreografie: alles relativ zum Voiceover ===== */
+['g1','g2','g3','g4','g5','g6','g7','g8'].forEach((g, i) => R.sceneGroup(g, 's' + (i + 1), i === 0 ? 'fade' : 'slide'));
+
+// s1
+R.up('h1a', R.at('s1', .05)); R.slam('h1b', R.word('s1', 'Deutschland')); R.pop('h1c', R.word('s1', 'Erstes'));
+R.tw('mars1', R.at('s1'), 3, { s: .8 }, { s: 1.05 }, 'out'); R.pop('flag1', R.word('s1', 'Mars'));
+
+// s2: Jahreszahl springt genau auf das gesprochene Jahr
+const yrs = [['2031', R.at('s2')], ['2034', R.word('s2', '2034')], ['2038', R.word('s2', '2038')]];
+R.during(R.at('s2'), 99, (p, now) => { $('year').textContent = (yrs.filter(y => now >= y[1]).pop() || yrs[0])[0]; });
+yrs.slice(1).forEach(y => { R.tw('year', y[1], .3, { s: 1.35 }, { s: 1 }, 'back'); R.sfx(y[1], 'tick'); });
+R.slam('st2', R.word('s2', 'Verschoben')); R.up('fn2', R.word('s2', 'Verschoben') + .6);
+
+// s3
+R.slideIn('f3a', R.at('s3', .1)); R.fadeIn('f3b', R.word('s3', 'dreifacher')); R.fadeIn('f3c', R.word('s3', 'dreifacher') + .15);
+R.pop('x3', R.word('s3', 'dreifacher')); R.slam('st3', R.word('s3', 'Fax'));
+
+// s4: Countdown im Takt der gesprochenen Zahlen, dann Abbruch
+const cd = [['10', R.word('s4', 'Zehn')], ['9', R.word('s4', 'neun')], ['8', R.word('s4', 'acht')]];
+R.during(R.at('s4'), 99, (p, now) => { const c = cd.filter(c => now >= c[1]).pop(); $('cd').textContent = c ? c[0] : '10'; });
+cd.forEach(c => { R.tw('cd', c[1], .3, { s: 1.4 }, { s: 1 }, 'back'); R.sfx(c[1], 'tick'); });
+R.init('cd', { o: 0 }); R.tw('cd', R.word('s4', 'Zehn') - .1, .2, {}, { o: 1 }); R.fadeOut('cd', R.word('s4', 'Abbruch'));
+R.during(R.at('s4'), R.word('s4', 'Abbruch') - R.at('s4'), (p, now) => { $('rocket').style.translate = `0 ${p > 0 && p < 1 ? Math.sin(now * 60) * 3 : 0}px`; });
+R.pop('board', R.word('s4', 'Abbruch'), 'ding'); R.shake(R.word('s4', 'Abbruch'));
+
+// s5
+R.mouth('m5'); R.pop('tag1', R.at('s5', .1));
+R.up('flag5', R.word('s5', 'Flagge')); R.fadeOut('flag5', R.word('s5', 'trennen'));
+[0, 1, 2, 3].forEach(i => R.up('bin' + i, R.word('s5', 'trennen') + i * .12));
+R.tw('stud5', R.word('s5', 'Müll'), .3, { s: 1.08 }, { s: 1 }, 'back');
+
+// s6
+R.mouth('m6');
+const rp = $('route6'), RL = rp.getTotalLength(), tc = R.word('s6', 'Kaffee');
+R.during(tc, R.end('s6') - tc - .4, p => { const q = R.E.inout(p), pt = rp.getPointAtLength(q * RL); $('cup').style.translate = `${pt.x - 300}px ${pt.y - 760}px`; $('cup').style.opacity = p > 0 ? 1 : 0; });
+R.pop('mon', R.word('s6', 'Lieferzeit')); R.count('mon', R.word('s6', 'Lieferzeit'), 1.2, 0, 7, v => Math.round(v) + ' Monate');
+
+// s7
+R.up('h7a', R.at('s7', .1)); R.up('h7b', R.word('s7', 'Fertig')); R.slam('st7', R.word('s7', 'nie'));
+
+// s8
+R.pop('cbox', R.at('s8', .1)); R.pop('arrow', R.word('s8', 'Kommentare'));
+R.during(R.at('s8'), 99, (p, now) => { $('caret').style.opacity = Math.floor(now * 2.5) % 2; });
+
+R.start();
+</script>
+</body>
+</html>

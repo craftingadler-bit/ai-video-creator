@@ -1,0 +1,25 @@
+{
+  "voicestudio": {
+    "url": "http://localhost:3900",
+    "voice": "ab1b9d4d",
+    "language": "en",
+    "model": "omnivoice",
+    "speed": 1,
+    "instructions": "",
+    "apiKey": "",
+    "steps": 40,
+    "takes": 3
+  },
+  "timing": {
+    "leadIn": 0.25,
+    "gap": 0.22,
+    "tail": 0.9,
+    "pauseShort": 0.4,
+    "pauseLong": 0.65
+  },
+  "audio": {
+    "sfx": 0.35,
+    "music": "",
+    "musicVol": 0.12
+  }
+}

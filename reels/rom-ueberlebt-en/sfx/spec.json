@@ -1,0 +1,105 @@
+{
+ "sounds": [
+  {
+   "name": "whoosh",
+   "want": "a fast whoosh, a stick swung through the air"
+  },
+  {
+   "name": "pop",
+   "want": "a soft short low thump when a card appears"
+  },
+  {
+   "name": "slam",
+   "want": "a rubber stamp slammed on paper on a wooden desk"
+  },
+  {
+   "name": "type",
+   "want": "typing on a typewriter, 1 second"
+  },
+  {
+   "name": "fail",
+   "want": "an error buzzer"
+  },
+  {
+   "name": "moo",
+   "want": "a cow mooing"
+  },
+  {
+   "name": "moo2",
+   "want": "a cow mooing",
+   "seed": 1
+  },
+  {
+   "name": "hooves",
+   "want": "horses galloping past, 2 seconds"
+  },
+  {
+   "name": "cheer",
+   "want": "a crowd cheering in a stadium, 3 seconds"
+  },
+  {
+   "name": "boo",
+   "want": "a crowd booing, 2 seconds"
+  },
+  {
+   "name": "pages",
+   "want": "paper pages flipping, 1.2 seconds"
+  },
+  {
+   "name": "steps",
+   "want": "footsteps on gravel, 3 seconds"
+  },
+  {
+   "name": "popper",
+   "want": "a party popper"
+  },
+  {
+   "name": "creak",
+   "want": "a heavy stone pillar creaking"
+  },
+  {
+   "name": "drips",
+   "want": "water drops dripping"
+  },
+  {
+   "name": "birds",
+   "want": "birds chirping in a meadow, 8 seconds"
+  },
+  {
+   "name": "cafe",
+   "want": "a busy cafe ambience, 7 seconds"
+  },
+  {
+   "name": "drop",
+   "want": "a heavy bag dropped",
+   "sound": "drop/sack"
+  },
+  {
+   "name": "flaps",
+   "want": "a mechanical key pressed",
+   "sound": "keyboard/mechanical",
+   "events": 14,
+   "dur": 1.1
+  },
+  {
+   "name": "clockfast",
+   "want": "a clock ticking",
+   "sound": "clock/mechanical",
+   "events": 12,
+   "dur": 1.4
+  },
+  {
+   "name": "trainpass",
+   "want": "a train passing"
+  },
+  {
+   "name": "neigh",
+   "want": "a horse neighing"
+  },
+  {
+   "name": "crash",
+   "want": "a crash",
+   "sound": "impact/car"
+  }
+ ]
+}

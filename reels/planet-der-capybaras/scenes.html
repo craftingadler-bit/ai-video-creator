@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Planet der Capybaras</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root { --or:#FF7A3D; --ye:#FFD23F; --re:#FF4D2E; --bl:#7FD3FF; --ink:#141022; --capy:#B07A4A; --cyan:#7FE3FF; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:100%; height:100%; background:#000; overflow:hidden; font-family:Poppins, system-ui, sans-serif; }
+  #stage { position:relative; width:1080px; height:1920px; overflow:hidden; background:#121726; }
+  #world, .sc { position:absolute; inset:0; }
+  svg { position:absolute; inset:0; width:1080px; height:1920px; overflow:visible; }
+  .t { position:absolute; left:60px; right:60px; text-align:center; color:#fff; font-weight:900; line-height:1.05; letter-spacing:-.02em; text-shadow:0 6px 0 rgba(0,0,0,.35); }
+  .box { display:inline-block; padding:.04em .28em; border-radius:.16em; }
+  .kick { position:absolute; top:110px; left:50%; translate:-50% 0; background:rgba(0,0,0,.5); color:#fff; font:800 30px Poppins; letter-spacing:.14em; padding:10px 28px; border-radius:99px; white-space:nowrap; z-index:40; }
+  .kick b { color:var(--ye); }
+  .chip { position:absolute; top:186px; right:110px; background:var(--ye); color:var(--ink); font:900 38px Poppins; letter-spacing:.06em; padding:6px 22px; border-radius:14px; z-index:40; box-shadow:0 8px 0 rgba(0,0,0,.3); }
+  .pill { position:absolute; left:0; top:0; translate:-50% -50%; background:#fff; color:var(--ink); font:900 36px Poppins; padding:6px 20px; border-radius:99px; white-space:nowrap; box-shadow:0 6px 0 rgba(0,0,0,.3); }
+  .card { position:absolute; background:#FBF8F1; border-radius:24px; box-shadow:0 18px 0 rgba(0,0,0,.28); color:var(--ink); }
+  .stamp { position:absolute; color:var(--re); border:12px solid var(--re); border-radius:22px; font:900 110px Poppins; padding:0 28px; letter-spacing:.02em; white-space:nowrap; background:rgba(255,255,255,.04); }
+  .lbl { font:800 36px Poppins; fill:#fff; }
+  .blink { animation:blink 4.2s infinite; transform-box:fill-box; transform-origin:center; }
+  @keyframes blink { 0%,94%,100% { transform:scaleY(1); } 97% { transform:scaleY(.1); } }
+</style>
+</head>
+<body>
+<div id="stage"><div id="world">
+
+  <!-- ===== Labor (s1 + s2) ===== -->
+  <div class="sc" id="gLab"><svg>
+    <defs>
+      <linearGradient id="labWall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#121B2B"/><stop offset="1" stop-color="#22334A"/></linearGradient>
+      <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EAF6FF" stop-opacity=".22"/><stop offset="1" stop-color="#EAF6FF" stop-opacity="0"/></linearGradient>
+      <radialGradient id="redGlow"><stop offset="0" stop-color="#FF3B2E" stop-opacity=".55"/><stop offset="1" stop-color="#FF3B2E" stop-opacity="0"/></radialGradient>
+      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+    </defs>
+    <g id="labCam">
+      <rect width="1080" height="1920" fill="url(#labWall)"/>
+      <g stroke="rgba(255,255,255,.035)" stroke-width="3"><path d="M180 0V1240M360 0V1240M540 0V1240M720 0V1240M900 0V1240"/></g>
+      <!-- Regale mit Gläsern -->
+      <g id="shelves">
+        <rect x="40" y="560" width="380" height="20" rx="6" fill="#33465F"/><rect x="40" y="800" width="380" height="20" rx="6" fill="#33465F"/>
+        <g filter="url(#glow)">
+          <rect x="70" y="470" width="62" height="90" rx="14" fill="#5BE38C" opacity=".85"/><rect x="152" y="490" width="50" height="70" rx="12" fill="#57D3FF" opacity=".85"/><rect x="226" y="460" width="70" height="100" rx="16" fill="#FF6FA8" opacity=".7"/><rect x="318" y="500" width="44" height="60" rx="10" fill="#FFD23F" opacity=".75"/>
+          <rect x="80" y="716" width="54" height="84" rx="12" fill="#57D3FF" opacity=".8"/><rect x="160" y="700" width="80" height="100" rx="18" fill="#5BE38C" opacity=".7"/><rect x="266" y="730" width="50" height="70" rx="12" fill="#FF6FA8" opacity=".8"/>
+        </g>
+        <g fill="rgba(255,255,255,.35)"><rect x="80" y="480" width="10" height="60" rx="5"/><rect x="236" y="470" width="10" height="70" rx="5"/><rect x="170" y="712" width="10" height="70" rx="5"/></g>
+      </g>
+      <!-- Monitor -->
+      <g id="monitor">
+        <rect x="640" y="430" width="370" height="250" rx="18" fill="#0B121C" stroke="#3B4C66" stroke-width="10"/>
+        <text x="664" y="476" font-size="26" font-weight="800" fill="#5BE38C" letter-spacing="3">SUBJEKT C-7</text>
+        <path id="ecg" d="M660 600 H730 L750 560 L770 640 L790 520 L812 600 H880 L900 580 L920 600 H990" stroke="#5BE38C" stroke-width="6" fill="none" filter="url(#glow)"/>
+        <rect x="810" y="680" width="30" height="60" fill="#3B4C66"/><rect x="760" y="738" width="130" height="14" rx="7" fill="#3B4C66"/>
+      </g>
+      <!-- Deckenlampe -->
+      <path d="M470 0 L610 0 L900 1240 L180 1240 Z" fill="url(#cone)"/>
+      <rect x="440" y="0" width="200" height="34" rx="10" fill="#3B4C66"/><rect x="470" y="30" width="140" height="10" rx="5" fill="#EAF6FF"/>
+      <!-- Boden + Tisch -->
+      <rect y="1240" width="1080" height="680" fill="#0E1520"/><rect y="1240" width="1080" height="8" fill="#2A3A52"/>
+      <rect x="120" y="1086" width="840" height="34" rx="10" fill="#51637E"/><rect x="120" y="1112" width="840" height="10" fill="#3A4A62"/>
+      <rect x="170" y="1120" width="26" height="130" fill="#3A4A62"/><rect x="884" y="1120" width="26" height="130" fill="#3A4A62"/>
+    </g>
+    <!-- Alarm -->
+    <g id="alarm"><rect width="1080" height="1920" fill="#FF2A1E" opacity=".0" id="alarmFlash"/>
+      <circle cx="980" cy="300" r="160" fill="url(#redGlow)"/><rect x="950" y="280" width="60" height="44" rx="14" fill="#FF3B2E"/><rect x="940" y="318" width="80" height="16" rx="6" fill="#3B4C66"/></g>
+  </svg></div>
+
+  <!-- s1 Hook -->
+  <div class="sc" id="g1">
+    <svg><g id="hookFace"><g transform="translate(540 1010) scale(.92)" id="hookFaceIn"></g></g></svg>
+    <div class="t" id="h1a" style="top:250px;font-size:58px;color:#cfd8ea">Was wäre, wenn …</div>
+    <div class="t" id="h1b" style="top:320px;font-size:104px">PLANET DER</div>
+    <div class="t" id="h1c" style="top:432px;font-size:104px">AFFEN</div>
+    <svg><path id="strike1" d="M330 500 L750 470" stroke="var(--re)" stroke-width="22" stroke-linecap="round"/></svg>
+    <div class="t" id="h1d" style="top:550px;font-size:118px"><span class="box" style="background:var(--capy)">CAPYBARAS</span></div>
+  </div>
+
+  <!-- s2 Tag eins: Käfig -->
+  <div class="sc" id="g2"><svg>
+    <g id="cage2">
+      <rect x="290" y="740" width="500" height="346" rx="16" fill="rgba(140,170,200,.08)" stroke="#9FB3CC" stroke-width="12"/>
+      <g stroke="#9FB3CC" stroke-width="7"><path d="M352 746V1080M414 746V1080M476 746V1080M538 746V1080M600 746V1080M662 746V1080"/></g>
+      <rect x="290" y="730" width="500" height="22" rx="8" fill="#B8C8DC"/><rect x="290" y="1072" width="500" height="20" rx="6" fill="#B8C8DC"/>
+      <text x="540" y="716" text-anchor="middle" font-size="34" font-weight="800" fill="#cfd8ea" letter-spacing="3">C-7 · NICHT FÜTTERN</text>
+    </g>
+    <g id="cap2a"><g transform="translate(470 1078) scale(.58)" id="cap2aIn"></g></g>
+    <g id="cap2b"><g transform="translate(470 1078) scale(.58)" id="cap2bIn"></g></g>
+    <g id="cap2c"><g transform="translate(470 1078) scale(.58)" id="cap2cIn"></g></g>
+    <g id="door2"><rect x="720" y="752" width="70" height="320" fill="rgba(140,170,200,.06)" stroke="#9FB3CC" stroke-width="10"/><path d="M745 760V1066M770 760V1066" stroke="#9FB3CC" stroke-width="7"/></g>
+    <g id="lock2"><g transform="translate(720 920)"><rect x="-26" y="-6" width="52" height="44" rx="8" fill="#FFD23F"/><path d="M-16 -6 V-22 A16 16 0 0 1 16 -22 V-6" stroke="#FFD23F" stroke-width="8" fill="none"/></g></g>
+    <g id="brain2"><g transform="translate(600 610)">
+      <g stroke="#FFE97A" stroke-width="8" stroke-linecap="round" opacity=".9"><path d="M0 -118 V-146 M-84 -84 L-104 -104 M84 -84 L104 -104 M-118 0 H-146 M118 0 H146"/></g>
+      <circle r="70" fill="#FFE97A" filter="url(#glow)"/><path d="M-22 40 Q-26 10 -10 -6 Q0 -18 10 -6 Q26 10 22 40" stroke="#E0A800" stroke-width="7" fill="none"/>
+      <rect x="-34" y="58" width="68" height="20" rx="6" fill="#B8C3D4"/><rect x="-30" y="80" width="60" height="16" rx="6" fill="#9AA6BA"/><rect x="-18" y="98" width="36" height="14" rx="6" fill="#7A879C"/></g></g>
+    <g id="zzz2" font-weight="900" fill="#fff"><text x="700" y="880" font-size="64" id="z2a">Z</text><text x="760" y="820" font-size="50" id="z2b">z</text><text x="810" y="770" font-size="38" id="z2c">z</text></g>
+  </svg></div>
+
+  <!-- s3 Blueprint -->
+  <div class="sc" id="g3"><svg>
+    <rect width="1080" height="1920" fill="#0C1A2C"/>
+    <g stroke="rgba(127,227,255,.07)" stroke-width="2" id="grid3"></g>
+    <text id="hd3" x="540" y="292" text-anchor="middle" font-size="36" font-weight="800" fill="var(--cyan)" letter-spacing="6">GRÖSSENVERGLEICH</text>
+    <path d="M80 1180 H1000" stroke="var(--cyan)" stroke-width="4" opacity=".6"/>
+    <g id="cap3"><g transform="translate(430 1176) scale(.72)" id="cap3In"></g></g>
+    <g id="cap3s"><g transform="translate(430 1176) scale(.72)" id="cap3sIn"></g></g>
+    <g id="dim3c"><path d="M690 1176 V996 M674 996 H706 M674 1176 H706" stroke="var(--cyan)" stroke-width="4"/><text x="680" y="980" text-anchor="middle" font-size="36" font-weight="800" fill="var(--cyan)">60 cm</text></g>
+    <g id="ham3"><g transform="translate(150 1176)"><ellipse cx="0" cy="-16" rx="26" ry="17" fill="#E2B27A"/><circle cx="20" cy="-26" r="10" fill="#E2B27A"/><circle cx="24" cy="-28" r="2.5" fill="#1A110A"/><circle cx="14" cy="-36" r="5" fill="#C99460"/></g>
+      <path d="M150 1130 V1060" stroke="#fff" stroke-width="4"/><text x="150" y="1044" text-anchor="middle" font-size="36" font-weight="800" fill="#fff">Hamster</text></g>
+    <g id="du3"><g transform="translate(860 1176) scale(1.0)" id="du3In"></g></g>
+    <g id="dim3d"><path d="M990 1176 V644 M974 644 H1006 M974 1176 H1006" stroke="var(--cyan)" stroke-width="4"/><text x="980" y="626" text-anchor="end" font-size="36" font-weight="800" fill="var(--cyan)">1,75 m</text></g>
+    <g id="medal3"><g transform="translate(470 860)"><path d="M-30 -80 L-10 -20 M30 -80 L10 -20" stroke="#E8402A" stroke-width="18"/><circle r="46" fill="#FFD23F" stroke="#E0A800" stroke-width="8"/><text y="16" text-anchor="middle" font-size="44" font-weight="900" fill="#8A5A00">1</text></g></g>
+    <!-- Waage -->
+    <g id="scale3"><rect x="220" y="1180" width="460" height="40" rx="14" fill="#9FB3CC"/><rect x="260" y="1220" width="380" height="20" fill="#6E809A"/></g>
+    <!-- Stressmeter -->
+    <g id="gauge3"><g transform="translate(540 600)">
+      <path d="M-230 0 A230 230 0 0 1 230 0" stroke="#24364F" stroke-width="56" fill="none"/>
+      <path d="M-230 0 A230 230 0 0 1 -115 -199" stroke="#5BE38C" stroke-width="56" fill="none"/>
+      <path d="M-115 -199 A230 230 0 0 1 115 -199" stroke="#FFD23F" stroke-width="56" fill="none"/>
+      <path d="M115 -199 A230 230 0 0 1 230 0" stroke="#FF4D2E" stroke-width="56" fill="none"/>
+      <text y="-280" text-anchor="middle" font-size="40" font-weight="900" fill="#fff" letter-spacing="4">STRESSLEVEL</text>
+      <path id="needle3" d="M0 0 L-12 -6 L0 -200 L12 -6 Z" fill="#fff"/><circle r="24" fill="#fff"/>
+    </g></g>
+  </svg>
+    <div class="card" id="kg3" style="left:620px;top:760px;width:330px;padding:14px 0;text-align:center;background:#0B121C;border:6px solid var(--cyan);color:var(--cyan);font:900 92px Poppins;letter-spacing:.02em"><span id="kgN">0</span> kg</div>
+    <div class="stamp" id="st3" style="left:370px;top:650px;rotate:-10deg;font-size:120px;color:#5BE38C;border-color:#5BE38C">0 %</div>
+  </div>
+
+  <!-- ===== Karte (s4 bis s7) ===== -->
+  <div class="sc" id="gMap"><svg id="mapSvg"></svg>
+    <svg><g id="mapPins"></g></svg>
+    <div class="t" id="mt4" style="top:300px;font-size:64px"><span class="box" style="background:rgba(10,16,30,.75)">Heimat: <span style="color:#E8B07A">Südamerika</span></span></div>
+    <div class="t" id="mt6" style="top:300px;font-size:64px"><span class="box" style="background:rgba(10,16,30,.75)">Ziel: <span style="color:var(--bl)">Europa</span></span></div>
+    <div class="card" id="fl5" style="left:110px;top:1040px;width:560px;padding:20px 28px;font:800 40px Poppins;line-height:1.2">Wilde Capybaras<br><span style="color:#C0631F">in Florida seit den 90ern</span></div>
+    <div class="card" id="air6" style="left:560px;top:930px;width:400px;padding:16px 26px;background:#0B1A2C;color:#fff;border:6px solid var(--bl)">
+      <div style="font:800 34px Poppins;color:var(--bl);letter-spacing:.08em">LUFT ANHALTEN</div><div id="air6n" style="font:900 96px Poppins;line-height:1.05">5:00</div></div>
+  </div>
+
+  <!-- s7b Bundestag -->
+  <div class="sc" id="g7b"><svg>
+    <defs><linearGradient id="dusk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2B2550"/><stop offset=".7" stop-color="#C2607A"/><stop offset="1" stop-color="#F2A36B"/></linearGradient></defs>
+    <rect width="1080" height="1920" fill="url(#dusk)"/>
+    <rect y="1150" width="1080" height="770" fill="#3A3346"/><rect y="1150" width="1080" height="10" fill="#5A5068"/>
+    <g id="reichstag">
+      <!-- Glaskuppel -->
+      <path d="M430 690 A110 120 0 0 1 650 690 Z" fill="rgba(160,215,255,.55)" stroke="#E6F4FF" stroke-width="6"/>
+      <path d="M460 690 Q470 600 540 572 M620 690 Q610 600 540 572 M540 572 V690 M445 650 H635 M470 612 H610" stroke="#E6F4FF" stroke-width="4" fill="none"/>
+      <rect x="420" y="686" width="240" height="22" fill="#B8AD92"/>
+      <!-- Hauptbau -->
+      <rect x="180" y="800" width="720" height="350" fill="#D8CDB2"/>
+      <rect x="180" y="790" width="720" height="22" fill="#B8AD92"/>
+      <!-- Ecktürme -->
+      <rect x="150" y="740" width="150" height="410" fill="#CFC3A6"/><rect x="780" y="740" width="150" height="410" fill="#CFC3A6"/>
+      <rect x="140" y="726" width="170" height="24" fill="#B8AD92"/><rect x="770" y="726" width="170" height="24" fill="#B8AD92"/>
+      <!-- Fenster -->
+      <g fill="#5A5068" id="win7"></g>
+      <!-- Portikus -->
+      <path d="M380 800 L540 712 L700 800 Z" fill="#CFC3A6" stroke="#B8AD92" stroke-width="8"/>
+      <rect x="380" y="800" width="320" height="34" fill="#B8AD92"/>
+      <text x="540" y="826" text-anchor="middle" font-size="19" font-weight="800" fill="#6A5F4A" letter-spacing="2">DEM DEUTSCHEN VOLKE</text>
+      <g fill="#EFE7D2"><rect x="398" y="836" width="26" height="300"/><rect x="452" y="836" width="26" height="300"/><rect x="506" y="836" width="26" height="300"/><rect x="560" y="836" width="26" height="300"/><rect x="614" y="836" width="26" height="300"/><rect x="668" y="836" width="26" height="300"/></g>
+      <rect x="370" y="1126" width="340" height="24" fill="#B8AD92"/>
+      <!-- Fahnen -->
+      <g><rect x="222" y="600" width="6" height="128" fill="#ddd"/><rect x="228" y="604" width="70" height="16" fill="#111"/><rect x="228" y="620" width="70" height="16" fill="#DD0000"/><rect x="228" y="636" width="70" height="16" fill="#FFCE00"/></g>
+      <g><rect x="852" y="600" width="6" height="128" fill="#ddd"/><rect x="858" y="604" width="70" height="16" fill="#111"/><rect x="858" y="620" width="70" height="16" fill="#DD0000"/><rect x="858" y="636" width="70" height="16" fill="#FFCE00"/></g>
+    </g>
+    <g id="walk7"><g transform="translate(0 1176) scale(.5)" id="walk7In"></g></g>
+    <g id="x7"><path d="M260 640 L820 1140 M820 640 L260 1140" stroke="#FF4D2E" stroke-width="44" stroke-linecap="round"/></g>
+  </svg>
+    <div class="t" id="h7" style="top:300px;font-size:64px">Erstes Ziel?</div>
+  </div>
+
+  <!-- ===== Therme (s7 Ende + s8) ===== -->
+  <div class="sc" id="gTherme"><svg>
+    <defs>
+      <linearGradient id="night" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B1030"/><stop offset="1" stop-color="#33285A"/></linearGradient>
+      <linearGradient id="water" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3FD0D6"/><stop offset="1" stop-color="#1A7FA0"/></linearGradient>
+      <radialGradient id="lamp"><stop offset="0" stop-color="#FFC56B" stop-opacity=".7"/><stop offset="1" stop-color="#FFC56B" stop-opacity="0"/></radialGradient>
+      <filter id="steamBlur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="22"/></filter>
+    </defs>
+    <g id="thCam">
+      <rect width="1080" height="1920" fill="url(#night)"/>
+      <g id="stars8"></g>
+      <circle cx="860" cy="360" r="130" fill="#FFF3C9" opacity=".08"/><circle cx="860" cy="360" r="54" fill="#FFF3C9"/>
+      <!-- Pavillon -->
+      <path d="M-40 640 L250 520 L540 640 Z" fill="#1E1838"/><rect x="0" y="640" width="500" height="380" fill="#241C42"/>
+      <g fill="#FFC56B" opacity=".9"><rect x="50" y="700" width="90" height="120" rx="8"/><rect x="190" y="700" width="90" height="120" rx="8"/><rect x="330" y="700" width="90" height="120" rx="8"/></g>
+      <circle cx="160" cy="760" r="240" fill="url(#lamp)"/>
+      <g id="lanterns"><line x1="560" y1="600" x2="1080" y2="660" stroke="#5A4A7A" stroke-width="4"/>
+        <circle cx="640" cy="622" r="18" fill="#FFB347"/><circle cx="760" cy="636" r="18" fill="#FF7A5A"/><circle cx="880" cy="650" r="18" fill="#FFB347"/><circle cx="1000" cy="662" r="18" fill="#FF7A5A"/>
+        <circle cx="640" cy="622" r="60" fill="url(#lamp)"/><circle cx="880" cy="650" r="60" fill="url(#lamp)"/></g>
+      <!-- Beckenrand + Wasser hinten -->
+      <rect x="0" y="960" width="1080" height="60" fill="#5D5577"/><rect x="0" y="960" width="1080" height="12" fill="#7A7296"/>
+      <rect x="0" y="1016" width="1080" height="904" fill="url(#water)"/>
+      <!-- Bewohner -->
+      <g id="thCapL"><g transform="translate(230 1092) scale(.6)" id="thCapLIn"></g></g>
+      <g id="thDu"><g transform="translate(560 1215) scale(.78)" id="thDuIn"></g></g>
+      <g id="thCapR"><g transform="translate(960 1096) scale(-.6 .6)" id="thCapRIn"></g></g>
+      <!-- Wasser vorne -->
+      <linearGradient id="wf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#36C2CE"/><stop offset=".5" stop-color="#1D8FAE"/><stop offset="1" stop-color="#15607E"/></linearGradient>
+      <path id="waterFront" d="M0 1070 Q135 1056 270 1070 T540 1070 T810 1070 T1080 1070 V1920 H0 Z" fill="url(#wf)" opacity=".94"/>
+      <g id="refl" opacity=".55"><rect x="830" y="1090" width="60" height="10" rx="5" fill="#FFF3C9"/><rect x="810" y="1124" width="100" height="10" rx="5" fill="#FFF3C9" opacity=".7"/><rect x="840" y="1160" width="44" height="8" rx="4" fill="#FFF3C9" opacity=".5"/>
+        <rect x="620" y="1100" width="40" height="8" rx="4" fill="#FFB347"/><rect x="866" y="1210" width="40" height="8" rx="4" fill="#FFB347" opacity=".6"/><rect x="60" y="1110" width="120" height="10" rx="5" fill="#FFC56B" opacity=".6"/><rect x="200" y="1150" width="90" height="10" rx="5" fill="#FFC56B" opacity=".5"/></g>
+      <g id="ripples" stroke="rgba(255,255,255,.45)" stroke-width="5" fill="none" stroke-linecap="round"></g>
+      <g id="steam" filter="url(#steamBlur)" fill="#fff"></g>
+    </g>
+  </svg>
+    <!-- Kriegs-Einspieler -->
+    <div class="sc" id="war8" style="background:#2A0E0E">
+      <svg><rect x="40" y="260" width="1000" height="980" rx="20" fill="#3E1410" stroke="#7A2A1E" stroke-width="10"/>
+        <g fill="#140606"><rect x="40" y="260" width="40" height="980"/><rect x="1000" y="260" width="40" height="980"/></g>
+        <g fill="#7A2A1E"><rect x="50" y="290" width="20" height="30" rx="4"/><rect x="50" y="380" width="20" height="30" rx="4"/><rect x="50" y="470" width="20" height="30" rx="4"/><rect x="50" y="560" width="20" height="30" rx="4"/><rect x="50" y="650" width="20" height="30" rx="4"/><rect x="50" y="740" width="20" height="30" rx="4"/><rect x="50" y="830" width="20" height="30" rx="4"/><rect x="50" y="920" width="20" height="30" rx="4"/><rect x="50" y="1010" width="20" height="30" rx="4"/><rect x="50" y="1100" width="20" height="30" rx="4"/>
+          <rect x="1010" y="290" width="20" height="30" rx="4"/><rect x="1010" y="380" width="20" height="30" rx="4"/><rect x="1010" y="470" width="20" height="30" rx="4"/><rect x="1010" y="560" width="20" height="30" rx="4"/><rect x="1010" y="650" width="20" height="30" rx="4"/><rect x="1010" y="740" width="20" height="30" rx="4"/><rect x="1010" y="830" width="20" height="30" rx="4"/><rect x="1010" y="920" width="20" height="30" rx="4"/><rect x="1010" y="1010" width="20" height="30" rx="4"/><rect x="1010" y="1100" width="20" height="30" rx="4"/></g>
+        <g transform="translate(540 760)"><g transform="rotate(45)"><rect x="-14" y="-230" width="28" height="330" rx="6" fill="#D8D8E0"/><rect x="-60" y="96" width="120" height="22" rx="8" fill="#C9A23A"/><rect x="-12" y="116" width="24" height="80" rx="6" fill="#6A3A1E"/></g>
+          <g transform="rotate(-45)"><rect x="-14" y="-230" width="28" height="330" rx="6" fill="#D8D8E0"/><rect x="-60" y="96" width="120" height="22" rx="8" fill="#C9A23A"/><rect x="-12" y="116" width="24" height="80" rx="6" fill="#6A3A1E"/></g></g>
+      </svg>
+      <div class="t" style="top:1050px;font-size:110px;color:#FF6A4A;letter-spacing:.06em">KRIEG?</div>
+    </div>
+    <!-- Close-up -->
+    <div class="sc" id="cu8"><svg>
+      <rect width="1080" height="1920" fill="#2C2552"/>
+      <rect y="1150" width="1080" height="770" fill="#2CB4C4"/>
+      <g id="cuSteam" filter="url(#steamBlur)" fill="#fff"></g>
+      <g transform="translate(400 860) scale(.72)" id="cuDuIn"></g>
+      <g transform="translate(830 990) scale(.62)" id="cuCapIn"></g>
+      <path d="M0 1150 Q135 1135 270 1150 T540 1150 T810 1150 T1080 1150 V1920 H0 Z" fill="#2CB4C4" opacity=".95"/>
+      <g id="hearts8" fill="#FF7A9A"><path id="hrt1" d="M610 560 c-20 -30 -60 -10 -40 20 l40 36 l40 -36 c20 -30 -20 -50 -40 -20z"/><path id="hrt2" d="M700 480 c-14 -22 -44 -8 -30 14 l30 26 l30 -26 c14 -22 -16 -36 -30 -14z"/></g>
+    </svg></div>
+  </div>
+
+  <!-- ===== s9 Büro ===== -->
+  <div class="sc" id="g9"><svg>
+    <defs><linearGradient id="sunset" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5A3C8C"/><stop offset=".6" stop-color="#F07A5A"/><stop offset="1" stop-color="#FFC56B"/></linearGradient></defs>
+    <g id="offCam">
+      <rect width="1080" height="1920" fill="#2E2842"/>
+      <!-- Fenster mit Skyline -->
+      <rect x="560" y="330" width="440" height="520" rx="14" fill="url(#sunset)"/>
+      <circle cx="800" cy="700" r="70" fill="#FFE2A0"/>
+      <path d="M560 850 V690 H610 V620 H660 V720 H700 V580 H760 V700 H800 V650 H850 V560 H900 V720 H940 V640 H1000 V850 Z" fill="#3B2856"/>
+      <rect x="560" y="330" width="440" height="520" rx="14" fill="none" stroke="#4A4062" stroke-width="22"/><path d="M780 330 V850 M560 590 H1000" stroke="#4A4062" stroke-width="14"/>
+      <!-- Regal + Poster -->
+      <rect x="80" y="420" width="360" height="18" rx="6" fill="#4A4062"/>
+      <g><rect x="100" y="320" width="34" height="100" rx="4" fill="#E8402A"/><rect x="140" y="330" width="30" height="90" rx="4" fill="#2F6FD8"/><rect x="176" y="316" width="36" height="104" rx="4" fill="#FFD23F"/><rect x="218" y="336" width="30" height="84" rx="4" fill="#5BE38C"/><rect x="300" y="350" width="80" height="70" rx="10" fill="#7A6A9A"/></g>
+      <rect x="110" y="520" width="300" height="200" rx="10" fill="#3B3456"/><text x="260" y="600" text-anchor="middle" font-size="36" font-weight="900" fill="#FFD23F">CHILL</text><text x="260" y="650" text-anchor="middle" font-size="36" font-weight="900" fill="#FFD23F">FIRST</text>
+      <!-- Boden -->
+      <rect y="1240" width="1080" height="680" fill="#211C33"/>
+      <!-- Pflanze -->
+      <g transform="translate(470 1240)"><rect x="-34" y="-90" width="68" height="90" rx="10" fill="#C9673A"/><path d="M0 -90 Q-60 -180 -40 -250 M0 -90 Q10 -200 50 -260 M0 -90 Q50 -150 90 -170" stroke="#4FB06A" stroke-width="16" fill="none" stroke-linecap="round"/></g>
+    </g>
+    <g id="boss9"><g transform="translate(800 1040) scale(-.6 .6)" id="boss9In"></g></g>
+    <!-- Schreibtisch -->
+    <rect x="560" y="1000" width="480" height="34" rx="8" fill="#8A5E3E"/><rect x="580" y="1034" width="440" height="206" fill="#6B4A33"/>
+    <g id="plate9"><rect x="680" y="1100" width="240" height="64" rx="10" fill="#E8C35A"/><text x="800" y="1145" text-anchor="middle" font-size="34" font-weight="900" fill="#5A3E10" letter-spacing="2">AUSBILDER</text></g>
+    <g><rect x="620" y="930" width="140" height="74" rx="8" fill="#C9CFDB"/><rect x="600" y="1000" width="180" height="10" rx="5" fill="#9AA2B2"/></g>
+    <g><rect x="930" y="940" width="54" height="62" rx="10" fill="#fff"/><path d="M984 954 q24 0 24 18 q0 18 -24 18" stroke="#fff" stroke-width="9" fill="none"/></g>
+    <g id="du9"><g transform="translate(260 1240) scale(.9)" id="du9In"></g></g>
+    <g id="paper9s"><g transform="translate(372 1010) rotate(-8)"><rect x="-50" y="-66" width="100" height="132" rx="8" fill="#fff"/><path d="M-30 -36 H30 M-30 -14 H30 M-30 8 H20" stroke="#bbb" stroke-width="7"/></g></g>
+  </svg>
+    <div class="card" id="bub9" style="left:470px;top:560px;width:420px;padding:22px 0;text-align:center;font:900 70px Poppins;border-radius:50px">Chill mal.</div>
+    <div class="card" id="paper9" style="left:200px;top:330px;width:680px;height:820px;padding:56px;rotate:-3deg">
+      <div style="font:600 36px Poppins;color:#888">Praxisphase · Hausarbeit</div>
+      <div style="font:900 64px Poppins;margin-top:8px;line-height:1.1">Prozessoptimierung im Mittelstand</div>
+      <div style="margin-top:46px;height:16px;background:#e6e1d6;border-radius:8px"></div><div style="margin-top:26px;height:16px;width:85%;background:#e6e1d6;border-radius:8px"></div><div style="margin-top:26px;height:16px;width:70%;background:#e6e1d6;border-radius:8px"></div>
+      <div style="margin-top:60px;font:800 40px Poppins;color:#666">Kommentar: <span style="color:#C0631F">„Chill mal."</span></div>
+    </div>
+    <div class="stamp" id="st9" style="left:540px;top:820px;rotate:-12deg;font-size:150px;color:#2EAF5A;border-color:#2EAF5A">1,0</div>
+  </div>
+
+  <!-- ===== s10 Planet ===== -->
+  <div class="sc" id="g10"><svg>
+    <rect width="1080" height="1920" fill="#0D1226"/><g id="stars10"></g>
+    <g id="world10"></g>
+    <g id="sleep10"><g transform="translate(230 1230) scale(.52)" id="sl1"></g><g transform="translate(560 1250) scale(.6)" id="sl2"></g><g transform="translate(900 1230) scale(-.52 .52)" id="sl3"></g>
+      <g font-weight="900" fill="#fff" id="zzz10"><text x="300" y="1080" font-size="60" id="z10a">Z</text><text x="650" y="1050" font-size="76" id="z10b">Z</text><text x="860" y="1080" font-size="60" id="z10c">z</text></g></g>
+  </svg>
+    <div class="t" id="h10" style="top:290px;font-size:84px">PLANET DER<br><span class="box" style="background:var(--capy)">CAPYBARAS</span></div>
+    <div class="card" id="war10" style="left:240px;top:1000px;width:600px;padding:22px 0;text-align:center;background:#1A2140;color:#fff;font:900 64px Poppins">Kriege</div>
+    <div class="stamp" id="st10" style="left:280px;top:1105px;rotate:-8deg;font-size:90px">ABGESAGT</div>
+  </div>
+
+  <!-- ===== s11 CTA ===== -->
+  <div class="sc" id="g11"><svg>
+    <defs><linearGradient id="cta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1B1530"/><stop offset="1" stop-color="#4A2A50"/></linearGradient>
+      <linearGradient id="photo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3FD0D6"/><stop offset="1" stop-color="#1A6F90"/></linearGradient>
+      <clipPath id="scr"><rect x="300" y="330" width="480" height="900" rx="40"/></clipPath></defs>
+    <rect width="1080" height="1920" fill="url(#cta)"/>
+    <g id="phone11">
+      <rect x="276" y="306" width="528" height="948" rx="64" fill="#0B0B12" stroke="#3A3550" stroke-width="6"/>
+      <g clip-path="url(#scr)">
+        <rect x="300" y="330" width="480" height="900" fill="url(#photo)"/>
+        <g transform="translate(540 760) scale(.56)" id="phCap"></g>
+        <rect x="300" y="1060" width="480" height="170" fill="rgba(0,0,0,.35)"/>
+        <text x="326" y="1112" font-size="30" font-weight="800" fill="#fff">wenn du ein Capybara bist</text>
+        <g id="likes11"><path d="M352 1168 c-14 -22 -44 -8 -30 14 l30 26 l30 -26 c14 -22 -16 -36 -30 -14z" fill="#FF4D6A"/><text x="400" y="1190" font-size="36" font-weight="800" fill="#fff" id="likeN">0</text></g>
+        <!-- Teilen-Sheet -->
+        <g id="share11">
+          <rect x="300" y="760" width="480" height="470" rx="36" fill="#F4F2F8"/>
+          <rect x="500" y="778" width="80" height="10" rx="5" fill="#C9C4D6"/>
+          <text x="540" y="840" text-anchor="middle" font-size="34" font-weight="900" fill="#141022">Senden an …</text>
+          <g font-size="28" font-weight="800" text-anchor="middle" fill="#141022">
+            <circle cx="370" cy="930" r="44" fill="#FF7A3D"/><text x="370" y="942" fill="#fff" font-size="36">L</text><text x="370" y="1010">Lena</text>
+            <circle cx="490" cy="930" r="44" fill="#2F6FD8"/><text x="490" y="942" fill="#fff" font-size="36">M</text><text x="490" y="1010">Mo</text>
+            <g id="pickC"><circle cx="610" cy="930" r="44" fill="#B07A4A"/><g transform="translate(610 934) scale(.13)" id="miniCap"></g></g><text x="610" y="1010">Capy</text>
+            <circle cx="726" cy="930" r="44" fill="#5BE38C"/><text x="726" y="942" fill="#fff" font-size="36">C</text><text x="726" y="1010">Chef</text>
+          </g>
+          <g id="ring11"><circle cx="610" cy="930" r="54" fill="none" stroke="#FF4D2E" stroke-width="8"/></g>
+          <g id="send11"><rect x="340" y="1080" width="400" height="90" rx="45" fill="#141022"/><text x="540" y="1138" text-anchor="middle" font-size="40" font-weight="900" fill="#fff" id="sendTxt">Senden</text></g>
+        </g>
+      </g>
+    </g>
+  </svg>
+    <div class="t" id="h11" style="top:1290px;font-size:0"></div>
+  </div>
+
+  <div class="kick">WAS WÄRE WENN … <b>CAPYBARAS</b></div>
+  <div class="chip" id="chip"><span id="chipTxt">TAG 1</span></div>
+</div></div>
+
+<script src="timeline.js"></script>
+<script src="../../kit/runtime.js"></script>
+<script src="../../kit/figures.js"></script>
+<script src="../../kit/geo-lib.js"></script>
+<script src="../../kit/geo-data-50m.js"></script>
+<script src="../../kit/map.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+const W = (s, w, n = 0) => R.word(s, w, n);
+const html = (id, s) => { $(id).innerHTML = s; };
+const svgAdd = (id, s) => $(id).insertAdjacentHTML('beforeend', s);
+const rnd = (a => () => (a = (a * 9301 + 49297) % 233280) / 233280)(7);   // fester Zufall = jedes Rendern gleich
+
+/* ---------- Figuren ---------- */
+html('hookFaceIn', FIG.capyFace({ id: 'hf', eyes: 'glow' }));
+html('cap2aIn', FIG.capy({ id: 'c2a' }));
+html('cap2bIn', FIG.capy({ id: 'c2b', eyes: 'glow' }));
+html('cap2cIn', FIG.capy({ id: 'c2c', pose: 'lie', eyes: 'closed' }));
+html('cap3In', FIG.capy({ id: 'c3' }));
+html('cap3sIn', FIG.capy({ id: 'c3s', eyes: 'sleepy' }));
+html('du3In', FIG.human({ id: 'du3', mood: 'neutral' }));
+html('walk7In', FIG.capy({ id: 'c7', eyes: 'sleepy' }));
+html('thCapLIn', FIG.capy({ id: 'tl', pose: 'lie', eyes: 'sleepy', acc: 'orange' }));
+html('thCapRIn', FIG.capy({ id: 'tr', pose: 'lie', eyes: 'sleepy', acc: 'orange' }));
+html('thDuIn', FIG.human({ id: 'du8', mood: 'neutral', pose: 'sit' }));
+html('cuDuIn', FIG.humanFace({ id: 'duF', mood: 'bliss' }));
+html('cuCapIn', FIG.capyFace({ id: 'cF', eyes: 'closed', acc: 'orange' }));
+html('boss9In', FIG.capy({ id: 'boss', eyes: 'sleepy', acc: 'tie' }));
+html('du9In', FIG.human({ id: 'du9', mood: 'neutral', arm: 'point' }));
+html('sl1', FIG.capy({ id: 's1c', pose: 'lie', eyes: 'closed' }));
+html('sl2', FIG.capy({ id: 's2c', pose: 'lie', eyes: 'closed', acc: 'orange' }));
+html('sl3', FIG.capy({ id: 's3c', pose: 'lie', eyes: 'closed' }));
+html('phCap', FIG.capyFace({ id: 'pc', eyes: 'sleepy', acc: 'orange' }));
+html('miniCap', FIG.capyFace({ id: 'mc', eyes: 'closed' }));
+
+/* Kulissen-Details */
+let gl = ''; for (let x = 0; x <= 1080; x += 60) gl += `<path d="M${x} 0V1920"/>`; for (let y = 0; y <= 1920; y += 60) gl += `<path d="M0 ${y}H1080"/>`; html('grid3', gl);
+const stars = (id, n, h) => { let s = ''; for (let i = 0; i < n; i++) s += `<circle cx="${(rnd() * 1080).toFixed(0)}" cy="${(rnd() * h).toFixed(0)}" r="${(rnd() * 2.4 + .8).toFixed(1)}" fill="#fff" opacity="${(.3 + rnd() * .6).toFixed(2)}"/>`; html(id, s); };
+stars('stars8', 70, 900); stars('stars10', 110, 1920);
+let wn = ''; for (const x of [200, 236, 812, 848]) for (const y of [800, 900, 1000]) wn += `<rect x="${x}" y="${y}" width="22" height="60" rx="4"/>`;
+for (let x = 320; x < 380; x += 50) for (const y of [860, 980]) wn += `<rect x="${x}" y="${y}" width="30" height="70" rx="4"/>`;
+for (let x = 720; x < 780; x += 50) for (const y of [860, 980]) wn += `<rect x="${x}" y="${y}" width="30" height="70" rx="4"/>`;
+html('win7', wn);
+
+/* ---------- Choreografie ---------- */
+const T = R.TL.total;
+const sc = id => R.scene(id);
+const CHIPS = [];
+
+// Szenengruppen
+R.fadeIn('gLab', 0, .3); R.fadeOut('gLab', sc('s2').end - .2, .25);
+R.sceneGroup('g1', 's1', 'fade'); R.sceneGroup('g2', 's2', 'fade'); R.sceneGroup('g3', 's3');
+const mapIn = sc('s4').start, mapOut = W('s7', 'Erstes') - .1;
+R.slideIn('gMap', mapIn); R.slideOut('gMap', mapOut);
+const b7 = W('s7', 'Erstes') - .1, th = W('s7', 'Therme') - .25;
+R.slideIn('g7b', b7); R.fadeOut('g7b', th + .25, .25);
+R.fadeIn('gTherme', th, .3); R.slideOut('gTherme', sc('s8').end - .25);
+R.sceneGroup('g9', 's9'); R.sceneGroup('g10', 's10'); R.sceneGroup('g11', 's11');
+
+/* s1 Hook */
+R.during(0, sc('s1').end, (p, now) => { $('alarmFlash').setAttribute('opacity', (.10 + .10 * Math.sin(now * 7)).toFixed(3)); });
+R.tw('hookFace', 0, 3.6, { s: 1.22, o: 0 }, { s: 1, o: 1 }, 'out');
+R.up('h1a', .1); R.up('h1b', W('s1', 'Planet')); R.pop('h1c', W('s1', 'Affen'));
+R.draw('strike1', W('s1', 'Nur'), .25); R.sfx(W('s1', 'Nur'), 'fail', .5);
+R.tw('h1c', W('s1', 'Nur') + .25, .3, {}, { o: .5 });
+R.slam('h1d', W('s1', 'Capybaras'));
+R.tw('hookFace', W('s1', 'Capybaras'), .3, { s: 1.08 }, { s: 1 }, 'back');
+CHIPS.push([0, '']);
+
+/* s2 Tag eins */
+CHIPS.push([W('s2', 'Tag'), 'TAG 1']);
+R.move('labCam', sc('s2').start, sc('s2').end - sc('s2').start, { s: 1.07, y: -30 }, 'inout');
+R.up('cage2', sc('s2').start + .05); R.fadeIn('cap2a', sc('s2').start + .05);
+R.init('cap2b', { o: 0 }); R.init('cap2c', { o: 0 });
+R.tw('cap2a', W('s2', 'schlau'), .2, {}, { o: 0 }); R.tw('cap2b', W('s2', 'schlau'), .2, {}, { o: 1 });
+R.pop('brain2', W('s2', 'schlau'), 'ding'); R.during(W('s2', 'schlau'), 3, (p, now) => { $('brain2').style.translate = `0 ${Math.sin(now * 4) * 8}px`; });
+R.fadeOut('brain2', W('s2', 'legt'));
+const dk = W('s2', 'knackt');
+R.tw('door2', dk, .45, { r: 0, x: 0 }, { r: 70, x: 60, y: 30 }, 'back'); R.sfx(dk, 'slam', .7); R.shake(dk + .05, .25, 10);
+R.tw('lock2', dk, .9, { x: 0, y: 0, r: 0 }, { x: 260, y: 360, r: 260, o: 0 }, 'grav');
+R.tw('cap2b', W('s2', 'legt'), .3, {}, { o: 0 }); R.tw('cap2c', W('s2', 'legt'), .3, {}, { o: 1 });
+['z2a', 'z2b', 'z2c'].forEach((z, i) => R.pop(z, W('s2', 'hin') + i * .18, i ? null : 'pop'));
+R.during(W('s2', 'hin'), 3, (p, now) => { $('zzz2').style.translate = `${Math.sin(now * 2) * 6}px ${-p * 60}px`; });
+
+/* s3 Blueprint */
+R.up('cap3', W('s3', 'Capybaras')); R.fadeIn('dim3c', W('s3', 'Capybaras') + .3);
+R.pop('ham3', W('s3', 'größten')); R.pop('medal3', W('s3', 'überhaupt'), 'ding');
+R.up('du3', W('s3', 'Nagetiere')); R.fadeIn('dim3d', W('s3', 'Nagetiere') + .3);
+FIG.mood('du3', [[0, 'neutral'], [W('s3', 'überhaupt'), 'shock']]);
+const kgT = W('s3', 'Bis');
+['ham3', 'du3', 'dim3d', 'dim3c', 'medal3'].forEach(id => R.fadeOut(id, kgT - .1, .25));
+R.move('cap3', kgT, .4, { y: -44 }, 'out'); R.init('cap3s', { o: 0 }); R.move('cap3s', kgT, .4, { y: -44 }, 'out');
+R.up('scale3', kgT); R.pop('kg3', kgT + .1);
+R.count('kgN', W('s3', 'sechzig') - .2, .7, 0, 60);
+R.tw('kg3', W('s3', 'Kilo'), .3, { s: 1.15 }, { s: 1 }, 'back');
+const gs = W('s3', 'Stresslevel');
+R.pop('gauge3', gs); R.fadeOut('kg3', gs - .05, .2);
+R.during(gs, 99, (p, now) => { const k = R.E.back(R.clamp((now - W('s3', 'null') + .1) / .45)); $('needle3').setAttribute('transform', `rotate(${(80 - 168 * k).toFixed(1)})`); });
+R.fadeOut('hd3', gs - .05, .2);
+R.slam('st3', W('s3', 'null'));
+R.tw('cap3', W('s3', 'null'), .2, {}, { o: 0 }); R.tw('cap3s', W('s3', 'null'), .2, {}, { o: 1 });
+
+/* s4–s7 Karte */
+const CAPY = '#B07A4A';
+const m = MAP.create('mapSvg', { box: [40, 270, 1000, 1010], projection: 'mercator', view: { center: [-40, 8], zoom: 1.15 },
+  style: { ocean: '#13253D', land: '#44506A', border: '#26304A', coast: 'rgba(255,255,255,.22)' } });
+CHIPS.push([sc('s4').start, '']);
+m.view(mapIn + .2, 1.4, { center: [-62, -17], zoom: 2.55 });
+R.pop('mt4', W('s4', 'Südamerika'));
+const SA = ['Panama', 'Venezuela', 'Colombia', 'Guyana', 'Suriname', 'Ecuador', 'Brazil', 'Peru', 'Bolivia', 'Paraguay', 'Uruguay', 'Argentina'];
+const saT = W('s4', 'Venezuela') - .1, saStag = (W('s4', 'Argentinien') - saT) / (SA.length - 1);
+m.fill(SA, saT, CAPY, .35, saStag);
+SA.forEach((c, i) => R.sfx(saT + i * saStag, 'tick', .25));
+// Pins & Mini-Capybaras
+const pinsG = m.layer(); pinsG.id = 'mapPinsIn';
+const mini = (id, s = .085) => `<g id="${id}"><circle r="${560 * s * .62}" fill="#fff"/><g transform="scale(${s})">${FIG.capyFace({ id: id + 'f', eyes: 'open' })}</g></g>`;
+const pill = (id, txt, bg = '#fff', fg = '#141022') => `<g id="${id}"><rect x="${-txt.length * 11 - 24}" y="-30" width="${txt.length * 22 + 48}" height="60" rx="30" fill="${bg}"/><text y="12" text-anchor="middle" font-size="36" font-weight="900" fill="${fg}">${txt}</text></g>`;
+
+R.pop('pVen', W('s4', 'Venezuela')); R.pop('pArg', W('s4', 'Argentinien'));
+R.fadeOut('pVen', sc('s5').start); R.fadeOut('pArg', sc('s5').start); R.fadeOut('mt4', sc('s5').start);
+const homes = [[-64, 4], [-74, 1], [-52, -6], [-46, -14], [-62, -14], [-56, -22], [-60, -30], [-44, -4]];
+homes.forEach((ll, i) => { svgAdd('mapPinsIn', mini('h' + i)); m.pin('h' + i, ll); R.pop('h' + i, W('s4', 'Argentinien') + .2 + i * .05, i % 3 ? null : 'pop'); });
+svgAdd('mapPinsIn', pill('pVen', 'Venezuela') + pill('pArg', 'Argentinien'));
+m.pin('pVen', [-66.5, 10.5], 0, -40); m.pin('pArg', [-64, -38], 0, 0);
+// s5 Florida
+CHIPS.push([W('s5', 'Woche'), 'WOCHE 1']);
+m.view(sc('s5').start + .05, 1.2, { center: [-72, 6], zoom: 1.85 });
+svgAdd('mapPinsIn', `<g id="runner">${mini('runnerIn', .12)}</g>` + pill('pFl', 'Florida', '#FFD23F'));
+m.route('rFl', [[-67, 6], [-80.5, 25.5], [-81.6, 28.6]], W('s5', 'machen'), W('s5', 'Florida') - W('s5', 'machen') + .2, { head: 'runner', rotate: false, keepHead: true, color: '#FFD23F', width: 9 });
+R.sfx(W('s5', 'machen'), 'whoosh', .5);
+m.pin('pFl', [-81.6, 28.6], 0, -90); R.pop('pFl', W('s5', 'Florida'));
+const zf = W('s5', 'Und');
+m.view(zf, 1.1, { center: [-82.2, 28.6], zoom: 26 });
+R.fadeOut('pFl', zf - .05);
+[[-82.4, 29.7], [-81.2, 29.1], [-82.9, 28.5], [-81.8, 30.5]].forEach((ll, i) => { svgAdd('mapPinsIn', mini('fw' + i, .085)); m.pin('fw' + i, ll); R.pop('fw' + i, W('s5', 'wilde') + i * .12, i ? null : 'pop'); });
+R.up('fl5', W('s5', 'wilde') + .1);
+R.fadeOut('fl5', sc('s6').start);
+['fw0', 'fw1', 'fw2', 'fw3'].forEach(id => R.fadeOut(id, sc('s6').start + .3));
+// s6 Atlantik
+CHIPS.push([W('s6', 'Monat'), 'MONAT 1']);
+m.view(sc('s6').start + .05, 1.3, { center: [-38, 36], zoom: 1.45 });
+R.pop('mt6', W('s6', 'Europa')); R.fadeOut('mt6', W('s6', 'Atlantik') + .4);
+svgAdd('mapPinsIn', `<g id="swimmer"><ellipse rx="70" ry="18" fill="none" stroke="#fff" stroke-width="5" opacity=".7" cy="34"/>${mini('swimIn', .12)}</g>` + pill('pAtl', 'Atlantik', '#7FD3FF'));
+const rs = W('s6', 'Den');
+m.route('rAtl', [[-81.6, 28.6], [-60, 34], [-25, 40], [-9.2, 38.7], [2, 46.5], [10.4, 51.2]], rs, sc('s7').start - rs + .4, { head: 'swimmer', rotate: false, keepHead: true, color: '#7FD3FF', width: 9 });
+R.sfx(rs, 'whoosh', .5);
+m.pin('pAtl', [-42, 30]); R.pop('pAtl', W('s6', 'Atlantik')); R.fadeOut('pAtl', W('s6', 'Tauchen'));
+m.view(W('s6', 'schwimmen'), 2.0, { center: [-12, 44], zoom: 2.3 });
+R.pop('air6', W('s6', 'Tauchen'));
+R.during(W('s6', 'Tauchen'), 99, (p, now) => { const left = Math.max(0, 300 - Math.floor((now - W('s6', 'Tauchen')) * 3)); $('air6n').textContent = Math.floor(left / 60) + ':' + String(left % 60).padStart(2, '0'); });
+R.fadeOut('air6', sc('s7').start + .1);
+// s7 Deutschland
+CHIPS.push([W('s7', 'Monat'), 'MONAT 2']);
+m.view(sc('s7').start + .1, 1.3, { center: [10.4, 51.0], zoom: 10.5 });
+m.fill('Germany', W('s7', 'Deutschland'), '#C98B50', .35);
+R.sfx(W('s7', 'Deutschland'), 'ding', .5);
+const cities = [['Berlin', [13.4, 52.52]], ['Hamburg', [10.0, 53.55]], ['München', [11.58, 48.14]], ['Köln', [6.96, 50.94]], ['Frankfurt', [8.68, 50.11]], ['Leipzig', [12.37, 51.34]]];
+cities.forEach(([n, ll], i) => { svgAdd('mapPinsIn', mini('gc' + i, .1)); m.pin('gc' + i, ll); R.pop('gc' + i, W('s7', 'erobern') + i * .1, i % 2 ? null : 'pop'); });
+svgAdd('mapPinsIn', pill('pDe', 'Deutschland', '#FFD23F')); m.pin('pDe', [10.4, 50.3]); R.pop('pDe', W('s7', 'Deutschland'));
+R.fadeOut('swimmer', W('s7', 'erobern'));
+
+/* s7b Bundestag */
+R.pop('h7', W('s7', 'Erstes'));
+R.tw('reichstag', b7, 1.6, { s: 1.08 }, { s: 1 }, 'out');
+R.during(b7, th - b7, (p, now) => { $('walk7').style.translate = `${-200 + p * 900}px 0px`; });
+R.init('walk7', {});
+R.slam('x7', W('s7', 'Bundestag'));
+
+/* s7c/s8 Therme */
+CHIPS.push([W('s7', 'Therme'), 'MONAT 2']);
+let st = ''; for (let i = 0; i < 9; i++) st += `<ellipse id="stm${i}" cx="${80 + i * 120}" cy="1060" rx="${60 + (i % 3) * 20}" ry="${40 + (i % 2) * 18}" opacity=".0"/>`;
+html('steam', st);
+let cst = ''; for (let i = 0; i < 7; i++) cst += `<ellipse id="cst${i}" cx="${60 + i * 160}" cy="1150" rx="90" ry="50" opacity="0"/>`; html('cuSteam', cst);
+const steamFn = (pre, n, y0) => (p, now) => { for (let i = 0; i < n; i++) { const k = ((now * .18 + i * .37) % 1); const e = $(pre + i); e.setAttribute('cy', (y0 - k * 520).toFixed(1)); e.setAttribute('cx', (60 + i * (1000 / n) + Math.sin(now + i) * 30).toFixed(1)); e.setAttribute('opacity', (Math.sin(k * Math.PI) * .5).toFixed(3)); } };
+R.during(th, 99, steamFn('stm', 9, 1080));
+R.during(th, 99, steamFn('cst', 7, 1160));
+let rp = ''; for (let i = 0; i < 6; i++) rp += `<path id="rip${i}" d=""/>`; html('ripples', rp);
+R.during(th, 99, (p, now) => { for (let i = 0; i < 6; i++) { const y = 1110 + i * 34, x = (now * 30 * (i % 2 ? 1 : -1) + i * 170) % 1080; $('rip' + i).setAttribute('d', `M${x.toFixed(0)} ${y} q30 -10 60 0 M${((x + 520) % 1080).toFixed(0)} ${y + 14} q24 -8 48 0`); } });
+R.during(th, 99, (p, now) => { $('waterFront').style.translate = `${Math.sin(now * 1.2) * 14}px 0px`; $('refl').style.translate = `${Math.sin(now * 1.7) * 10}px 0px`; });
+R.init('thCam', { s: 1.16 }); R.move('thCam', th, sc('s8').end - th, { s: 1.24, y: -30 }, 'inout');
+R.tw('gTherme', th, .6, { s: 1.12 }, { s: 1 }, 'out');
+// Krieg-Einspieler
+R.init('war8', { o: 0 });
+R.tw('war8', W('s8', 'Film') - .15, .2, {}, { o: 1 }); R.sfx(W('s8', 'Film') - .15, 'slam', .6); R.shake(W('s8', 'Krieg'), .35, 16);
+R.tw('war8', W('s8', 'Hier') - .1, .3, {}, { o: 0 }); R.sfx(W('s8', 'Hier') - .1, 'ding', .5);
+// Capybara rückt ran
+const nb = W('s8', 'Capybara');
+R.tw('thCapR', nb, W('s8', 'dich') - nb + .3, { x: 0 }, { x: -170 }, 'inout'); R.sfx(nb, 'whoosh', .4);
+R.during(nb, 2, (p, now) => { $('thCapRIn').parentNode.style.translate = `0 ${Math.sin(now * 5) * 4}px`; });
+FIG.mood('du8', [[0, 'neutral'], [W('s8', 'Hier'), 'neutral'], [W('s8', 'neben'), 'happy'], [W('s8', 'dich') + .3, 'bliss']]);
+// Close-up
+R.init('cu8', { o: 0 });
+R.tw('cu8', W('s8', 'Und') - .05, .3, { o: 0, s: 1.15 }, { o: 1, s: 1 }, 'out');
+R.pop('hrt1', W('s8', 'nie'), 'pop'); R.pop('hrt2', W('s8', 'wieder'), null);
+R.during(W('s8', 'nie'), 3, (p, now) => { $('hearts8').style.translate = `0 ${-p * 80}px`; });
+
+/* s9 Büro */
+CHIPS.push([sc('s9').start, 'PRAXISPHASE']);
+R.move('offCam', sc('s9').start, sc('s9').end - sc('s9').start, { s: 1.05 }, 'lin');
+R.slam('plate9', W('s9', 'Ausbilder'));
+R.tw('boss9', W('s9', 'eins'), .35, { s: 1.06 }, { s: 1 }, 'back');
+R.pop('paper9s', W('s9', 'Hausarbeit'));
+R.pop('bub9', W('s9', 'Chill'));
+FIG.mood('du9', [[0, 'neutral'], [W('s9', 'Ausbilder') + .2, 'shock'], [W('s9', 'Chill'), 'annoyed'], [W('s9', 'Eins', 1), 'happy']]);
+R.fadeOut('bub9', W('s9', 'Note') - .05);
+R.init('paper9', { o: 0 }); R.tw('paper9', W('s9', 'Note') - .05, .4, { o: 0, s: .4, y: 300 }, { o: 1, s: 1, y: 0 }, 'back'); R.sfx(W('s9', 'Note'), 'whoosh', .5);
+R.slam('st9', W('s9', 'Eins', 1));
+
+/* s10 Planet */
+CHIPS.push([W('s10', 'Jahr'), 'JAHR 1']);
+const wm = MAP.create('world10', { box: [40, 520, 1000, 470], projection: 'naturalEarth', view: { center: [8, 6], zoom: 1.08 },
+  style: { ocean: '#13253D', land: '#44506A', border: '#26304A', coast: 'rgba(255,255,255,.2)', grid: true } });
+const pre = [...SA, 'Germany', 'United States of America'];
+wm.fill(pre, -1, CAPY, .01);
+const origin = [-60, -15], ft = W('s10', 'Planet') - .1, fd = W('s10', 'Capybaras') + .4 - ft;
+const all = wm.names().filter(n => !pre.includes(n));
+const feats = window.topojson.feature(WORLD_50M, WORLD_50M.objects.countries).features;
+const dist = n => { const f = feats.find(x => x.properties.name === n); return d3.geoDistance(origin, d3.geoCentroid(f)); };
+const maxD = Math.max(...all.map(dist));
+all.forEach(n => wm.fill(n, ft + dist(n) / maxD * fd, CAPY, .25));
+for (let i = 0; i < 6; i++) R.sfx(ft + i * fd / 6, 'tick', .3);
+R.pop('h10', W('s10', 'Planet'));
+R.pop('war10', W('s10', 'Keine')); R.slam('st10', W('s10', 'mehr'));
+R.fadeOut('war10', W('s10', 'Mittagsschlaf') - .1); R.fadeOut('st10', W('s10', 'Mittagsschlaf') - .1);
+R.up('sleep10', W('s10', 'Mittagsschlaf'));
+['z10a', 'z10b', 'z10c'].forEach((z, i) => R.pop(z, W('s10', 'Mittagsschlaf') + .2 + i * .2, null));
+R.during(W('s10', 'Mittagsschlaf'), 4, (p, now) => { $('zzz10').style.translate = `0 ${-p * 70}px`; });
+
+/* s11 CTA */
+CHIPS.push([sc('s11').start, '']);
+R.tw('phone11', sc('s11').start, 2.5, { s: .92, y: 30 }, { s: 1, y: 0 }, 'out');
+R.count('likeN', sc('s11').start + .2, 2.6, 0, 48210);
+R.init('share11', { y: 500 }); R.tw('share11', W('s11', 'Schick') - .1, .45, { y: 500 }, { y: 0 }, 'out'); R.sfx(W('s11', 'Schick'), 'whoosh', .4);
+R.pop('ring11', W('s11', 'Capybara'));
+R.tw('send11', W('s11', 'ist') + .05, .25, { s: .9 }, { s: 1 }, 'back'); R.sfx(W('s11', 'ist') + .05, 'ding', .6);
+R.during(-1, 1e9, (p, now) => { $('sendTxt').textContent = now >= W('s11', 'ist') + .05 ? 'Gesendet ✓' : 'Senden'; });
+
+/* Chip oben rechts */
+CHIPS.sort((a, b) => a[0] - b[0]);
+let lastChip = null;
+R.during(-1, 1e9, (p, now) => { let c = ''; for (const [t, x] of CHIPS) if (now >= t) c = x; if (c === lastChip) return; lastChip = c; $('chipTxt').textContent = c; $('chip').style.display = c ? 'block' : 'none'; });
+CHIPS.forEach(([t, x], i) => { if (x && (!i || CHIPS[i - 1][1] !== x)) { R.tw('chip', t, .35, { s: 1.4 }, { s: 1 }, 'back'); R.sfx(t, 'tick', .4); } });
+
+R.start();
+</script>
+</body>
+</html>

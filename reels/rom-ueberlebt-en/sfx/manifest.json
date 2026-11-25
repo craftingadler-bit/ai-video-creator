@@ -1,0 +1,388 @@
+{
+ "theme": null,
+ "format": "wav",
+ "formats": [
+  "wav"
+ ],
+ "sounds": [
+  {
+   "name": "whoosh",
+   "file": "whoosh.wav",
+   "files": [
+    "whoosh.wav"
+   ],
+   "sound": "whoosh/fast",
+   "dur_s": 0.305,
+   "lufs_max": -22.6,
+   "loop": false,
+   "ok": true,
+   "member": {
+    "n": 1,
+    "of": 3,
+    "recording": "recording 1 of 3"
+   }
+  },
+  {
+   "name": "pop",
+   "file": "pop.wav",
+   "files": [
+    "pop.wav"
+   ],
+   "sound": "thump/appear",
+   "dur_s": 0.048,
+   "lufs_max": -24.7,
+   "loop": false,
+   "ok": true,
+   "member": {
+    "n": 3,
+    "of": 8,
+    "recording": "recording 3 of 8"
+   }
+  },
+  {
+   "name": "slam",
+   "file": "slam.wav",
+   "files": [
+    "slam.wav"
+   ],
+   "sound": "slam/title",
+   "dur_s": 0.506,
+   "lufs_max": -20.7,
+   "loop": false,
+   "ok": true,
+   "member": {
+    "n": 1,
+    "of": 2,
+    "recording": "recording 1 of 2"
+   }
+  },
+  {
+   "name": "drop",
+   "file": "drop.wav",
+   "files": [
+    "drop.wav"
+   ],
+   "sound": "heavy_drop/floor",
+   "dur_s": 1.921,
+   "lufs_max": -16.6,
+   "loop": false,
+   "ok": true,
+   "member": {
+    "n": 3,
+    "of": 4,
+    "recording": "recording 3 of 4"
+   }
+  },
+  {
+   "name": "type",
+   "file": "type.wav",
+   "files": [
+    "type.wav"
+   ],
+   "sound": "keyboard/desktop",
+   "dur_s": 1.0,
+   "lufs_max": -15.6,
+   "loop": false,
+   "ok": true,
+   "member": {
+    "n": 2,
+    "of": 5,
+    "recording": "recording 2 of 5"
+   }
+  },
+  {
+   "name": "fail",
+   "file": "fail.wav",
+   "files": [
+    "fail.wav"
+   ],
+   "sound": "buzzer/deny",
+   "dur_s": 0.368,
+   "lufs_max": -15.9,
+   "loop": false,
+   "ok": true,
+   "member": {
+    "n": 1,
+    "of": 1,
+    "recording": "recording 1 of 1"
+   }
+  },
+  {
+   "name": "moo",
+   "file": "moo.wav",
+   "files": [
+    "moo.wav"
+   ],
+   "sound": "cow/moo",
+   "dur_s": 2.753,
+   "lufs_max": -14.8,
+   "loop": false,
+   "ok": true,
+   "member": {
+    "n": 2,
+    "of": 3,
+    "recording": "recording 2 of 3"
+   }
+  },
+  {
+   "name": "moo2",
+   "file": "moo2.wav",
+   "files": [
+    "moo2.wav"
+   ],
+   "sound": "cow/moo",
+   "dur_s": 3.574,
+   "lufs_max": -14.0,
+   "loop": false,
+   "ok": true,
+   "member": {
+    "n": 1,
+    "of": 3,
+    "recording": "recording 1 of 3"
+   }
+  },
+  {
+   "name": "hooves",
+   "file": "hooves.wav",
+   "files": [
+    "hooves.wav"
+   ],
+   "sound": "horse/trot",
+   "dur_s": 2.073,
+   "lufs_max": -20.2,
+   "loop": false,
+   "ok": true,
+   "member": {
+    "n": 2,
+    "of": 2,
+    "recording": "recording 2 of 2"
+   }
+  },
+  {
+   "name": "cheer",
+   "file": "cheer.wav",
+   "files": [
+    "cheer.wav"
+   ],
+   "sound": "crowd/cheer",
+   "dur_s": 3.141,
+   "lufs_max": -14.5,
+   "loop": false,
+   "ok": true,
+   "member": {
+    "n": 3,
+    "of": 3,
+    "recording": "recording 3 of 3"
+   }
+  },
+  {
+   "name": "boo",
+   "file": "boo.wav",
+   "files": [
+    "boo.wav"
+   ],
+   "sound": "crowd/boo",
+   "dur_s": 2.509,
+   "lufs_max": -14.0,
+   "loop": false,
+   "ok": true,
+   "member": {
+    "n": 2,
+    "of": 2,
+    "recording": "recording 2 of 2"
+   }
+  },
+  {
+   "name": "clockfast",
+   "file": "clockfast.wav",
+   "files": [
+    "clockfast.wav"
+   ],
+   "sound": "clock/mechanical",
+   "dur_s": 0.712,
+   "lufs_max": -17.4,
+   "loop": false,
+   "ok": true,
+   "member": {
+    "n": 1,
+    "of": 1,
+    "recording": "recording 1 of 1"
+   }
+  },
+  {
+   "name": "pages",
+   "file": "pages.wav",
+   "files": [
+    "pages.wav"
+   ],
+   "sound": "page/turn",
+   "dur_s": 1.148,
+   "lufs_max": -18.4,
+   "loop": false,
+   "ok": true,
+   "member": {
+    "n": 1,
+    "of": 3,
+    "recording": "recording 1 of 3"
+   }
+  },
+  {
+   "name": "chalk",
+   "file": "chalk.wav",
+   "files": [
+    "chalk.wav"
+   ],
+   "sound": "pen/click",
+   "dur_s": 0.194,
+   "lufs_max": -15.9,
+   "loop": false,
+   "ok": true
+  },
+  {
+   "name": "flaps",
+   "file": "flaps.wav",
+   "files": [
+    "flaps.wav"
+   ],
+   "sound": "toggle/key_down",
+   "dur_s": 0.238,
+   "lufs_max": -18.7,
+   "loop": false,
+   "ok": true
+  },
+  {
+   "name": "steps",
+   "file": "steps.wav",
+   "files": [
+    "steps.wav"
+   ],
+   "sound": "step/pebbles",
+   "dur_s": 3.0,
+   "lufs_max": -16.3,
+   "loop": false,
+   "ok": true,
+   "member": {
+    "n": 4,
+    "of": 9,
+    "recording": "recording 4 of 9"
+   }
+  },
+  {
+   "name": "wind",
+   "file": "wind.wav",
+   "files": [
+    "wind.wav"
+   ],
+   "sound": "wind/mountain",
+   "dur_s": 2.0,
+   "lufs_max": -51.5,
+   "loop": false,
+   "ok": true
+  },
+  {
+   "name": "popper",
+   "file": "popper.wav",
+   "files": [
+    "popper.wav"
+   ],
+   "sound": "party_popper/pop",
+   "dur_s": 0.635,
+   "lufs_max": -21.4,
+   "loop": false,
+   "ok": true,
+   "member": {
+    "n": 1,
+    "of": 1,
+    "recording": "recording 1 of 1"
+   }
+  },
+  {
+   "name": "crash",
+   "file": "crash.wav",
+   "files": [
+    "crash.wav"
+   ],
+   "sound": "tom/floor",
+   "dur_s": 2.249,
+   "lufs_max": -21.1,
+   "loop": false,
+   "ok": true,
+   "pitch": "C2 +39c",
+   "member": {
+    "n": 6,
+    "of": 6,
+    "recording": "recording 6 of 6"
+   }
+  },
+  {
+   "name": "creak",
+   "file": "creak.wav",
+   "files": [
+    "creak.wav"
+   ],
+   "sound": "door/creak",
+   "dur_s": 3.808,
+   "lufs_max": -18.6,
+   "loop": false,
+   "ok": true,
+   "member": {
+    "n": 1,
+    "of": 3,
+    "recording": "recording 1 of 3"
+   }
+  },
+  {
+   "name": "drips",
+   "file": "drips.wav",
+   "files": [
+    "drips.wav"
+   ],
+   "sound": "water/drop",
+   "dur_s": 0.291,
+   "lufs_max": -20.4,
+   "loop": false,
+   "ok": true
+  },
+  {
+   "name": "birds",
+   "file": "birds.wav",
+   "files": [
+    "birds.wav"
+   ],
+   "sound": "forest/morning",
+   "dur_s": 8.0,
+   "lufs_max": -30.0,
+   "loop": false,
+   "ok": true
+  },
+  {
+   "name": "cafe",
+   "file": "cafe.wav",
+   "files": [
+    "cafe.wav"
+   ],
+   "sound": "cafe/busy",
+   "dur_s": 7.0,
+   "lufs_max": -30.0,
+   "loop": true,
+   "ok": true
+  },
+  {
+   "name": "chime",
+   "file": "chime.wav",
+   "files": [
+    "chime.wav"
+   ],
+   "sound": "train/pass",
+   "dur_s": 4.979,
+   "lufs_max": -14.3,
+   "loop": false,
+   "ok": true,
+   "member": {
+    "n": 2,
+    "of": 2,
+    "recording": "recording 2 of 2"
+   }
+  }
+ ]
+}

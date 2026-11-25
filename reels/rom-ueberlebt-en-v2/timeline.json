@@ -1,0 +1,1447 @@
+{
+ "total": 82.553,
+ "scenes": [
+  {
+   "id": "s1",
+   "title": "Hook",
+   "bild": "Columns, laurel wreath, SPQR, title slams in",
+   "voStart": 0.47,
+   "voEnd": 5.17,
+   "vo": "What if the Roman Empire never fell? Like, never. Not even a little.",
+   "start": 0,
+   "end": 5.46
+  },
+  {
+   "id": "s2",
+   "title": "The map",
+   "bild": "Real map, regions fill red word by word, star on Rome",
+   "voStart": 5.75,
+   "voEnd": 13.52,
+   "vo": "Then Rome owns all of Europe, North Africa, and half of Asia. And the capital? Rome. Shocking. Truly nobody saw that coming.",
+   "start": 5.46,
+   "end": 13.885
+  },
+  {
+   "id": "s3",
+   "title": "Germania",
+   "bild": "Town sign GERMANY crossed out, GERMANIA, stamp PROVINCE, population card",
+   "voStart": 14.25,
+   "voEnd": 21.63,
+   "vo": "Germany doesn't exist. You live in Germania. A province. Literally. Population: twelve people and a lot of cows.",
+   "start": 13.885,
+   "end": 21.95
+  },
+  {
+   "id": "s4",
+   "title": "Latin",
+   "bild": "Student says SALVE, Latin certificate, stamp WORTH IT",
+   "voStart": 22.27,
+   "voEnd": 28.57,
+   "vo": "Everyone speaks Latin. Your waiter, your landlord, your ex. All those Latin classes finally paid off.",
+   "start": 21.95,
+   "end": 28.825
+  },
+  {
+   "id": "s5",
+   "title": "Bureaucracy",
+   "bild": "Scroll FORM XIV, © ROME stamp, real map route Germania → Rome, counter 3 years",
+   "voStart": 29.08,
+   "voEnd": 38.56,
+   "vo": "The Romans basically invented bureaucracy. Your form travels to Rome by messenger. On foot. Over the Alps. Processing time: three years.",
+   "start": 28.825,
+   "end": 38.83
+  },
+  {
+   "id": "s6",
+   "title": "Train",
+   "bild": "Departure board VIA APPIA EXPRESS, delay +200 years",
+   "voStart": 39.1,
+   "voEnd": 45.9,
+   "vo": "The train is now the Via Appia Express. Delay: two centuries. Still beats German trains.",
+   "start": 38.83,
+   "end": 46.15
+  },
+  {
+   "id": "s7",
+   "title": "College",
+   "bild": "Colosseum, student with helmet, centurion boss",
+   "voStart": 46.4,
+   "voEnd": 53.36,
+   "vo": "College? Lectures at the Colosseum. Internship with the legion. Your boss is a centurion. And he does not do home office.",
+   "start": 46.15,
+   "end": 53.64
+  },
+  {
+   "id": "s8",
+   "title": "Free time",
+   "bild": "Scoreboard, video review, giant thumb turns down",
+   "voStart": 53.92,
+   "voEnd": 61.28,
+   "vo": "Friday night: chariot races instead of football. Video review? Done by the emperor. With his thumb. No appeals.",
+   "start": 53.64,
+   "end": 61.61
+  },
+  {
+   "id": "s9",
+   "title": "Math",
+   "bild": "Chalkboard XL ÷ XII = ?, stamp GOOD LUCK",
+   "voStart": 61.94,
+   "voEnd": 67.57,
+   "vo": "And math is all in Roman numerals. Try dividing forty by twelve. Good luck. I'll wait.",
+   "start": 61.61,
+   "end": 67.915
+  },
+  {
+   "id": "s10",
+   "title": "Bottom line",
+   "bild": "Column, counter 2,000 years, report falls, stamp NOT DONE",
+   "voStart": 68.26,
+   "voEnd": 74.92,
+   "vo": "Bottom line: the empire would survive two thousand years. Your internship report? Still not done.",
+   "start": 67.915,
+   "end": 75.44
+  },
+  {
+   "id": "s11",
+   "title": "CTA",
+   "bild": "Comment field, arrow down",
+   "voStart": 75.96,
+   "voEnd": 81.26,
+   "vo": "Which province would you live in? Tell me in the comments. I'm taking Germania Inferior.",
+   "start": 75.44,
+   "end": 82.553
+  }
+ ],
+ "words": [
+  {
+   "w": "What",
+   "kw": false,
+   "scene": "s1",
+   "start": 0.47,
+   "end": 0.77
+  },
+  {
+   "w": "if",
+   "kw": false,
+   "scene": "s1",
+   "start": 0.77,
+   "end": 0.91
+  },
+  {
+   "w": "the",
+   "kw": false,
+   "scene": "s1",
+   "start": 0.91,
+   "end": 1.03
+  },
+  {
+   "w": "Roman",
+   "kw": true,
+   "scene": "s1",
+   "start": 1.03,
+   "end": 1.21
+  },
+  {
+   "w": "Empire",
+   "kw": true,
+   "scene": "s1",
+   "start": 1.21,
+   "end": 1.65
+  },
+  {
+   "w": "never",
+   "kw": false,
+   "scene": "s1",
+   "start": 1.65,
+   "end": 2.15
+  },
+  {
+   "w": "fell?",
+   "kw": false,
+   "scene": "s1",
+   "start": 2.15,
+   "end": 2.63
+  },
+  {
+   "w": "Like,",
+   "kw": false,
+   "scene": "s1",
+   "start": 3.05,
+   "end": 3.33
+  },
+  {
+   "w": "never.",
+   "kw": false,
+   "scene": "s1",
+   "start": 3.55,
+   "end": 3.93
+  },
+  {
+   "w": "Not",
+   "kw": false,
+   "scene": "s1",
+   "start": 4.35,
+   "end": 4.55
+  },
+  {
+   "w": "even",
+   "kw": false,
+   "scene": "s1",
+   "start": 4.55,
+   "end": 4.75
+  },
+  {
+   "w": "a",
+   "kw": false,
+   "scene": "s1",
+   "start": 4.75,
+   "end": 4.89
+  },
+  {
+   "w": "little.",
+   "kw": false,
+   "scene": "s1",
+   "start": 4.89,
+   "end": 5.17
+  },
+  {
+   "w": "Then",
+   "kw": false,
+   "scene": "s2",
+   "start": 5.75,
+   "end": 5.84
+  },
+  {
+   "w": "Rome",
+   "kw": false,
+   "scene": "s2",
+   "start": 5.84,
+   "end": 6.08
+  },
+  {
+   "w": "owns",
+   "kw": false,
+   "scene": "s2",
+   "start": 6.08,
+   "end": 6.34
+  },
+  {
+   "w": "all",
+   "kw": false,
+   "scene": "s2",
+   "start": 6.34,
+   "end": 6.56
+  },
+  {
+   "w": "of",
+   "kw": false,
+   "scene": "s2",
+   "start": 6.56,
+   "end": 6.72
+  },
+  {
+   "w": "Europe,",
+   "kw": false,
+   "scene": "s2",
+   "start": 6.72,
+   "end": 6.96
+  },
+  {
+   "w": "North",
+   "kw": false,
+   "scene": "s2",
+   "start": 7.16,
+   "end": 7.22
+  },
+  {
+   "w": "Africa,",
+   "kw": false,
+   "scene": "s2",
+   "start": 7.22,
+   "end": 7.7
+  },
+  {
+   "w": "and",
+   "kw": false,
+   "scene": "s2",
+   "start": 7.7,
+   "end": 7.94
+  },
+  {
+   "w": "half",
+   "kw": false,
+   "scene": "s2",
+   "start": 7.94,
+   "end": 8.12
+  },
+  {
+   "w": "of",
+   "kw": false,
+   "scene": "s2",
+   "start": 8.12,
+   "end": 8.34
+  },
+  {
+   "w": "Asia.",
+   "kw": false,
+   "scene": "s2",
+   "start": 8.34,
+   "end": 8.6
+  },
+  {
+   "w": "And",
+   "kw": false,
+   "scene": "s2",
+   "start": 9.22,
+   "end": 9.32
+  },
+  {
+   "w": "the",
+   "kw": false,
+   "scene": "s2",
+   "start": 9.32,
+   "end": 9.4
+  },
+  {
+   "w": "capital?",
+   "kw": false,
+   "scene": "s2",
+   "start": 9.4,
+   "end": 9.84
+  },
+  {
+   "w": "Rome.",
+   "kw": true,
+   "scene": "s2",
+   "start": 10.6,
+   "end": 10.82
+  },
+  {
+   "w": "Shocking.",
+   "kw": false,
+   "scene": "s2",
+   "start": 11.06,
+   "end": 11.38
+  },
+  {
+   "w": "Truly",
+   "kw": false,
+   "scene": "s2",
+   "start": 11.9,
+   "end": 12.22
+  },
+  {
+   "w": "nobody",
+   "kw": false,
+   "scene": "s2",
+   "start": 12.22,
+   "end": 12.66
+  },
+  {
+   "w": "saw",
+   "kw": false,
+   "scene": "s2",
+   "start": 12.66,
+   "end": 12.98
+  },
+  {
+   "w": "that",
+   "kw": false,
+   "scene": "s2",
+   "start": 12.98,
+   "end": 13.14
+  },
+  {
+   "w": "coming.",
+   "kw": false,
+   "scene": "s2",
+   "start": 13.14,
+   "end": 13.52
+  },
+  {
+   "w": "Germany",
+   "kw": false,
+   "scene": "s3",
+   "start": 14.25,
+   "end": 14.65
+  },
+  {
+   "w": "doesn't",
+   "kw": false,
+   "scene": "s3",
+   "start": 14.65,
+   "end": 15.03
+  },
+  {
+   "w": "exist.",
+   "kw": false,
+   "scene": "s3",
+   "start": 15.03,
+   "end": 15.37
+  },
+  {
+   "w": "You",
+   "kw": false,
+   "scene": "s3",
+   "start": 15.95,
+   "end": 16.05
+  },
+  {
+   "w": "live",
+   "kw": false,
+   "scene": "s3",
+   "start": 16.05,
+   "end": 16.23
+  },
+  {
+   "w": "in",
+   "kw": false,
+   "scene": "s3",
+   "start": 16.23,
+   "end": 16.41
+  },
+  {
+   "w": "Germania.",
+   "kw": true,
+   "scene": "s3",
+   "start": 16.41,
+   "end": 17.13
+  },
+  {
+   "w": "A",
+   "kw": false,
+   "scene": "s3",
+   "start": 17.15,
+   "end": 17.35
+  },
+  {
+   "w": "province.",
+   "kw": false,
+   "scene": "s3",
+   "start": 17.35,
+   "end": 17.73
+  },
+  {
+   "w": "Literally.",
+   "kw": false,
+   "scene": "s3",
+   "start": 18.21,
+   "end": 18.57
+  },
+  {
+   "w": "Population:",
+   "kw": false,
+   "scene": "s3",
+   "start": 18.97,
+   "end": 19.53
+  },
+  {
+   "w": "twelve",
+   "kw": false,
+   "scene": "s3",
+   "start": 19.97,
+   "end": 20.09
+  },
+  {
+   "w": "people",
+   "kw": false,
+   "scene": "s3",
+   "start": 20.09,
+   "end": 20.53
+  },
+  {
+   "w": "and",
+   "kw": false,
+   "scene": "s3",
+   "start": 20.53,
+   "end": 20.95
+  },
+  {
+   "w": "a",
+   "kw": false,
+   "scene": "s3",
+   "start": 20.95,
+   "end": 21.03
+  },
+  {
+   "w": "lot",
+   "kw": false,
+   "scene": "s3",
+   "start": 21.03,
+   "end": 21.17
+  },
+  {
+   "w": "of",
+   "kw": false,
+   "scene": "s3",
+   "start": 21.17,
+   "end": 21.31
+  },
+  {
+   "w": "cows.",
+   "kw": false,
+   "scene": "s3",
+   "start": 21.31,
+   "end": 21.63
+  },
+  {
+   "w": "Everyone",
+   "kw": false,
+   "scene": "s4",
+   "start": 22.27,
+   "end": 22.63
+  },
+  {
+   "w": "speaks",
+   "kw": false,
+   "scene": "s4",
+   "start": 22.63,
+   "end": 23.07
+  },
+  {
+   "w": "Latin.",
+   "kw": false,
+   "scene": "s4",
+   "start": 23.07,
+   "end": 23.39
+  },
+  {
+   "w": "Your",
+   "kw": false,
+   "scene": "s4",
+   "start": 23.93,
+   "end": 23.97
+  },
+  {
+   "w": "waiter,",
+   "kw": false,
+   "scene": "s4",
+   "start": 23.97,
+   "end": 24.35
+  },
+  {
+   "w": "your",
+   "kw": false,
+   "scene": "s4",
+   "start": 24.57,
+   "end": 24.67
+  },
+  {
+   "w": "landlord,",
+   "kw": false,
+   "scene": "s4",
+   "start": 24.67,
+   "end": 24.97
+  },
+  {
+   "w": "your",
+   "kw": false,
+   "scene": "s4",
+   "start": 25.43,
+   "end": 25.53
+  },
+  {
+   "w": "ex.",
+   "kw": false,
+   "scene": "s4",
+   "start": 25.53,
+   "end": 25.77
+  },
+  {
+   "w": "All",
+   "kw": false,
+   "scene": "s4",
+   "start": 26.61,
+   "end": 26.73
+  },
+  {
+   "w": "those",
+   "kw": false,
+   "scene": "s4",
+   "start": 26.73,
+   "end": 26.93
+  },
+  {
+   "w": "Latin",
+   "kw": false,
+   "scene": "s4",
+   "start": 26.93,
+   "end": 27.19
+  },
+  {
+   "w": "classes",
+   "kw": false,
+   "scene": "s4",
+   "start": 27.19,
+   "end": 27.57
+  },
+  {
+   "w": "finally",
+   "kw": false,
+   "scene": "s4",
+   "start": 27.57,
+   "end": 28.03
+  },
+  {
+   "w": "paid",
+   "kw": true,
+   "scene": "s4",
+   "start": 28.03,
+   "end": 28.25
+  },
+  {
+   "w": "off.",
+   "kw": true,
+   "scene": "s4",
+   "start": 28.25,
+   "end": 28.57
+  },
+  {
+   "w": "The",
+   "kw": false,
+   "scene": "s5",
+   "start": 29.08,
+   "end": 29.12
+  },
+  {
+   "w": "Romans",
+   "kw": false,
+   "scene": "s5",
+   "start": 29.12,
+   "end": 29.42
+  },
+  {
+   "w": "basically",
+   "kw": false,
+   "scene": "s5",
+   "start": 29.42,
+   "end": 30.02
+  },
+  {
+   "w": "invented",
+   "kw": false,
+   "scene": "s5",
+   "start": 30.02,
+   "end": 30.46
+  },
+  {
+   "w": "bureaucracy.",
+   "kw": false,
+   "scene": "s5",
+   "start": 30.46,
+   "end": 31.02
+  },
+  {
+   "w": "Your",
+   "kw": false,
+   "scene": "s5",
+   "start": 31.86,
+   "end": 31.92
+  },
+  {
+   "w": "form",
+   "kw": false,
+   "scene": "s5",
+   "start": 31.92,
+   "end": 32.32
+  },
+  {
+   "w": "travels",
+   "kw": false,
+   "scene": "s5",
+   "start": 32.32,
+   "end": 32.8
+  },
+  {
+   "w": "to",
+   "kw": false,
+   "scene": "s5",
+   "start": 32.8,
+   "end": 33.02
+  },
+  {
+   "w": "Rome",
+   "kw": false,
+   "scene": "s5",
+   "start": 33.02,
+   "end": 33.26
+  },
+  {
+   "w": "by",
+   "kw": false,
+   "scene": "s5",
+   "start": 33.26,
+   "end": 33.46
+  },
+  {
+   "w": "messenger.",
+   "kw": false,
+   "scene": "s5",
+   "start": 33.46,
+   "end": 33.96
+  },
+  {
+   "w": "On",
+   "kw": false,
+   "scene": "s5",
+   "start": 33.96,
+   "end": 34.68
+  },
+  {
+   "w": "foot.",
+   "kw": false,
+   "scene": "s5",
+   "start": 34.68,
+   "end": 35
+  },
+  {
+   "w": "Over",
+   "kw": false,
+   "scene": "s5",
+   "start": 35,
+   "end": 35.7
+  },
+  {
+   "w": "the",
+   "kw": false,
+   "scene": "s5",
+   "start": 35.7,
+   "end": 35.94
+  },
+  {
+   "w": "Alps.",
+   "kw": false,
+   "scene": "s5",
+   "start": 35.94,
+   "end": 36.34
+  },
+  {
+   "w": "Processing",
+   "kw": false,
+   "scene": "s5",
+   "start": 36.94,
+   "end": 37.18
+  },
+  {
+   "w": "time:",
+   "kw": false,
+   "scene": "s5",
+   "start": 37.18,
+   "end": 37.62
+  },
+  {
+   "w": "three",
+   "kw": false,
+   "scene": "s5",
+   "start": 37.94,
+   "end": 38.22
+  },
+  {
+   "w": "years.",
+   "kw": true,
+   "scene": "s5",
+   "start": 38.22,
+   "end": 38.56
+  },
+  {
+   "w": "The",
+   "kw": false,
+   "scene": "s6",
+   "start": 39.1,
+   "end": 39.16
+  },
+  {
+   "w": "train",
+   "kw": false,
+   "scene": "s6",
+   "start": 39.16,
+   "end": 39.54
+  },
+  {
+   "w": "is",
+   "kw": false,
+   "scene": "s6",
+   "start": 39.54,
+   "end": 39.72
+  },
+  {
+   "w": "now",
+   "kw": false,
+   "scene": "s6",
+   "start": 39.72,
+   "end": 39.94
+  },
+  {
+   "w": "the",
+   "kw": false,
+   "scene": "s6",
+   "start": 39.94,
+   "end": 40.14
+  },
+  {
+   "w": "Via",
+   "kw": false,
+   "scene": "s6",
+   "start": 40.14,
+   "end": 40.42
+  },
+  {
+   "w": "Appia",
+   "kw": false,
+   "scene": "s6",
+   "start": 40.42,
+   "end": 40.98
+  },
+  {
+   "w": "Express.",
+   "kw": false,
+   "scene": "s6",
+   "start": 40.98,
+   "end": 41.72
+  },
+  {
+   "w": "Delay:",
+   "kw": false,
+   "scene": "s6",
+   "start": 42.46,
+   "end": 42.86
+  },
+  {
+   "w": "two",
+   "kw": false,
+   "scene": "s6",
+   "start": 43.18,
+   "end": 43.42
+  },
+  {
+   "w": "centuries.",
+   "kw": true,
+   "scene": "s6",
+   "start": 43.42,
+   "end": 43.94
+  },
+  {
+   "w": "Still",
+   "kw": false,
+   "scene": "s6",
+   "start": 44.54,
+   "end": 44.76
+  },
+  {
+   "w": "beats",
+   "kw": false,
+   "scene": "s6",
+   "start": 44.76,
+   "end": 45.04
+  },
+  {
+   "w": "German",
+   "kw": false,
+   "scene": "s6",
+   "start": 45.04,
+   "end": 45.46
+  },
+  {
+   "w": "trains.",
+   "kw": false,
+   "scene": "s6",
+   "start": 45.46,
+   "end": 45.9
+  },
+  {
+   "w": "College?",
+   "kw": false,
+   "scene": "s7",
+   "start": 46.4,
+   "end": 46.58
+  },
+  {
+   "w": "Lectures",
+   "kw": false,
+   "scene": "s7",
+   "start": 47.12,
+   "end": 47.44
+  },
+  {
+   "w": "at",
+   "kw": false,
+   "scene": "s7",
+   "start": 47.44,
+   "end": 47.6
+  },
+  {
+   "w": "the",
+   "kw": false,
+   "scene": "s7",
+   "start": 47.6,
+   "end": 47.72
+  },
+  {
+   "w": "Colosseum.",
+   "kw": false,
+   "scene": "s7",
+   "start": 47.72,
+   "end": 48.3
+  },
+  {
+   "w": "Internship",
+   "kw": false,
+   "scene": "s7",
+   "start": 48.54,
+   "end": 48.84
+  },
+  {
+   "w": "with",
+   "kw": false,
+   "scene": "s7",
+   "start": 48.84,
+   "end": 49.12
+  },
+  {
+   "w": "the",
+   "kw": false,
+   "scene": "s7",
+   "start": 49.12,
+   "end": 49.24
+  },
+  {
+   "w": "legion.",
+   "kw": true,
+   "scene": "s7",
+   "start": 49.24,
+   "end": 49.54
+  },
+  {
+   "w": "Your",
+   "kw": false,
+   "scene": "s7",
+   "start": 50.06,
+   "end": 50.18
+  },
+  {
+   "w": "boss",
+   "kw": false,
+   "scene": "s7",
+   "start": 50.18,
+   "end": 50.52
+  },
+  {
+   "w": "is",
+   "kw": false,
+   "scene": "s7",
+   "start": 50.52,
+   "end": 50.72
+  },
+  {
+   "w": "a",
+   "kw": false,
+   "scene": "s7",
+   "start": 50.72,
+   "end": 50.8
+  },
+  {
+   "w": "centurion.",
+   "kw": false,
+   "scene": "s7",
+   "start": 50.8,
+   "end": 51.4
+  },
+  {
+   "w": "And",
+   "kw": false,
+   "scene": "s7",
+   "start": 52.02,
+   "end": 52.08
+  },
+  {
+   "w": "he",
+   "kw": false,
+   "scene": "s7",
+   "start": 52.08,
+   "end": 52.22
+  },
+  {
+   "w": "does",
+   "kw": false,
+   "scene": "s7",
+   "start": 52.22,
+   "end": 52.38
+  },
+  {
+   "w": "not",
+   "kw": false,
+   "scene": "s7",
+   "start": 52.38,
+   "end": 52.54
+  },
+  {
+   "w": "do",
+   "kw": false,
+   "scene": "s7",
+   "start": 52.54,
+   "end": 52.74
+  },
+  {
+   "w": "home",
+   "kw": false,
+   "scene": "s7",
+   "start": 52.74,
+   "end": 53
+  },
+  {
+   "w": "office.",
+   "kw": false,
+   "scene": "s7",
+   "start": 53,
+   "end": 53.36
+  },
+  {
+   "w": "Friday",
+   "kw": false,
+   "scene": "s8",
+   "start": 53.92,
+   "end": 54.1
+  },
+  {
+   "w": "night:",
+   "kw": false,
+   "scene": "s8",
+   "start": 54.1,
+   "end": 54.56
+  },
+  {
+   "w": "chariot",
+   "kw": false,
+   "scene": "s8",
+   "start": 55,
+   "end": 55.3
+  },
+  {
+   "w": "races",
+   "kw": false,
+   "scene": "s8",
+   "start": 55.3,
+   "end": 55.66
+  },
+  {
+   "w": "instead",
+   "kw": false,
+   "scene": "s8",
+   "start": 55.66,
+   "end": 56.08
+  },
+  {
+   "w": "of",
+   "kw": false,
+   "scene": "s8",
+   "start": 56.08,
+   "end": 56.24
+  },
+  {
+   "w": "football.",
+   "kw": false,
+   "scene": "s8",
+   "start": 56.24,
+   "end": 56.62
+  },
+  {
+   "w": "Video",
+   "kw": false,
+   "scene": "s8",
+   "start": 56.62,
+   "end": 57.4
+  },
+  {
+   "w": "review?",
+   "kw": false,
+   "scene": "s8",
+   "start": 57.4,
+   "end": 57.78
+  },
+  {
+   "w": "Done",
+   "kw": false,
+   "scene": "s8",
+   "start": 57.78,
+   "end": 58.3
+  },
+  {
+   "w": "by",
+   "kw": false,
+   "scene": "s8",
+   "start": 58.3,
+   "end": 58.52
+  },
+  {
+   "w": "the",
+   "kw": false,
+   "scene": "s8",
+   "start": 58.52,
+   "end": 58.7
+  },
+  {
+   "w": "emperor.",
+   "kw": false,
+   "scene": "s8",
+   "start": 58.7,
+   "end": 59
+  },
+  {
+   "w": "With",
+   "kw": false,
+   "scene": "s8",
+   "start": 59,
+   "end": 59.7
+  },
+  {
+   "w": "his",
+   "kw": false,
+   "scene": "s8",
+   "start": 59.7,
+   "end": 59.9
+  },
+  {
+   "w": "thumb.",
+   "kw": true,
+   "scene": "s8",
+   "start": 59.9,
+   "end": 60.18
+  },
+  {
+   "w": "No",
+   "kw": false,
+   "scene": "s8",
+   "start": 60.8,
+   "end": 60.9
+  },
+  {
+   "w": "appeals.",
+   "kw": false,
+   "scene": "s8",
+   "start": 60.9,
+   "end": 61.28
+  },
+  {
+   "w": "And",
+   "kw": false,
+   "scene": "s9",
+   "start": 61.94,
+   "end": 62.09
+  },
+  {
+   "w": "math",
+   "kw": false,
+   "scene": "s9",
+   "start": 62.09,
+   "end": 62.33
+  },
+  {
+   "w": "is",
+   "kw": false,
+   "scene": "s9",
+   "start": 62.33,
+   "end": 62.57
+  },
+  {
+   "w": "all",
+   "kw": false,
+   "scene": "s9",
+   "start": 62.57,
+   "end": 62.81
+  },
+  {
+   "w": "in",
+   "kw": false,
+   "scene": "s9",
+   "start": 62.81,
+   "end": 62.99
+  },
+  {
+   "w": "Roman",
+   "kw": false,
+   "scene": "s9",
+   "start": 62.99,
+   "end": 63.25
+  },
+  {
+   "w": "numerals.",
+   "kw": false,
+   "scene": "s9",
+   "start": 63.25,
+   "end": 63.87
+  },
+  {
+   "w": "Try",
+   "kw": false,
+   "scene": "s9",
+   "start": 64.09,
+   "end": 64.25
+  },
+  {
+   "w": "dividing",
+   "kw": false,
+   "scene": "s9",
+   "start": 64.25,
+   "end": 64.59
+  },
+  {
+   "w": "forty",
+   "kw": false,
+   "scene": "s9",
+   "start": 64.59,
+   "end": 65.07
+  },
+  {
+   "w": "by",
+   "kw": false,
+   "scene": "s9",
+   "start": 65.09,
+   "end": 65.29
+  },
+  {
+   "w": "twelve.",
+   "kw": false,
+   "scene": "s9",
+   "start": 65.29,
+   "end": 66.21
+  },
+  {
+   "w": "Good",
+   "kw": true,
+   "scene": "s9",
+   "start": 66.23,
+   "end": 66.35
+  },
+  {
+   "w": "luck.",
+   "kw": true,
+   "scene": "s9",
+   "start": 66.35,
+   "end": 66.61
+  },
+  {
+   "w": "I'll",
+   "kw": false,
+   "scene": "s9",
+   "start": 67.17,
+   "end": 67.35
+  },
+  {
+   "w": "wait.",
+   "kw": false,
+   "scene": "s9",
+   "start": 67.35,
+   "end": 67.57
+  },
+  {
+   "w": "Bottom",
+   "kw": false,
+   "scene": "s10",
+   "start": 68.26,
+   "end": 68.52
+  },
+  {
+   "w": "line:",
+   "kw": false,
+   "scene": "s10",
+   "start": 68.52,
+   "end": 68.88
+  },
+  {
+   "w": "the",
+   "kw": false,
+   "scene": "s10",
+   "start": 69.58,
+   "end": 69.68
+  },
+  {
+   "w": "empire",
+   "kw": false,
+   "scene": "s10",
+   "start": 69.68,
+   "end": 70.16
+  },
+  {
+   "w": "would",
+   "kw": false,
+   "scene": "s10",
+   "start": 70.16,
+   "end": 70.44
+  },
+  {
+   "w": "survive",
+   "kw": false,
+   "scene": "s10",
+   "start": 70.44,
+   "end": 70.82
+  },
+  {
+   "w": "two",
+   "kw": false,
+   "scene": "s10",
+   "start": 70.82,
+   "end": 71.11
+  },
+  {
+   "w": "thousand",
+   "kw": false,
+   "scene": "s10",
+   "start": 71.13,
+   "end": 71.42
+  },
+  {
+   "w": "years.",
+   "kw": false,
+   "scene": "s10",
+   "start": 71.44,
+   "end": 72
+  },
+  {
+   "w": "Your",
+   "kw": false,
+   "scene": "s10",
+   "start": 72.54,
+   "end": 72.74
+  },
+  {
+   "w": "internship",
+   "kw": false,
+   "scene": "s10",
+   "start": 72.74,
+   "end": 73.2
+  },
+  {
+   "w": "report?",
+   "kw": false,
+   "scene": "s10",
+   "start": 73.2,
+   "end": 73.62
+  },
+  {
+   "w": "Still",
+   "kw": true,
+   "scene": "s10",
+   "start": 74.18,
+   "end": 74.4
+  },
+  {
+   "w": "not",
+   "kw": true,
+   "scene": "s10",
+   "start": 74.4,
+   "end": 74.6
+  },
+  {
+   "w": "done.",
+   "kw": true,
+   "scene": "s10",
+   "start": 74.6,
+   "end": 74.92
+  },
+  {
+   "w": "Which",
+   "kw": false,
+   "scene": "s11",
+   "start": 75.96,
+   "end": 76.38
+  },
+  {
+   "w": "province",
+   "kw": false,
+   "scene": "s11",
+   "start": 76.38,
+   "end": 76.82
+  },
+  {
+   "w": "would",
+   "kw": false,
+   "scene": "s11",
+   "start": 76.82,
+   "end": 77.1
+  },
+  {
+   "w": "you",
+   "kw": false,
+   "scene": "s11",
+   "start": 77.1,
+   "end": 77.22
+  },
+  {
+   "w": "live",
+   "kw": false,
+   "scene": "s11",
+   "start": 77.22,
+   "end": 77.46
+  },
+  {
+   "w": "in?",
+   "kw": false,
+   "scene": "s11",
+   "start": 77.46,
+   "end": 77.68
+  },
+  {
+   "w": "Tell",
+   "kw": false,
+   "scene": "s11",
+   "start": 78.08,
+   "end": 78.2
+  },
+  {
+   "w": "me",
+   "kw": false,
+   "scene": "s11",
+   "start": 78.2,
+   "end": 78.44
+  },
+  {
+   "w": "in",
+   "kw": false,
+   "scene": "s11",
+   "start": 78.44,
+   "end": 78.62
+  },
+  {
+   "w": "the",
+   "kw": false,
+   "scene": "s11",
+   "start": 78.62,
+   "end": 78.72
+  },
+  {
+   "w": "comments.",
+   "kw": false,
+   "scene": "s11",
+   "start": 78.72,
+   "end": 79.16
+  },
+  {
+   "w": "I'm",
+   "kw": false,
+   "scene": "s11",
+   "start": 79.76,
+   "end": 79.88
+  },
+  {
+   "w": "taking",
+   "kw": false,
+   "scene": "s11",
+   "start": 79.88,
+   "end": 80.14
+  },
+  {
+   "w": "Germania",
+   "kw": false,
+   "scene": "s11",
+   "start": 80.14,
+   "end": 80.76
+  },
+  {
+   "w": "Inferior.",
+   "kw": false,
+   "scene": "s11",
+   "start": 80.76,
+   "end": 81.26
+  }
+ ]
+}
