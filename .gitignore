@@ -11,3 +11,4 @@ reels/*/vo.wav
 reels/_stimmtest/
 .claude/settings.local.json
 __pycache__/
+reels/*/.cache/

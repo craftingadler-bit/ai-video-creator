@@ -23,6 +23,23 @@ Die Stimme (`voice_id`) aus der Liste in `config.json` → `voicestudio.voice` e
 
 Für jedes Reel einen Ordner `reels/<slug>/` anlegen (slug: kurz, klein, mit Bindestrichen).
 
+### Ein Befehl: `kit/run.mjs` (Standard)
+Nach dem Script (Schritt 1) und nach jeder Änderung immer **einen** Befehl statt der Einzelskripte:
+```
+node kit/run.mjs reels/<slug>            # Entwurf: Stimme → Polish → Audio-Review → Render --draft → Motion-Check
+node kit/run.mjs reels/<slug> --final    # finales Render (stoppt vorher, wenn das Audio-Review !! hat)
+node kit/run.mjs reels/<slug> --dry      # nur zeigen, was laufen würde und warum
+```
+- **Caching**: jeder Schritt merkt sich per Hash seine Eingaben (`reels/<slug>/.cache/state.json`) und läuft nur, wenn sich davon was geändert hat. Nur `scenes.html` geändert → Stimme und Audio-Review bleiben, nur Render + Check laufen
+- **Stimme pro Absatz**: ändert sich der VO-Text von 1–2 Szenen, spricht `run.mjs` nur die neu (`voice.mjs --redo sN`), sonst das ganze Script am Stück. `--full-voice` erzwingt den ganzen Take. Ändert sich `voice-polish.mjs` oder `config.polish`, läuft nur der Polish neu
+- **Frame-Cache beim Render**: Frames, deren sichtbares Bild gleich bleibt, kommen aus `.cache/frames/` statt per Screenshot. Nur Szene 5 umgebaut → nur deren Frames werden neu gezeichnet. Abschalten: `--no-frame-cache`
+- Fehlt `scenes.html`, hört `run.mjs` nach der Stimme auf → Szenen bauen (Schritt 3), dann nochmal starten
+- Stoppt beim ersten Fehler. Am Ende eine Zusammenfassung (`·` = aus dem Cache, `✔` = gelaufen, `!`/`✘` = anschauen) mit allen `!!` aus dem Motion-Check
+- Weitere Schalter: `--only render` / `--from audio` (einzelne Schritte), `--force` bzw. `--force voice,render` (Cache ignorieren), `--fake`, `--takes N`, `--no-asr`, `--keep-going`, `--clean` (Cache des Reels löschen)
+- Manuelle Eingriffe (`voice.mjs --redo s7` wegen verschluckter Wörter) bleiben erhalten: `run.mjs` spricht nur neu, wenn sich der Script-Text ändert
+
+Die Abschnitte unten beschreiben, was die einzelnen Schritte machen. Direkt aufrufen nur zum Debuggen.
+
 ### 1. Script schreiben → `script.md`
 Format (genau so, das Voice-Skript liest es aus):
 ```
@@ -150,8 +167,8 @@ EARSHOT_OFFLINE=1 .venv-earshot/bin/earshot sounds --search "WORTE"             
 
 ### 4. Entwurf + Motion-Check
 ```
-node kit/render.mjs reels/<slug> --draft     # 15 fps, schnell
-node kit/check.mjs reels/<slug>              # Kontaktabzüge + Messwerte
+node kit/run.mjs reels/<slug>                # macht Render --draft + Check (und Stimme/Audio-Review, falls nötig)
+# einzeln: node kit/render.mjs reels/<slug> --draft  ·  node kit/check.mjs reels/<slug>
 ```
 Dann **die Bilder wirklich anschauen** (`check/hook.png`, `check/sheet_*.png`) und prüfen:
 - Hook: steht in den ersten 1,5 s eine klare, große Aussage im Bild?
@@ -176,13 +193,12 @@ node kit/voice-polish.mjs reels/<slug>          # Pegel + Pausen neu (läuft nac
 
 ### 5. Finale
 ```
-node kit/render.mjs reels/<slug>
-node kit/check.mjs reels/<slug>
+node kit/run.mjs reels/<slug> --final
 ```
 Dem User melden: Pfad zur MP4, Länge, was der Check sagt, was du nicht prüfen konntest (z. B. wie die Stimme klingt). Ehrlich bleiben, nichts als geprüft verkaufen, was nicht geprüft wurde.
 
 ### 6. Feedback ("mach den Hook knackiger")
-Feedback wie ein Editor umsetzen: nur das Genannte ändern, betroffene Szene mit `--only` neu sprechen, neu rendern. Wenn das Feedback eine allgemeine Regel ist ("immer kürzere Sätze"), in `guides/learnings.md` eintragen. Davon lebt das System.
+Feedback wie ein Editor umsetzen: nur das Genannte ändern (script.md und/oder scenes.html), dann `node kit/run.mjs reels/<slug>`. Der Cache sorgt dafür, dass nur die geänderten Absätze neu gesprochen und nur die geänderten Frames neu gerendert werden. Wenn das Feedback eine allgemeine Regel ist ("immer kürzere Sätze"), in `guides/learnings.md` eintragen. Davon lebt das System.
 
 ## VoiceStudio direkt (MCP)
 `.mcp.json` verbindet den VoiceStudio-MCP-Server (`http://localhost:3900/mcp`): Tools `list_voices`, `generate_speech`, `clone_voice`, `design_voice`, `transcribe`. Für die Pipeline das Skript nutzen; MCP für Einzelsachen (Stimme designen, testen). Nur Stimmen klonen, die der User nutzen darf.
