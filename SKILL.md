@@ -23,6 +23,23 @@ Die Stimme (`voice_id`) aus der Liste in `config.json` → `voicestudio.voice` e
 
 Für jedes Reel einen Ordner `reels/<slug>/` anlegen (slug: kurz, klein, mit Bindestrichen).
 
+### Ein Befehl: `kit/run.mjs` (Standard)
+Nach dem Script (Schritt 1) und nach jeder Änderung immer **einen** Befehl statt der Einzelskripte:
+```
+node kit/run.mjs reels/<slug>            # Entwurf: Stimme → Polish → Audio-Review → Render --draft → Motion-Check
+node kit/run.mjs reels/<slug> --final    # finales Render (stoppt vorher, wenn das Audio-Review !! hat)
+node kit/run.mjs reels/<slug> --dry      # nur zeigen, was laufen würde und warum
+```
+- **Caching**: jeder Schritt merkt sich per Hash seine Eingaben (`reels/<slug>/.cache/state.json`) und läuft nur, wenn sich davon was geändert hat. Nur `scenes.html` geändert → Stimme und Audio-Review bleiben, nur Render + Check laufen
+- **Stimme pro Absatz**: ändert sich der VO-Text von 1–2 Szenen, spricht `run.mjs` nur die neu (`voice.mjs --redo sN`), sonst das ganze Script am Stück. `--full-voice` erzwingt den ganzen Take. Ändert sich `voice-polish.mjs` oder `config.polish`, läuft nur der Polish neu
+- **Frame-Cache beim Render**: Frames, deren sichtbares Bild gleich bleibt, kommen aus `.cache/frames/` statt per Screenshot. Nur Szene 5 umgebaut → nur deren Frames werden neu gezeichnet. Abschalten: `--no-frame-cache`
+- Fehlt `scenes.html`, hört `run.mjs` nach der Stimme auf → Szenen bauen (Schritt 3), dann nochmal starten
+- Stoppt beim ersten Fehler. Am Ende eine Zusammenfassung (`·` = aus dem Cache, `✔` = gelaufen, `!`/`✘` = anschauen) mit allen `!!` aus dem Motion-Check
+- Weitere Schalter: `--only render` / `--from audio` (einzelne Schritte), `--force` bzw. `--force voice,render` (Cache ignorieren), `--fake`, `--takes N`, `--no-asr`, `--keep-going`, `--clean` (Cache des Reels löschen)
+- Manuelle Eingriffe (`voice.mjs --redo s7` wegen verschluckter Wörter) bleiben erhalten: `run.mjs` spricht nur neu, wenn sich der Script-Text ändert
+
+Die Abschnitte unten beschreiben, was die einzelnen Schritte machen. Direkt aufrufen nur zum Debuggen.
+
 ### 1. Script schreiben → `script.md`
 Format (genau so, das Voice-Skript liest es aus):
 ```
@@ -47,6 +64,12 @@ Regeln:
 - Letzte Szene: Pointe + CTA (Frage an die Comments oder "Schick's an …")
 - Ton aus `guides/humor.md` (kurz, sarkastisch, Selbstironie, keine Chatbot-Wörter)
 
+**Vor der Aufnahme immer linten** (kostet nichts, keine KI):
+```
+node kit/lint-script.mjs reels/<slug>      # alle: npm run lint
+```
+Prüft Format, Wortzahl, geschätzte Länge (±4 s), Hook ≤ 12 Wörter, Satzlänge, Schlagwörter, Pausen mitten im Satz, CTA, verbotene Wörter (`guides/humor.md`), Aussprache-Liste (`guides/pronunciation.md`). Alle `!!` fixen, bevor `voice.mjs` läuft. Das spart Aufnahmen.
+
 Script dem User kurz zeigen (nur die VO-Zeilen) und direkt weitermachen, außer er will vorher drüberschauen.
 
 ### 2. Voiceover → `vo.wav`, `timeline.json`, `timeline.js`
@@ -55,7 +78,7 @@ node kit/voice.mjs reels/<slug>            # mit VoiceStudio
 node kit/voice.mjs reels/<slug> --takes 5  # mehr Takes, wenn Wörter verschluckt werden
 node kit/voice.mjs reels/<slug> --fake     # ohne Stimme: stumm, Zeiten geschätzt (Layout-Test)
 ```
-Spricht das ganze Script **am Stück** bei **Tempo 1**. Pausen-Marken werden zu Gedankenstrichen („Europe. — They…“), Szenenwechsel zu Absätzen, die Pausen macht die Stimme selbst mit natürlicher Satzmelodie. Mitten in Sätzen wird nichts geschnitten (klang abgebrochen). **Danach glättet `kit/voice-polish.mjs`**: leise Wörter anheben, an Szenenwechseln (Satzende, Stimme ist schon unten) die Pause auf ~0,45 s bringen, Pausen in Szenen über 0,75 s auf 0,55 s kürzen, Atem vor Absätzen absenken. Danach Wortzeiten per Transkription und Alignment auf die Script-Wörter. Es werden bis zu `voicestudio.takes` (3) ganze Takes gesprochen, der verständlichste gewinnt (`--takes N`). Bei „Wörter nicht erkannt“ lieber neu sprechen oder umformulieren. `--groups` = Sinngruppen einzeln sprechen und zusammensetzen (nur als Notlösung). `--per-scene` = alter Modus (einzeln, abgehackter).
+Spricht das ganze Script **am Stück** mit Stimme „Jannis 1“ bei **Tempo 1.1, Steps 24** (radikal locker, Standard seit 25.11.). Script im Gesprächston schreiben (siehe `guides/learnings.md`). Pausen-Marken werden zu Gedankenstrichen („Europe. — They…“), Szenenwechsel zu Absätzen, die Pausen macht die Stimme selbst mit natürlicher Satzmelodie. Mitten in Sätzen wird nichts geschnitten (klang abgebrochen). **Danach glättet `kit/voice-polish.mjs`**: leise Wörter anheben, an Szenenwechseln (Satzende, Stimme ist schon unten) die Pause auf ~0,45 s bringen, Pausen in Szenen über 0,75 s auf 0,55 s kürzen, Atem vor Absätzen absenken. Danach Wortzeiten per Transkription und Alignment auf die Script-Wörter. Es werden bis zu `voicestudio.takes` (3) ganze Takes gesprochen, der verständlichste gewinnt (`--takes N`). Bei „Wörter nicht erkannt“ lieber neu sprechen oder umformulieren. `--groups` = Sinngruppen einzeln sprechen und zusammensetzen (nur als Notlösung). `--per-scene` = alter Modus (einzeln, abgehackter).
 Die Szenenzeiten in `timeline.json` kommen aus dem Ton. **Animationen immer relativ dazu planen**, nie feste Sekunden.
 
 ### 3. Szenen bauen → `scenes.html`
@@ -73,6 +96,21 @@ Die Szenenzeiten in `timeline.json` kommen aus dem Ton. **Animationen immer rela
 <script> R.scenes([['s1','g1'], ['s2','g2','zoom'], …]); /* Animationen */ R.start(); </script>
 ```
 Fehlt `kit/vendor/`: `node kit/build-vendor.mjs`.
+
+**Bausteine zuerst (`kit/blocks.js`, Vorlage `reels/_vorlage/scenes.html`).** Fertige Szenentypen aus Rom/Capybaras, spart pro Reel viel Code. Einbinden nach runtime/figures/props (und map.js): `<script src="../../kit/blocks.js"></script>`, Styles per `<link rel="stylesheet" href="../../kit/base.css">`. Gruppen per `B.group('g3', 'linear-gradient(…)')` + `B.scenes([...])` statt HTML. Zeit überall gleich: Zahl = s nach Szenenstart, `'Wort'`, `['Wort', dt, n]`, `{end:'Wort'}`, `{abs: 12}`.
+| Baustein | Zweck |
+|---|---|
+| `B.title(g, {lines:[{text,size,color,box,at,fx}]})` | Hook-Titel, Zeilen mit up/chars/pop/slam |
+| `B.map(g, {view, fills, labels, star, views, route})` | Karte mit echten Grenzen, Länder färben sich aufs Wort, Schilder, Stern, Zoom |
+| `B.closeup(g, {at, mood, moods, cam})` | Reaktionsgesicht schiebt rein, Mimik auf Wörter, Kamera ran |
+| `B.counter(g, {at, from, to, suffix, label})` | große Zahl zählt hoch, Punch am Ende |
+| `B.stamp(g, {text, at, x, y, r})` | Stempel knallt rein |
+| `B.quote(g, {text, who, at})` | Zitat-Karte, Text tippt sich |
+| `B.sign(g, {from, to, strike, flip})` | Ortsschild fällt rein, wird durchgestrichen, dreht sich |
+| `B.board(g, {text, at, title})` | Fallblatt-Anzeige |
+| `B.bubble`, `B.confetti`, `B.rise` | Sprechblase, Konfetti, aufsteigende Herzen |
+| `B.enter(id, t, 'left')`, `B.hero`, `B.at`, `B.put`, `B.rnd`, `B.WE` | Helfer, die bisher jedes Reel selbst definiert hat |
+Bausteine sind die Grundlage, nicht das ganze Reel: Umgebung, Figuren und Gags kommen weiter pro Szene dazu (Regeln unten gelten). Fehlt ein Szenentyp, der in 2+ Reels vorkommt → als Baustein in blocks.js ergänzen.
 Bühne: 1080×1920 px, absolute Pixel. Safe Zone: x 60–960, y 180–1600. Untertitel macht die Runtime automatisch bei y≈1390 → dort keine wichtigen Inhalte. Visuals in y 250–1250.
 
 Runtime-API (`R`):
@@ -150,8 +188,8 @@ EARSHOT_OFFLINE=1 .venv-earshot/bin/earshot sounds --search "WORTE"             
 
 ### 4. Entwurf + Motion-Check
 ```
-node kit/render.mjs reels/<slug> --draft     # 15 fps, schnell
-node kit/check.mjs reels/<slug>              # Kontaktabzüge + Messwerte
+node kit/run.mjs reels/<slug>                # macht Render --draft + Check (und Stimme/Audio-Review, falls nötig)
+# einzeln: node kit/render.mjs reels/<slug> --draft  ·  node kit/check.mjs reels/<slug>
 ```
 Dann **die Bilder wirklich anschauen** (`check/hook.png`, `check/sheet_*.png`) und prüfen:
 - Hook: steht in den ersten 1,5 s eine klare, große Aussage im Bild?
@@ -164,23 +202,27 @@ Alles mit `!!` in `check/report.txt` beheben. Fixen, neu rendern, nochmal checke
 ### 4b. Audio-Review (Pflicht, siehe `guides/audio-review.md`)
 ```
 node kit/audio-review.mjs reels/<slug>          # Stimme + Sounds messen → check/audio-report.txt, check/edges.png
+node kit/audio-qa.mjs reels/<slug>              # nur Schnitte/Störgeräusche + Video-QA (läuft im Audio-Review mit)
 node kit/voice.mjs reels/<slug> --redo s7       # einen Absatz neu sprechen (verschluckte/verlesene Wörter)
 node kit/voice-polish.mjs reels/<slug>          # Pegel + Pausen neu (läuft nach voice.mjs automatisch)
 ```
-- `voice.mjs` bearbeitet die Stimme automatisch nach (`kit/voice-polish.mjs`): leise Wörter anheben (kein Ein-/Ausblend-Effekt), Pausen an Szenenwechseln auf ~0,45 s (0,38–0,62), Pausen in Szenen über 0,75 s auf 0,55 s kürzen, Atem vor Absätzen absenken. Rohfassung bleibt in `audio/vo_raw.wav`
+- `voice.mjs` bearbeitet die Stimme automatisch nach (`kit/voice-polish.mjs`): Absatz-Einsätze aus dem Pegel lesen (Whisper ist dort oft zu spät), digitale Stille durch Raumton ersetzen, leise Wörter anheben (kein Ein-/Ausblend-Effekt), Atem/Geräusche vor Absätzen und am Anfang auf Raumton absenken (nur durch echte Stille getrennte Blöcke, Wortanfang wird nie angefasst), Pausen an Szenenwechseln auf ~0,45 s (0,38–0,62), Pausen in Szenen über 0,75 s auf 0,55 s kürzen. Geschnitten wird nur in Stille mit ≥ 40 ms Abstand zur Sprache, eingesetzt wird Raumton, jeder Schnitt hat 20 ms Crossfade (`polish.xfade` in config.json, 15–40 ms). Rohfassung bleibt in `audio/vo_raw.wav`
+- Genauere Wortzeiten (optional): `pip install stable-ts` (oder `whisperx`), dann nutzt voice-polish automatisch Forced Alignment (`kit/align.py`, Ergebnis gecacht in `audio/timeline_aligned.json`). Ohne Paket bleibt alles wie gehabt. Abschalten: `"polish": { "align": "off" }`
 - Sounds mischt `render.mjs` nach festen Regeln (`kit/sfx-mix.mjs`): Effekte 0,5 s (mit `len` höchstens 0,8 s), über Sprache mind. 15 dB unter der Stimme, in Sprechpausen mind. 12 dB, Atmo −24 dB, nie zwei Sounds in 0,3 s. Sounds NACH der Pointe setzen (`WE(szene, wort)` = Wortende)
 - **Alle Sounds stehen in einer Liste** (`const SND = [...]` am Ende von `scenes.html`) mit Begründung pro Sound, `R.autoSfx(false)` schaltet die Helfer-Sounds ab. Ziel ~12–15 Effekte pro Minute, derselbe Sound höchstens 2–3×
 - Dann **4 Prüfer-Subagenten** (Mix, Cutter, Dialog, Endabnahme) laufen lassen, bis alle ≥ 7/10. Prompts in `guides/audio-review.md`
 
 ### 5. Finale
 ```
-node kit/render.mjs reels/<slug>
-node kit/check.mjs reels/<slug>
+node kit/run.mjs reels/<slug> --final
+node kit/report.mjs reels/<slug>            # liest check + audio-review aus run.mjs ein, dazu Script-Lint → Ampel
 ```
+`check/report.html` = eine Seite mit Ampel (Länge, Bildwechsel-Takt, Lautheit, Motion-Check, Audio-Review, Script-Lint), Zeitleiste und allen Befunden mit Zeitstempel. Klick springt im Video hin. Für mich: **`check/quality.json` lesen statt alle Einzelreports**, dann nur die Kontaktbögen zu den gemeldeten Zeitstempeln anschauen. Schlägt der Report neue Einträge für `guides/pronunciation.md` vor, eintragen. Ohne `--run` liest der Report nur ein, was schon da ist (z. B. nach `--draft`).
 Dem User melden: Pfad zur MP4, Länge, was der Check sagt, was du nicht prüfen konntest (z. B. wie die Stimme klingt). Ehrlich bleiben, nichts als geprüft verkaufen, was nicht geprüft wurde.
 
 ### 6. Feedback ("mach den Hook knackiger")
-Feedback wie ein Editor umsetzen: nur das Genannte ändern, betroffene Szene mit `--only` neu sprechen, neu rendern. Wenn das Feedback eine allgemeine Regel ist ("immer kürzere Sätze"), in `guides/learnings.md` eintragen. Davon lebt das System.
+**Review-Seite:** `node kit/review.mjs reels/<slug>` (oder `npm run review`) öffnet lokal eine Seite: Video abspielen, `N` setzt eine Notiz mit Zeit, Szene, gesprochenen Wörtern und Standbild. „Exportieren“ schreibt `reels/<slug>/review.md` (Aufgabenliste, Bilder in `check/review/`) und hängt Notizen mit Haken „Regel für alle Reels“ oben an `guides/learnings.md`. Liegt eine `review.md` vor: die abarbeiten, Haken setzen.
+Feedback wie ein Editor umsetzen: nur das Genannte ändern (script.md und/oder scenes.html), dann `node kit/run.mjs reels/<slug>`. Der Cache sorgt dafür, dass nur die geänderten Absätze neu gesprochen und nur die geänderten Frames neu gerendert werden. Wenn das Feedback eine allgemeine Regel ist ("immer kürzere Sätze"), in `guides/learnings.md` eintragen. Davon lebt das System.
 
 ## VoiceStudio direkt (MCP)
 `.mcp.json` verbindet den VoiceStudio-MCP-Server (`http://localhost:3900/mcp`): Tools `list_voices`, `generate_speech`, `clone_voice`, `design_voice`, `transcribe`. Für die Pipeline das Skript nutzen; MCP für Einzelsachen (Stimme designen, testen). Nur Stimmen klonen, die der User nutzen darf.

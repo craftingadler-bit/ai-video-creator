@@ -25,7 +25,7 @@
     const root = typeof id === 'string' ? document.getElementById(id) : id;
     const svg = root.tagName.toLowerCase() === 'svg' ? root : mk('svg', { width: 1080, height: 1920, style: 'position:absolute;inset:0;overflow:visible' }, root);
     const g = mk('g', {}, svg);
-    const clipId = 'clip_' + Math.random().toString(36).slice(2);
+    const clipId = 'clip_' + (root.id || 'map') + '_' + (create.n = (create.n || 0) + 1);   // fest statt zufällig, sonst greift der Frame-Cache bei Karten nie
     const defs = mk('defs', {}, g);
     mk('rect', { x: bx, y: by, width: bw, height: bh, rx: st.radius }, mk('clipPath', { id: clipId }, defs));
     if (st.shadow) mk('rect', { x: bx, y: by + 18, width: bw, height: bh, rx: st.radius, fill: 'rgba(0,0,0,.28)' }, g);

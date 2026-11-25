@@ -24,7 +24,7 @@ const PER_SCENE = args.includes('--per-scene');
 const GROUPS = args.includes('--groups');
 const TAKES = +(args.includes('--takes') ? args[args.indexOf('--takes') + 1] : 0) || 0;
 const REDO = args.includes('--redo') ? args[args.indexOf('--redo') + 1] : null;
-import { polishDir, rebuild } from './voice-polish.mjs';
+import { polishDir, rebuild, roomTone, xfade } from './voice-polish.mjs';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const cfg = JSON.parse(fs.readFileSync(path.join(ROOT, 'config.json'), 'utf8'));
 const VS = cfg.voicestudio;
@@ -74,12 +74,19 @@ function writeWav(file, pcm) {
   fs.writeFileSync(file, Buffer.concat([h, pcm]));
 }
 const silence = sec => Buffer.alloc(Math.round(sec * SR) * 2);
+const toF = b => { const f = new Float32Array(b.length / 2); for (let i = 0; i < f.length; i++) f[i] = b.readInt16LE(i * 2) / 32768; return f; };
+const toB = f => { const b = Buffer.alloc(f.length * 2); for (let i = 0; i < f.length; i++) b.writeInt16LE(Math.max(-32767, Math.min(32767, Math.round(f[i] * 32767))), i * 2); return b; };
+// Vor-/Nachlauf mit Raumton der Aufnahme statt digitaler Null, Crossfade 20 ms; Länge = a + Take + b (Wortzeiten bleiben gültig)
+function withTone(pcm, a, b) {
+  const f = toF(pcm), tone = roomTone(f), XF = Math.round(.02 * SR);
+  return toB(xfade(xfade(tone(Math.round(a * SR) + XF), f, XF), tone(Math.round(b * SR) + XF), XF));
+}
 const dur = pcm => pcm.length / 2 / SR;
-function trimSilence(pcm, thr = 500) {           // Stille am Anfang/Ende kürzen (lässt 60 ms stehen)
+function trimSilence(pcm, thr = 500, keep = .06) { // Stille am Anfang/Ende kürzen (lässt 60 ms stehen)
   const n = pcm.length / 2; let a = 0, b = n - 1;
   while (a < n && Math.abs(pcm.readInt16LE(a * 2)) < thr) a++;
   while (b > a && Math.abs(pcm.readInt16LE(b * 2)) < thr) b--;
-  const pad = Math.round(.06 * SR);
+  const pad = Math.round(keep * SR);
   return pcm.subarray(Math.max(0, a - pad) * 2, Math.min(n, b + pad) * 2);
 }
 
@@ -208,7 +215,7 @@ if (REDO) {
   for (let k = 0; k < n; k++) {
     process.stdout.write(`  ${REDO} Take ${k + 1}/${n} … `);
     const f = path.join(dir, 'audio', `redo_${REDO}_${k}.wav`); await speak(text, f, (VS.seed ?? 7) + 50 + k);
-    const pcm = trimSilence(toPcm(f), 300), tmp = path.join(dir, 'audio', `redo_${REDO}.wav`); writeWav(tmp, pcm);
+    const pcm = trimSilence(toPcm(f), 150, .12), tmp = path.join(dir, 'audio', `redo_${REDO}.wav`); writeWav(tmp, pcm);
     const asr = await wordTimes(tmp); const words = asr && !asr[0].seg ? alignSeq(toks, asr) : estimate(toks, 0, dur(pcm));
     const hit = words.filter(w => w.ok).length; console.log(`${hit}/${toks.length} verstanden`);
     if (!best || hit > best.hit) best = { hit, pcm, words };
@@ -226,9 +233,11 @@ if (REDO) {
   const cutA = before.length ? quietMid((before.at(-2) ?? before.at(-1)).end, (own[1] ?? own[0]).start) : 0;
   const cutB = after.length ? quietMid((own.at(-2) ?? own.at(-1)).end, (after[1] ?? after[0]).start) : dur(raw);
   const padA = before.length ? .25 : lead, padB = after.length ? .25 : tail;
-  const seg = Buffer.concat([silence(padA), best.pcm, silence(padB)]);
-  const at = s => Math.round(s * SR) * 2;
-  const out = Buffer.concat([raw.subarray(0, at(cutA)), seg, raw.subarray(at(cutB))]), delta = cutA + dur(seg) - cutB;
+  // Pads mit Raumton statt digitaler Null, Crossfade (20 ms) an jedem Schnitt, Länge bleibt exakt cutA + Pads + Take
+  const rx = toF(raw), tone = roomTone(rx), XF = Math.round(.02 * SR), smp = s => Math.round(s * SR), cA = smp(cutA), cB = smp(cutB);
+  let y = xfade(rx.subarray(0, cA + XF), tone(smp(padA) + XF), XF);
+  y = xfade(y, toF(best.pcm), XF); y = xfade(y, tone(smp(padB) + 2 * XF), XF); y = xfade(y, rx.subarray(cB), XF);
+  const out = toB(y), delta = cutA + smp(padA) / SR + dur(best.pcm) + smp(padB) / SR - cutB;
   const words = [...before, ...best.words.map(w => ({ w: w.w, kw: w.kw, scene: REDO, start: +(cutA + padA + w.start).toFixed(3), end: +(cutA + padA + w.end).toFixed(3) })),
     ...after.map(w => ({ ...w, start: +(w.start + delta).toFixed(3), end: +(w.end + delta).toFixed(3) }))];
   writeWav(rawF, out); fs.writeFileSync(rawT, JSON.stringify(rebuild(tl, words, dur(out))));
@@ -269,7 +278,7 @@ if (FAKE) {
   for (let k = 0; k < n; k++) {
     process.stdout.write(`  Take ${k + 1}/${n}: spreche am Stück (${text.length} Zeichen) … `);
     const f = path.join(dir, 'audio', `take${k + 1}.wav`), t0 = Date.now(); await speak(text, f, (VS.seed ?? 7) + k);
-    const pcm = trimSilence(toPcm(f), 300); writeWav(fullFile, pcm);
+    const pcm = trimSilence(toPcm(f), 150, .12); writeWav(fullFile, pcm);   // niedrige Schwelle + 120 ms: weicher Wortanfang bleibt ganz
     const asr = await wordTimes(fullFile);
     if (!asr || asr[0].seg) { console.error('\nTranskription mit Wortzeiten nötig. Alternativ --per-scene.'); process.exit(1); }
     const words = alignSeq(allToks, asr), hit = words.filter(w => w.ok).length;
@@ -283,7 +292,7 @@ if (FAKE) {
     const ws = best.words.filter(w => w.scene === s.id), miss = ws.filter(w => !w.ok).length;
     console.log(`  ${s.id}: ${(ws[ws.length - 1].end - ws[0].start).toFixed(2)} s, ${ws.length} Wörter${miss / ws.length > .3 ? `  ! ${miss} Wörter nicht erkannt, evtl. verlesen → neuer Take` : ''}`);
   }
-  save(Buffer.concat([silence(lead), best.pcm, silence(tail)]), best.words.map(w => ({ w: w.w, kw: w.kw, scene: w.scene, start: +(lead + w.start).toFixed(3), end: +(lead + w.end).toFixed(3) })));
+  save(withTone(best.pcm, lead, tail), best.words.map(w => ({ w: w.w, kw: w.kw, scene: w.scene, start: +(lead + w.start).toFixed(3), end: +(lead + w.end).toFixed(3) })));
 } else {
   // Sinngruppen: an jeder Pausen-Marke wird getrennt und jede Gruppe einzeln gesprochen. So endet jede Gruppe mit
   // natürlichem Satzende (Stimme geht runter, Atem), statt mitten im Redefluss Stille reinzuschneiden.

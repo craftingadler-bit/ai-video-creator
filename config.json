@@ -4,10 +4,10 @@
     "voice": "ab1b9d4d",
     "language": "en",
     "model": "omnivoice",
-    "speed": 1,
+    "speed": 1.1,
     "instructions": "",
     "apiKey": "",
-    "steps": 40,
+    "steps": 24,
     "takes": 3
   },
   "timing": {
