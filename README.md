@@ -17,12 +17,15 @@ Eintippen: **Mach ein Reel: Was wäre, wenn die Bahn pünktlich wäre?**
 Claude schreibt das Script, lässt VoiceStudio sprechen, animiert, prüft und rendert.
 Ergebnis: `reels/<name>/<name>.mp4`
 
+Selbst starten geht auch, ein Befehl für alles (spricht/rendert nur, was sich geändert hat):
+`node kit/run.mjs reels/<name>` (Entwurf) bzw. `node kit/run.mjs reels/<name> --final`
+
 Danach Feedback wie an einen Editor: „Hook knackiger“, „Gag bei 0:20 zündet nicht“, „langsamer sprechen“.
 
 ## Ordner
 - `SKILL.md` – die Pipeline (liest Claude)
 - `guides/` – Style, Hooks, Humor, Learnings (wächst mit deinem Feedback)
-- `kit/` – Skripte: voice, render, check, runtime
+- `kit/` – Skripte: run (alles am Stück), voice, render, check, runtime
 - `reels/beispiel-mars/` – Beispiel zum Abschauen (Ton ist noch ein stummer Platzhalter)
 
 Vorschau eines Reels: `reels/<name>/scenes.html` im Browser öffnen.
