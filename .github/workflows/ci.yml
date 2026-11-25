@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: ffmpeg (für den Report-Test)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      # Kein npm install: Linter, Report und Tests brauchen nur Node + ffmpeg (Playwright/Chromium bleiben lokal)
+      - name: Tests
+        run: npm test
+      - name: Script-Lint (alle Reels)
+        run: |
+          node kit/lint-script.mjs --all --ci | tee lint.txt
+          { echo '## Script-Lint'; echo '```'; cat lint.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+        # --ci: nur Formatfehler lassen den Build scheitern, Inhalts-Hinweise stehen in der Zusammenfassung
