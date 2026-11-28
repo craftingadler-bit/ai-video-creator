@@ -21,5 +21,9 @@
     "sfx": 0.35,
     "music": "",
     "musicVol": 0.12
+  },
+  "polish": {
+    "python": ".venv-earshot/bin/python",
+    "align": "off"
   }
 }

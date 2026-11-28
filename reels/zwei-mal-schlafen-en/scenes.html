@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Two Sleeps</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root { --or:#FF7A3D; --ye:#FFD23F; --re:#FF4D2E; --bl:#7FD3FF; --ink:#141022; --gold:#E8B83A; --stone:#E9E1CF; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:100%; height:100%; background:#000; overflow:hidden; font-family:Poppins, system-ui, sans-serif; }
+  #stage { position:relative; width:1080px; height:1920px; overflow:hidden; background:#120E20; }
+  #world, .sc, .bg { position:absolute; inset:0; }
+  .sc { overflow:hidden; }
+  svg { position:absolute; inset:0; width:1080px; height:1920px; overflow:visible; }
+  .t { position:absolute; left:60px; right:60px; text-align:center; color:#fff; font-weight:900; line-height:1.05; letter-spacing:-.02em; text-shadow:0 8px 0 rgba(0,0,0,.25); }
+  .box { display:inline-block; padding:.04em .3em; border-radius:.18em; }
+  .kick { position:absolute; top:110px; left:50%; translate:-50% 0; background:rgba(0,0,0,.45); color:#fff; font:800 30px Poppins; letter-spacing:.14em; padding:10px 28px; border-radius:99px; white-space:nowrap; z-index:45; }
+  .kick b { color:var(--ye); }
+  .stamp { position:absolute; color:var(--re); border:12px solid var(--re); border-radius:22px; font:900 110px Poppins; padding:0 30px; letter-spacing:.02em; white-space:nowrap; background:rgba(255,255,255,.08); }
+  .card { position:absolute; background:#FBF8F1; border-radius:24px; box-shadow:0 18px 0 rgba(0,0,0,.25); color:var(--ink); }
+  .sign { position:absolute; background:#FFD23F; border:12px solid #141022; border-radius:20px; color:#141022; text-align:center; font-weight:900; backface-visibility:hidden; }
+  .bubble { position:absolute; background:#fff; color:var(--ink); border-radius:40px; font:900 64px Poppins; padding:18px 34px; box-shadow:0 12px 0 rgba(0,0,0,.2); white-space:nowrap; }
+  .bubble::after { content:''; position:absolute; bottom:-30px; left:var(--tail, 60px); border:18px solid transparent; border-top:26px solid #fff; }
+  .flap { display:inline-block; width:50px; margin:0 3px; background:#0A1230; border-radius:8px; text-align:center; color:var(--ye); box-shadow:inset 0 -3px 0 rgba(0,0,0,.5); }
+  .blink { animation:blink 4s infinite; transform-box:fill-box; transform-origin:center; }
+  .gallop { animation:gallop .28s ease-in-out infinite alternate; transform-box:fill-box; transform-origin:50% 0; }
+  .spin { animation:spin .5s linear infinite; transform-box:fill-box; transform-origin:center; }
+  .sway { animation:sway 3.2s ease-in-out infinite alternate; transform-box:fill-box; transform-origin:50% 100%; }
+  @keyframes blink { 0%,93%,100% { transform:scaleY(1); } 96% { transform:scaleY(.1); } }
+  @keyframes gallop { to { transform:skewX(-14deg) scaleY(.94); } }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  @keyframes sway { to { transform:rotate(3deg); } }
+</style>
+</head>
+  .zz { animation:zz 2s ease-out infinite; }
+  @keyframes zz { 0% { opacity:0; transform:translate(0,0) scale(.6); } 30% { opacity:1; } 100% { opacity:0; transform:translate(60px,-160px) scale(1.2); } }
+  .flick { animation:flick .18s ease-in-out infinite alternate; transform-box:fill-box; transform-origin:50% 100%; }
+  @keyframes flick { to { transform:scaleY(.9) scaleX(1.06); } }
+</style>
+</head>
+<body>
+<div id="stage">
+<div class="kick">MEDIEVAL <b>SLEEP</b></div>
+<div id="world">
+
+  <!-- s1 Hook: Schlafzimmer, Mond, 2× -->
+  <div class="sc" id="g1">
+    <div class="bg" style="background:linear-gradient(#141A3A, #2A2F5A)"></div>
+    <svg><g id="wall1"></g><g id="win1"></g>
+      <g id="bed1"></g><g id="zz1"></g></svg>
+    <div class="t" id="h1a" style="top:250px;font-size:70px">Medieval people slept</div>
+    <div class="t" id="h1b" style="top:340px;font-size:200px;color:var(--ye)">2×</div>
+    <div class="t" id="h1c" style="top:580px;font-size:70px">a night. <span class="box" style="background:var(--re)">On purpose.</span></div>
+  </div>
+
+  <!-- s2 Sonnenuntergang, Kerze aus, FIRST SLEEP -->
+  <div class="sc" id="g2">
+    <div class="bg" id="bg2" style="background:linear-gradient(#2A1E44, #5A3A5A)"></div>
+    <svg><g id="wall2"></g><g id="win2"></g><g id="bed2"></g><g id="cdl2"></g><g id="ck2"><g transform="translate(900 420) scale(.7)" id="ck2in"></g></g></svg>
+    <div class="card" id="lb2" style="left:110px;top:280px;width:560px;padding:14px 0;text-align:center;font:900 70px Poppins;background:var(--ye)">FIRST SLEEP</div>
+  </div>
+
+  <!-- s3 Mitternacht: wach, ganz ruhig -->
+  <div class="sc" id="g3">
+    <div class="bg" style="background:linear-gradient(#0E1230, #1E2450)"></div>
+    <svg><g id="wall3"></g><g id="win3"></g><g id="bed3"></g><g id="ck3"><g transform="translate(860 420) scale(.8)" id="ck3in"></g></g></svg>
+    <div class="card" id="na3" style="left:90px;top:280px;width:460px;padding:12px 0;text-align:center;font:900 52px Poppins">⏰ <s style="text-decoration-color:var(--re);text-decoration-thickness:8px">ALARM</s></div>
+    <div class="card" id="np3" style="left:90px;top:400px;width:460px;padding:12px 0;text-align:center;font:900 52px Poppins">😱 <s style="text-decoration-color:var(--re);text-decoration-thickness:8px">PANIC</s></div>
+    <div class="stamp" id="st3" style="left:190px;top:560px;rotate:-8deg;color:#2EAF5A;border-color:#2EAF5A">NORMAL</div>
+  </div>
+
+  <!-- s4 wach: beten → Feuer → Nachbar -->
+  <div class="sc" id="g4">
+    <div class="sc" id="g4a">
+      <div class="bg" style="background:linear-gradient(#1E1A36, #3A2A44)"></div>
+      <svg><g id="wall4"></g><g id="pr4"><g id="pr4in"></g></g><g id="cdl4"></g></svg>
+      <div class="card" id="hr4" style="left:270px;top:280px;width:540px;padding:12px 0;text-align:center;font:900 60px Poppins;background:var(--ye)">AWAKE: ~1 HOUR</div>
+    </div>
+    <div class="sc" id="g4b">
+      <div class="bg" style="background:linear-gradient(#2A1A20, #4A2A24)"></div>
+      <svg><g id="fire4"><rect x="140" y="760" width="800" height="440" rx="20" fill="#6E5A50"/><rect x="240" y="860" width="600" height="340" fill="#1A1010"/>
+        <g class="flick"><path d="M440 1200 Q400 1080 480 1000 Q470 1080 540 1060 Q520 960 600 920 Q620 1040 660 1060 Q700 1100 640 1200Z" fill="#FF7A3D"/><path d="M490 1200 Q480 1120 540 1080 Q560 1140 600 1130 Q620 1170 590 1200Z" fill="#FFD23F"/></g>
+        <g id="pot4"><path d="M420 900 Q540 1020 660 900Z" fill="#2A2A2A"/><path d="M430 900 H650" stroke="#444" stroke-width="16"/></g></g>
+        <rect x="0" y="1200" width="1080" height="720" fill="#3A2A24"/><g id="ch4"><g id="ch4in"></g></g></svg>
+      <div class="card" id="cr4" style="left:600px;top:300px;width:380px;padding:12px 0;text-align:center;font:900 56px Poppins;rotate:4deg">CHORES</div>
+    </div>
+    <div class="sc" id="g4c">
+      <div class="bg" style="background:linear-gradient(#0E1230, #1E2450)"></div>
+      <svg><g id="hs4"><rect x="80" y="620" width="920" height="600" fill="#5A4A3A"/><path d="M40 640 L540 380 L1040 640Z" fill="#3A2A24"/>
+        <rect x="420" y="820" width="240" height="400" rx="10" fill="#7A4A26" id="door4"/><rect x="160" y="760" width="160" height="140" fill="#FFD27A"/><rect x="760" y="760" width="160" height="140" fill="#FFD27A"/></g>
+        <rect x="0" y="1200" width="1080" height="720" fill="#2A3A2A"/><g id="nb4"><g id="nb4in"></g></g><g id="vi4"><g id="vi4in"></g></g></svg>
+      <div class="bubble" id="kn4" style="left:120px;top:440px;--tail:200px">knock knock</div>
+      <div class="card" id="am4" style="left:620px;top:300px;width:380px;padding:10px 0;text-align:center;font:900 90px Poppins;background:#101820;color:var(--ye)">1:00</div>
+    </div>
+  </div>
+
+  <!-- s5 Arzt -->
+  <div class="sc" id="g5">
+    <div class="bg" style="background:linear-gradient(#3A2A44, #5A3A5A)"></div>
+    <svg><g id="wall5"></g><g id="doc5"><g id="doc5in"></g></g><g id="cp5"><g id="cp5a"></g><g id="cp5b"></g></g>
+      <g id="hearts5"></g></svg>
+    <div class="card" id="scr5" style="left:90px;top:270px;width:540px;padding:26px 30px;background:#F3E3BF;border-top:22px solid #C9A86A;border-bottom:22px solid #C9A86A;font:800 40px Poppins;text-align:center">Doctor's advice:<br><span style="font-size:52px;color:var(--re)">best time<br>for babies</span></div>
+    <div id="cuL" style="position:absolute;left:-560px;top:0;width:560px;height:1920px;background:linear-gradient(90deg,#7A1E2A,#A82A3A);"></div>
+    <div id="cuR" style="position:absolute;left:1080px;top:0;width:560px;height:1920px;background:linear-gradient(270deg,#7A1E2A,#A82A3A);"></div>
+  </div>
+
+  <!-- s6 zweiter Schlaf, Sonnenaufgang -->
+  <div class="sc" id="g6">
+    <div class="bg" style="background:linear-gradient(#0E1230, #1E2450)"></div>
+    <div class="bg" id="dawn6" style="background:linear-gradient(#5A7AC8, #F6B25E)"></div>
+    <svg><g id="wall6"></g><g id="win6"></g><g id="bed6"></g><g id="zz6"></g></svg>
+    <div class="card" id="lb6" style="left:170px;top:280px;width:620px;padding:14px 0;text-align:center;font:900 70px Poppins;background:var(--bl)">SECOND SLEEP</div>
+  </div>
+
+  <!-- s7 Licht hat's gekillt -->
+  <div class="sc" id="g7">
+    <div class="bg" style="background:linear-gradient(#0E1230, #2A2450)"></div>
+    <svg><rect x="0" y="1200" width="1080" height="720" fill="#2A2440"/><g id="lamps7"></g><g id="cup7"></g><g id="bulb7"></g></svg>
+    <div class="t" id="h7" style="top:250px;font-size:80px">What <span class="box" style="background:var(--re)">killed</span> it?</div>
+    <div class="card" id="bars7" style="left:110px;top:420px;width:860px;padding:26px 30px;background:#101820;color:#fff">
+      <div style="font:800 32px Poppins;color:#B8C4F0">SLEEP</div>
+      <div style="position:relative;height:80px;margin-top:14px">
+        <div id="b7a" style="position:absolute;left:0;top:0;width:44%;height:80px;background:var(--bl);border-radius:14px"></div>
+        <div id="b7b" style="position:absolute;right:0;top:0;width:44%;height:80px;background:var(--bl);border-radius:14px"></div>
+        <div id="b7c" style="position:absolute;left:0;top:0;width:100%;height:80px;background:var(--ye);border-radius:14px"></div></div></div>
+  </div>
+
+  <!-- s8 Experiment -->
+  <div class="sc" id="g8">
+    <div class="bg" style="background:linear-gradient(#0A0C1E, #161A34)"></div>
+    <div class="t" id="h8" style="top:250px;font-size:64px">Experiment, <span style="color:var(--ye)">1990s</span></div>
+    <div class="card" id="tm8" style="left:300px;top:360px;width:480px;padding:10px 0;text-align:center;background:#101820;color:var(--re);font:900 110px Poppins">0 h</div>
+    <div class="card" id="bars8" style="left:110px;top:560px;width:860px;padding:26px 30px;background:#101820;color:#fff">
+      <div style="font:800 32px Poppins;color:#B8C4F0">SLEEP</div>
+      <div style="position:relative;height:80px;margin-top:14px">
+        <div id="b8a" style="position:absolute;left:0;top:0;width:44%;height:80px;background:var(--bl);border-radius:14px"></div>
+        <div id="b8b" style="position:absolute;right:0;top:0;width:44%;height:80px;background:var(--bl);border-radius:14px"></div>
+        <div id="b8c" style="position:absolute;left:0;top:0;width:100%;height:80px;background:var(--ye);border-radius:14px"></div></div></div>
+    <svg><g id="bed8"></g></svg>
+  </div>
+
+  <!-- s9 Student um drei -->
+  <div class="sc" id="g9">
+    <div class="bg" style="background:linear-gradient(#141A3A, #2A2F5A)"></div>
+    <svg><rect x="80" y="1100" width="920" height="40" rx="10" fill="#8A5A34"/><rect x="120" y="1140" width="40" height="300" fill="#6E4628"/><rect x="920" y="1140" width="40" height="300" fill="#6E4628"/>
+      <g id="st9g"><g id="st9in"></g></g><g id="lap9"></g><g id="kh9"></g><g id="ck9"><g transform="translate(880 420) scale(.7)" id="ck9in"></g></g></svg>
+    <div class="stamp" id="st9" style="left:170px;top:560px;rotate:-8deg;font-size:110px">MEDIEVAL</div>
+  </div>
+
+  <!-- s10 CTA -->
+  <div class="sc" id="g10">
+    <div class="bg" style="background:linear-gradient(#2B1B4A, #4A2A5A)"></div>
+    <div class="t" id="q10" style="top:250px;font-size:66px">Your 3 a.m. wake-up is<br><span class="box" style="background:var(--or)">centuries old.</span></div>
+    <svg><g id="ck10"><g transform="translate(540 820) scale(1.3)" id="ck10in"></g></g>
+      <g id="arrow"><path d="M540 1120 V1180 M500 1140 L540 1180 L580 1140" stroke="var(--ye)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" fill="none"/></g></svg>
+    <div class="card" id="snd10" style="left:160px;top:1200px;width:760px;padding:16px 0;text-align:center;font:900 46px Poppins;background:#fff">Send to: the 3 a.m. friend ➜</div>
+  </div>
+
+</div></div>
+
+<script src="timeline.js"></script>
+<script src="../../kit/vendor/gsap-all.js"></script>
+<script src="../../kit/runtime.js"></script>
+<script src="../../kit/figures.js"></script>
+<script src="../../kit/props.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+const AT = R.at;
+const W = (sid, text, nth = 0) => {
+  const n = text.toLowerCase(); const hits = R.TL.words.filter(w => w.scene === sid && w.w.toLowerCase().replace(/[^\p{L}\p{N}%€]/gu, '').startsWith(n));
+  if (!hits[nth]) console.warn('Wort fehlt:', sid, text, nth); return R.word(sid, text, nth);
+};
+R.autoSfx(false);
+const WE = (sid, text, nth = 0) => {
+  const hits = R.TL.words.filter(w => w.scene === sid && w.w.toLowerCase().replace(/[^\p{L}\p{N}]/gu, '').startsWith(text.toLowerCase()));
+  return hits[nth] ? hits[nth].end : R.at(sid);
+};
+const put = (id, html) => ($(id).innerHTML = html);
+const at = (x, y, s, inner) => `<g transform="translate(${x} ${y}) scale(${Array.isArray(s) ? s.join(' ') : s})">${inner}</g>`;
+let seed = 3; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+const cap = (h) => `<g transform="translate(0 -452)">${h}</g>`;
+const peasant = (id, mood = 'neutral', o = {}) => FIG.human({ id, mood, hoodie: o.hoodie || '#8A6A4A', hoodieD: o.hoodieD || '#6A4E34', arm: o.arm }) + (o.hat === false ? '' : cap(PROPS.nightcap()));
+// Stein-Wand + Fenster
+const wall = (dark = '#3A3458', light = '#4A4468') => { let s = `<rect width="1080" height="1220" fill="${dark}"/>`;
+  for (let r = 0; r < 9; r++) for (let c = 0; c < 6; c++) s += `<rect x="${c * 200 + (r % 2) * 100 - 60}" y="${r * 135 + 6}" width="190" height="125" rx="16" fill="${light}" opacity=".55"/>`;
+  return s + `<rect x="0" y="1220" width="1080" height="700" fill="#4A3A2A"/><rect x="0" y="1220" width="1080" height="14" fill="#3A2A1A"/>`; };
+const win = (sky, id = '') => `<g ${id ? `id="${id}"` : ''}><rect x="600" y="560" width="280" height="340" rx="140" fill="${sky}"/><path d="M740 560 V900 M600 740 H880" stroke="#2A2440" stroke-width="16"/>
+  <rect x="590" y="550" width="300" height="360" rx="150" fill="none" stroke="#2A2440" stroke-width="22"/></g>`;
+const moon = (x, y) => `<circle cx="${x}" cy="${y}" r="50" fill="#FFF3C4"/><circle cx="${x + 22}" cy="${y - 12}" r="44" fill="#1A2050"/>`;
+// Bett mit liegender Figur (Kopf auf dem Kissen), Decke drüber
+const sleeper = (id, mood, x = 470, y = 1300, s = .95) => at(x, y, s, PROPS.bed(700) +
+  `<g id="${id}_body"><g transform="translate(150 -232) rotate(-90) scale(.62)">${peasant(id, mood)}</g></g>` + PROPS.blanket(700));
+const zzz = (id, x, y) => [0, 1, 2].map(i => `<text class="zz" x="${x + i * 40}" y="${y - i * 40}" font-size="${60 + i * 14}" font-weight="900" fill="#fff" font-family="Poppins" style="animation-delay:-${i * .6}s">z</text>`).join('');
+
+R.scenes([['s1', 'g1'], ['s2', 'g2', 'zoom'], ['s3', 'g3', 'flash'], ['s4', 'g4', 'whip'], ['s5', 'g5', 'push'],
+  ['s6', 'g6', 'iris'], ['s7', 'g7', 'zoom'], ['s8', 'g8', 'spin'], ['s9', 'g9', 'whip'], ['s10', 'g10', 'drop']]);
+
+/* ---------- s1 Hook ---------- */
+put('wall1', wall('#232848', '#2E3460')); put('win1', win('#1A2050') + moon(780, 680));
+put('bed1', sleeper('p1', 'bliss'));
+put('zz1', zzz('z1', 640, 1000));
+R.up('h1a', AT('s1', .02));
+R.popIn('h1b', W('s1', 'twice') - .05, { r: -10 });
+R.g('h1b', { scale: 1.2, duration: .15, yoyo: true, repeat: 1 }, WE('s1', 'twice'));
+R.popIn('h1c', W('s1', 'purpose') - .2, { r: 3 });
+R.cam(W('s1', 'twice'), .3, { x: 540, y: 700, s: 1.08 }, 'out');
+
+/* ---------- s2 Erster Schlaf ---------- */
+put('wall2', wall('#3A2A4A', '#4A3A5A')); put('win2', `<g id="sun2win">${win('#F6A25E')}</g>` + `<circle id="sun2" cx="740" cy="800" r="60" fill="#FFD23F"/>`);
+put('bed2', sleeper('p2', 'neutral'));
+put('cdl2', at(200, 1150, .9, PROPS.candle('c2')));
+put('ck2in', PROPS.clock('k2'));
+R.gset('k2_h', { rotation: 270, svgOrigin: '0 0' }, 0); R.gset('k2_m', { rotation: 0, svgOrigin: '0 0' }, 0);
+R.g('sun2', { y: 160, duration: 1.6, ease: 'power1.in' }, AT('s2', .1));
+R.gfromTo('bg2', { filter: 'brightness(1)' }, { filter: 'brightness(.45)', duration: 1.6 }, AT('s2', .1));
+R.hide('ck2'); R.popIn('ck2', W('s2', 'nine') - .1, { r: 0 });
+R.g('c2_flame', { autoAlpha: 0, scale: .2, transformOrigin: '50% 100%', duration: .25 }, W('s2', 'That') - .2);
+FIG.mood('p2', [[0, 'neutral'], [W('s2', 'first'), 'bliss']]);
+R.hide('lb2'); R.popIn('lb2', W('s2', 'first'), { r: -4 });
+
+/* ---------- s3 Mitternacht ---------- */
+put('wall3', wall('#1A1E3E', '#262C54')); put('win3', win('#0E1230') + moon(780, 680));
+put('bed3', sleeper('p3', 'bliss'));
+put('ck3in', PROPS.clock('k3')); R.gset('k3_h', { rotation: 0, svgOrigin: '0 0' }, 0); R.gset('k3_m', { rotation: 0, svgOrigin: '0 0' }, 0);
+R.popIn('ck3', AT('s3', .1), { r: 0 });
+// Figur setzt sich auf: Körper dreht sich von liegend in sitzend
+R.g('p3_body', { rotation: 75, svgOrigin: '612 1080', duration: .5, ease: 'back.out(1.6)' }, W('s3', 'wake') - .1);
+FIG.mood('p3', [[0, 'bliss'], [W('s3', 'wake'), 'neutral'], [W('s3', 'normal'), 'happy']]);
+R.hide('na3'); R.hide('np3'); R.popIn('na3', W('s3', 'alarm'), { r: -3 }); R.popIn('np3', W('s3', 'panic'), { r: 3 });
+R.slam('st3', W('s3', 'normal'));
+
+/* ---------- s4 Wach ---------- */
+put('wall4', wall('#2A2440', '#3A3458'));
+put('pr4in', at(540, 1260, .9, peasant('p4', 'bliss', { arm: 'wave' })));
+put('cdl4', at(800, 1260, .9, PROPS.candle('c4')));
+R.gfrom('pr4', { y: 600, duration: .45, ease: 'back.out(1.4)' }, AT('s4', .05));
+R.hide('hr4'); R.popIn('hr4', W('s4', 'hour'), { r: 0 });
+R.hide('g4b'); R.hide('g4c');
+R.trans('whip', 'g4a', 'g4b', W('s4', 'pray') - .15, .35);
+put('ch4in', at(820, 1300, .8, peasant('p4b', 'happy', { arm: 'point' })));
+R.g('pot4', { rotation: 6, transformOrigin: '50% 50%', duration: .2, yoyo: true, repeat: 5 }, W('s4', 'chores'));
+R.hide('cr4'); R.popIn('cr4', W('s4', 'chores'), { r: 4 });
+R.trans('push', 'g4b', 'g4c', W('s4', 'visit') - .2, .4);
+put('vi4in', at(260, 1340, .7, peasant('p4v', 'happy')));
+put('nb4in', at(540, 1220, .62, peasant('p4n', 'happy')));
+R.hide('nb4'); R.gset('nb4', { autoAlpha: 1 }, W('s4', 'neighbors') + .3); R.gfrom('nb4', { scale: .2, transformOrigin: '540px 1220px', duration: .35, ease: 'back.out(2)' }, W('s4', 'neighbors') + .3);
+R.hide('kn4'); R.popIn('kn4', W('s4', 'visit'), { r: -4 });
+R.hide('am4'); R.popIn('am4', W('s4', 'At'), { r: 0 });
+R.cam(W('s4', 'At'), .4, { x: 700, y: 700, s: 1.1 }, 'out');
+
+/* ---------- s5 Arzt ---------- */
+put('wall5', wall('#3A2A44', '#4A3A54'));
+put('doc5in', at(820, 1300, .9, FIG.human({ id: 'd5', mood: 'neutral', hoodie: '#141022', hoodieD: '#000', arm: 'point' }) + cap(`<rect x="-60" y="-200" width="120" height="150" rx="10" fill="#141022"/><rect x="-100" y="-60" width="200" height="20" rx="10" fill="#141022"/>`)));
+R.gfrom('doc5', { x: 500, duration: .45, ease: 'power3.out' }, AT('s5', .05));
+R.gfromTo('scr5', { scaleY: 0, transformOrigin: '50% 0%' }, { scaleY: 1, duration: .5, ease: 'back.out(1.4)' }, W('s5', 'said') - .1);
+put('cp5a', at(260, 1330, .7, peasant('c5a', 'neutral')));
+put('cp5b', at(470, 1330, .66, peasant('c5b', 'neutral', { hoodie: '#C86A8A', hoodieD: '#A84A6A' })));
+R.hide('cp5'); R.gset('cp5', { autoAlpha: 1 }, W('s5', 'best')); R.gfrom('cp5', { y: 600, duration: .4, ease: 'back.out(1.5)' }, W('s5', 'best'));
+FIG.mood('c5a', [[0, 'neutral'], [W('s5', 'babies'), 'bliss']]); FIG.mood('c5b', [[0, 'neutral'], [W('s5', 'babies'), 'bliss']]);
+let ht = ''; for (let i = 0; i < 8; i++) ht += `<g id="h5_${i}">${at(360 + (rnd() - .5) * 200, 1000, .6 + rnd() * .4, PROPS.heart())}</g>`;
+put('hearts5', ht);
+for (let i = 0; i < 8; i++) { const t = W('s5', 'babies') + i * .1; R.hide('h5_' + i); R.gset('h5_' + i, { autoAlpha: 1 }, t); R.g('h5_' + i, { y: -500 - rnd() * 200, autoAlpha: 0, duration: 1.2, ease: 'power1.out' }, t); }
+R.g('cuL', { x: 560, duration: .45, ease: 'power2.inOut' }, WE('s5', 'babies') + .25);
+R.g('cuR', { x: -560, duration: .45, ease: 'power2.inOut' }, WE('s5', 'babies') + .25);
+
+/* ---------- s6 Zweiter Schlaf ---------- */
+put('wall6', wall('#1A1E3E', '#262C54')); put('win6', win('#0E1230'));
+put('bed6', sleeper('p6', 'bliss'));
+put('zz6', zzz('z6', 640, 1000));
+R.hide('lb6'); R.popIn('lb6', W('s6', 'Second'), { r: 4 });
+R.gfromTo('dawn6', { autoAlpha: 0 }, { autoAlpha: .85, duration: 1.4, ease: 'power1.inOut' }, W('s6', 'sunrise') - .3);
+R.gfrom('bed6', { y: 500, duration: .45, ease: 'back.out(1.3)' }, AT('s6', .05));
+
+/* ---------- s7 Licht ---------- */
+R.popIn('h7', AT('s7', .05), { r: -4 });
+let lp = ''; for (let i = 0; i < 4; i++) lp += at(140 + i * 270, 1220, .8, PROPS.lamp('lm' + i, 520));
+put('lamps7', lp);
+for (let i = 0; i < 4; i++) R.g('lm' + i + '_glow', { opacity: 1, duration: .2 }, W('s7', 'lamps') - .1 + i * .15);
+put('cup7', `<g id="cupg">${at(300, 1150, 1.1, `<rect x="-60" y="-120" width="120" height="120" rx="16" fill="#FBF8F1"/><path d="M60 -90 q40 0 40 40 t-40 40" stroke="#FBF8F1" stroke-width="14" fill="none"/><path d="M-20 -150 q10 -20 0 -40 M20 -150 q10 -20 0 -40" stroke="#fff" stroke-width="8" fill="none" opacity=".7"/>`)}</g>`);
+R.hide('cupg'); R.popIn('cupg', W('s7', 'coffee'), { r: -8 });
+put('bulb7', `<g id="blbg">${at(760, 1100, 1.2, `<circle r="100" fill="#FFD23F" opacity=".3"/><circle r="64" fill="#FFE07A"/><rect x="-28" y="54" width="56" height="44" rx="8" fill="#9AA0B4"/>`)}</g>`);
+R.hide('blbg'); R.popIn('blbg', W('s7', 'electricity'), { r: 0 });
+R.hide('bars7'); R.popIn('bars7', W('s7', 'Nights') - .1, { r: 0 });
+R.hide('b7c'); R.gset('b7c', { autoAlpha: 1 }, W('s7', 'one')); R.gfrom('b7c', { scaleX: .44, transformOrigin: '0% 50%', duration: .4, ease: 'back.out(1.6)' }, W('s7', 'one'));
+R.gfromTo('b7b', { x: 0 }, { x: -200, duration: .4, ease: 'power2.in' }, W('s7', 'one') - .3);
+
+/* ---------- s8 Experiment ---------- */
+R.up('h8', AT('s8', .05));
+R.hide('tm8'); R.popIn('tm8', W('s8', 'Fourteen') - .1, { r: 0 });
+R.count('tm8', W('s8', 'Fourteen'), 1, 0, 14, v => Math.round(v) + ' h');
+put('bed8', `<g id="bd8">${sleeper('p8', 'bliss', 470, 1330, .8)}</g>`);
+R.hide('bd8'); R.popIn('bd8', W('s8', 'darkness'), { r: 0 });
+R.hide('bars8'); R.popIn('bars8', W('s8', 'After'), { r: 0 });
+R.gset('b8c', { autoAlpha: 1 }, 0); R.gset('b8a', { autoAlpha: 0 }, 0); R.gset('b8b', { autoAlpha: 0 }, 0);
+R.gset('b8c', { autoAlpha: 0 }, W('s8', 'two') - .1); R.gset(['b8a', 'b8b'], { autoAlpha: 1 }, W('s8', 'two') - .1);
+R.gfrom('b8a', { x: 120, duration: .4, ease: 'back.out(2)' }, W('s8', 'two') - .1); R.gfrom('b8b', { x: -120, duration: .4, ease: 'back.out(2)' }, W('s8', 'two') - .1);
+R.cam(W('s8', 'two'), .4, { x: 540, y: 700, s: 1.1 }, 'out');
+
+/* ---------- s9 Student ---------- */
+put('st9in', at(400, 1130, .8, FIG.human({ id: 'du9', mood: 'sad' })));
+put('lap9', `<g id="lp9g">${at(640, 1100, .75, PROPS.laptop('lp9'))}</g>`);
+$('lp9_screen').insertAdjacentHTML('beforeend', `<text x="0" y="-150" text-anchor="middle" font-size="28" font-weight="900" fill="#141022">term_paper</text><text x="0" y="-110" text-anchor="middle" font-size="28" font-weight="900" fill="#141022">_final_v7.docx</text><text x="0" y="-60" text-anchor="middle" font-size="24" font-weight="700" fill="#555">Page 1 of 20</text>`);
+put('ck9in', PROPS.clock('k9')); R.gset('k9_h', { rotation: 90, svgOrigin: '0 0' }, 0); R.gset('k9_m', { rotation: 0, svgOrigin: '0 0' }, 0);
+R.gfrom('st9g', { x: -600, duration: .45, ease: 'power3.out' }, AT('s9', .05));
+R.gfromTo('lp9g', { y: 600 }, { y: 0, duration: .45, ease: 'back.out(1.4)' }, AT('s9', .15));
+R.popIn('ck9', W('s9', 'three') - .1, { r: 0 });
+put('kh9', `<g id="khg">${at(400, 1130 - 452 * .8, .8, `<path d="M-90 30 Q-96 -110 0 -112 Q96 -110 90 30Z" fill="#A8AFC4"/><rect x="-90" y="-20" width="180" height="22" fill="#141022"/><path d="M0 -112 V30" stroke="#8A90A6" stroke-width="10"/>`)}</g>`);
+R.hide('khg'); R.dropIn('khg', W('s9', 'medieval') - .2, { d: .4 });
+FIG.mood('du9', [[0, 'sad'], [W('s9', 'broken'), 'neutral'], [W('s9', 'medieval'), 'bliss']]);
+R.slam('st9', WE('s9', 'medieval') + .05);
+
+/* ---------- s10 CTA ---------- */
+R.popIn('q10', AT('s10', .05), { r: 0 });
+put('ck10in', PROPS.clock('k10')); R.gset('k10_h', { rotation: 90, svgOrigin: '0 0' }, 0); R.gset('k10_m', { rotation: 0, svgOrigin: '0 0' }, 0);
+R.popIn('ck10', W('s10', 'wake') - .2, { r: 0 });
+R.g('k10_m', { rotation: 360 * 4, duration: 1.2, ease: 'power2.inOut', svgOrigin: '0 0' }, W('s10', 'centuries'));
+R.hide('snd10'); R.popIn('snd10', W('s10', 'Send'), { r: 0 });
+R.hide('arrow'); R.gset('arrow', { autoAlpha: 1 }, W('s10', 'Send')); R.bob('arrow', W('s10', 'Send'), R.TOTAL, { a: 16, d: .4 });
+
+/* ===== Sounddesign ===== */
+const SND = [
+  [WE('s1', 'twice') + .05, 'pop', .6, '2× ploppt (nach dem Wort)'],
+  [W('s2', 'That') - .2, 'whoosh', .5, 'Kerze wird ausgepustet', { len: .3 }],
+  [W('s3', 'wake'), 'pop', .5, 'Figur setzt sich auf'],
+  [WE('s3', 'normal') + .05, 'slam', .7, 'Stempel NORMAL'],
+  [W('s4', 'visit') + .1, 'tick', .7, 'Klopfen an der Tür', { len: .3 }],
+  [WE('s5', 'babies') + .2, 'whoosh', .5, 'Vorhang zu (nach der Pointe)'],
+  [W('s7', 'lamps'), 'tick', .5, 'Laternen gehen an', { len: .4 }],
+  [W('s7', 'one') - .1, 'pop', .6, 'zwei Balken werden einer'],
+  [W('s8', 'two') - .1, 'pop', .6, 'Balken teilt sich'],
+  [WE('s9', 'medieval') + .05, 'slam', .8, 'Stempel MEDIEVAL (nach der Pointe)'],
+  [W('s10', 'Send'), 'ding', .5, 'CTA', { len: .3 }],
+];
+SND.forEach(([t, name, vol, why, o]) => R.sfx(t, name, vol, { ...(o || {}), why }));
+R.start();
+</script>
+</body>
+</html>

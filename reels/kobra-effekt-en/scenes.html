@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Cobra Effect</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root { --or:#FF7A3D; --ye:#FFD23F; --re:#FF4D2E; --bl:#7FD3FF; --ink:#141022; --gold:#E8B83A; --stone:#E9E1CF; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:100%; height:100%; background:#000; overflow:hidden; font-family:Poppins, system-ui, sans-serif; }
+  #stage { position:relative; width:1080px; height:1920px; overflow:hidden; background:#120E20; }
+  #world, .sc, .bg { position:absolute; inset:0; }
+  .sc { overflow:hidden; }
+  svg { position:absolute; inset:0; width:1080px; height:1920px; overflow:visible; }
+  .t { position:absolute; left:60px; right:60px; text-align:center; color:#fff; font-weight:900; line-height:1.05; letter-spacing:-.02em; text-shadow:0 8px 0 rgba(0,0,0,.25); }
+  .box { display:inline-block; padding:.04em .3em; border-radius:.18em; }
+  .kick { position:absolute; top:110px; left:50%; translate:-50% 0; background:rgba(0,0,0,.45); color:#fff; font:800 30px Poppins; letter-spacing:.14em; padding:10px 28px; border-radius:99px; white-space:nowrap; z-index:45; }
+  .kick b { color:var(--ye); }
+  .stamp { position:absolute; color:var(--re); border:12px solid var(--re); border-radius:22px; font:900 110px Poppins; padding:0 30px; letter-spacing:.02em; white-space:nowrap; background:rgba(255,255,255,.08); }
+  .card { position:absolute; background:#FBF8F1; border-radius:24px; box-shadow:0 18px 0 rgba(0,0,0,.25); color:var(--ink); }
+  .sign { position:absolute; background:#FFD23F; border:12px solid #141022; border-radius:20px; color:#141022; text-align:center; font-weight:900; backface-visibility:hidden; }
+  .bubble { position:absolute; background:#fff; color:var(--ink); border-radius:40px; font:900 64px Poppins; padding:18px 34px; box-shadow:0 12px 0 rgba(0,0,0,.2); white-space:nowrap; }
+  .bubble::after { content:''; position:absolute; bottom:-30px; left:var(--tail, 60px); border:18px solid transparent; border-top:26px solid #fff; }
+  .flap { display:inline-block; width:50px; margin:0 3px; background:#0A1230; border-radius:8px; text-align:center; color:var(--ye); box-shadow:inset 0 -3px 0 rgba(0,0,0,.5); }
+  .blink { animation:blink 4s infinite; transform-box:fill-box; transform-origin:center; }
+  .gallop { animation:gallop .28s ease-in-out infinite alternate; transform-box:fill-box; transform-origin:50% 0; }
+  .spin { animation:spin .5s linear infinite; transform-box:fill-box; transform-origin:center; }
+  .sway { animation:sway 3.2s ease-in-out infinite alternate; transform-box:fill-box; transform-origin:50% 100%; }
+  @keyframes blink { 0%,93%,100% { transform:scaleY(1); } 96% { transform:scaleY(.1); } }
+  @keyframes gallop { to { transform:skewX(-14deg) scaleY(.94); } }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  @keyframes sway { to { transform:rotate(3deg); } }
+</style>
+</head>
+  .wob { animation:wob 1.6s ease-in-out infinite alternate; transform-box:fill-box; transform-origin:50% 100%; }
+  @keyframes wob { to { transform:rotate(-4deg) scaleY(1.03); } }
+  .tng { animation:tng .5s steps(2) infinite; transform-box:fill-box; transform-origin:50% 0; }
+  @keyframes tng { 50% { transform:scaleY(0); } }
+</style>
+</head>
+<body>
+<div id="stage">
+<div class="kick">THE <b>COBRA</b> EFFECT</div>
+<div id="world">
+
+  <!-- s1 Hook: Abend, Kobra steigt aus dem Korb, Münze, dann ganz viele -->
+  <div class="sc" id="g1">
+    <div class="bg" style="background:linear-gradient(#2B1B4A 0%, #8A3A4E 50%, #E8874E 80%, #F6B25E 100%)"></div>
+    <svg>
+      <circle cx="540" cy="1120" r="260" fill="#FFD9A0" opacity=".4"/>
+      <path d="M0 1240 Q300 1180 560 1220 T1080 1200 V1920 H0Z" fill="#4A2438"/>
+      <g id="palms1"></g>
+      <g id="mini1"></g>
+      <g id="bk1"></g>
+      <g id="cob1"><g id="cob1in"></g></g>
+      <g id="coin1"></g>
+    </svg>
+    <div class="t" id="h1a" style="top:250px;font-size:68px">The British paid people to</div>
+    <div class="t" id="h1b" style="top:340px;font-size:130px"><span class="box" style="background:var(--re)">KILL COBRAS</span></div>
+    <div class="t" id="h1c" style="top:520px;font-size:84px;color:var(--ye)">They got MORE.</div>
+  </div>
+
+  <!-- s2 Karte Delhi → Amtsstube mit Kopfgeld-Schild -->
+  <div class="sc" id="g2">
+    <div class="sc" id="g2a">
+      <div class="bg" style="background:linear-gradient(#141B33, #1E2A4C)"></div>
+      <svg id="map2"></svg>
+      <div class="t" id="h2a" style="top:270px;font-size:66px">DELHI · <span style="color:var(--ye)">BRITISH INDIA</span></div>
+      <div class="card" id="story2" style="left:250px;top:1210px;width:580px;padding:14px 0;text-align:center;font:800 42px Poppins;background:var(--ye)">"The story goes …"</div>
+    </div>
+    <div class="sc" id="g2b">
+      <div class="bg" style="background:linear-gradient(#E9D7B0, #D4B98A)"></div>
+      <svg><rect x="0" y="1150" width="1080" height="770" fill="#9A6A3E"/><rect x="0" y="1150" width="1080" height="16" fill="#7A4E2A"/>
+        <rect x="560" y="560" width="380" height="300" rx="16" fill="#7FB8D8"/><path d="M750 560 V860 M560 710 H940" stroke="#9A6A3E" stroke-width="16"/>
+        <path d="M560 560 h380 v300 h-380z" stroke="#9A6A3E" stroke-width="22" fill="none"/>
+        <g id="off2"><g id="off2in"></g></g>
+        <rect x="80" y="1050" width="920" height="40" rx="10" fill="#7A4A26"/><rect x="120" y="1090" width="40" height="300" fill="#5E3A1E"/><rect x="920" y="1090" width="40" height="300" fill="#5E3A1E"/>
+        <g id="dead2"></g><g id="coins2"></g></svg>
+      <div class="sign" id="sign2" style="left:90px;top:260px;width:900px;height:270px;padding-top:28px;rotate:-2deg">
+        <div style="font-size:44px">REWARD · BOUNTY</div><div style="font-size:84px;line-height:1.15">1 dead cobra = ₹</div></div>
+    </div>
+  </div>
+
+  <!-- s3 Zähler fällt, Beamte feiern -->
+  <div class="sc" id="g3">
+    <div class="bg" style="background:linear-gradient(#1B1530, #3A2350)"></div>
+    <div class="card" id="cnt3" style="left:150px;top:260px;width:780px;padding:26px;text-align:center;background:#101820;color:#fff">
+      <div style="font:800 36px Poppins;color:#B8C4F0">COBRAS IN DELHI</div>
+      <div id="n3" style="font:900 150px Poppins;color:var(--re);line-height:1.1">LOTS</div></div>
+    <svg><rect x="0" y="1180" width="1080" height="740" fill="#2A2442"/>
+      <g id="off3"><g id="off3in"></g></g><g id="off3b"><g id="off3bin"></g></g><g id="conf3"></g></svg>
+    <div class="stamp" id="st3" style="left:170px;top:560px;rotate:-8deg;color:#2EAF5A;border-color:#2EAF5A">WORKS GREAT</div>
+  </div>
+
+  <!-- s4 Close-up: Bauer rechnet, Idee -->
+  <div class="sc" id="g4">
+    <div class="bg" style="background:linear-gradient(#F2C98A, #E8A86A)"></div>
+    <svg><g id="face4"><g transform="translate(540 1040) scale(.72)" id="face4in"></g></g></svg>
+    <div class="card" id="calc4" style="left:110px;top:250px;width:860px;padding:26px 30px;background:#20283A;color:#9FF0A8;font:800 58px Poppins;white-space:nowrap">
+      <div style="font:700 30px Poppins;color:#8890A8">HUNTING vs. BREEDING</div><div id="typ4"></div><div id="typ4b" style="color:var(--ye)"></div></div>
+    <svg><g id="bulb4"><g transform="translate(860 640)"><circle r="90" fill="#FFD23F" opacity=".3"/><circle r="56" fill="#FFE07A"/><rect x="-26" y="44" width="52" height="40" rx="8" fill="#9AA0B4"/>
+      <path d="M-16 -10 l16 22 l16 -22" stroke="#C9971A" stroke-width="6" fill="none"/></g></g>
+      <g id="egg4"></g></svg>
+  </div>
+
+  <!-- s5 Hinterhof-Farm -->
+  <div class="sc" id="g5">
+    <div class="bg" style="background:linear-gradient(#7CC4F0, #CDEBF7 60%)"></div>
+    <svg><rect x="0" y="1100" width="1080" height="820" fill="#C9A26A"/><g transform="translate(0 -240)"><g id="hut5"><path d="M680 980 L860 840 L1040 980Z" fill="#A8703A"/><rect x="700" y="980" width="320" height="230" fill="#E2C08A"/><rect x="820" y="1060" width="80" height="150" fill="#7A4A26"/></g>
+      <rect x="0" y="1200" width="1080" height="720" fill="#C9A26A"/>
+      <g id="fence5"></g>
+      <g id="farm5"></g><g id="far5"><g id="far5in"></g></g></g></svg>
+    <div class="sign" id="sign5" style="left:70px;top:300px;width:560px;height:180px;padding-top:42px;background:#E2C08A;rotate:-4deg;font-size:70px;white-space:nowrap">COBRA FARM</div>
+    <div class="card" id="chart5" style="left:640px;top:280px;width:380px;height:300px;background:#fff;padding:20px">
+      <div style="font:800 30px Poppins;color:#888">Business</div>
+      <svg viewBox="0 0 340 220" style="position:absolute;left:20px;top:60px;width:340px;height:220px"><path id="line5" d="M10 200 L80 170 L140 180 L200 110 L260 90 L330 10" stroke="#2EAF5A" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  </div>
+
+  <!-- s6 Kopfgeld gestrichen → Bauer lässt Kobras frei -->
+  <div class="sc" id="g6">
+    <div class="sc" id="g6a">
+      <div class="bg" style="background:linear-gradient(#E9D7B0, #D4B98A)"></div>
+      <svg><rect x="0" y="1150" width="1080" height="770" fill="#9A6A3E"/><g id="off6"><g id="off6in"></g></g></svg>
+      <div class="sign" id="sign6" style="left:90px;top:300px;width:900px;height:270px;padding-top:28px;rotate:-2deg">
+        <div style="font-size:44px">REWARD · BOUNTY</div><div style="font-size:84px;line-height:1.15">1 dead cobra = ₹</div></div>
+      <div class="stamp" id="st6" style="left:200px;top:360px;rotate:-10deg">CANCELLED</div>
+    </div>
+    <div class="sc" id="g6b">
+      <div class="bg" style="background:linear-gradient(#F0A860, #F6CF8E 60%)"></div>
+      <svg><rect x="0" y="1200" width="1080" height="720" fill="#C9A26A"/><g id="bks6"></g><g id="far6"><g id="far6in"></g></g><g id="esc6"></g></svg>
+      <div class="card" id="tag6" style="left:110px;top:300px;width:520px;padding:20px 0;text-align:center;rotate:-5deg;background:#fff">
+        <div style="font:700 36px Poppins;color:#888">Cobra, used</div><div style="font:900 96px Poppins;color:var(--re)">₹0</div></div>
+    </div>
+  </div>
+
+  <!-- s7 Endstand: vorher/nachher -->
+  <div class="sc" id="g7">
+    <div class="bg" style="background:linear-gradient(#101820, #22304A)"></div>
+    <div class="card" id="sb7" style="left:90px;top:250px;width:900px;height:560px;background:#0B1220;color:#fff;padding:30px 40px">
+      <div style="font:800 40px Poppins;color:#B8C4F0;text-align:center">FINAL SCORE · COBRAS</div>
+      <div style="position:absolute;left:60px;bottom:60px;width:300px;text-align:center;font:800 40px Poppins">BEFORE</div>
+      <div style="position:absolute;right:60px;bottom:60px;width:300px;text-align:center;font:800 40px Poppins;color:var(--re)">AFTER</div>
+      <div id="bA" style="position:absolute;left:110px;bottom:120px;width:200px;height:110px;background:#7FD3FF;border-radius:16px 16px 0 0"></div>
+      <div id="bB" style="position:absolute;right:110px;bottom:120px;width:200px;height:330px;background:var(--re);border-radius:16px 16px 0 0"></div></div>
+    <svg><g id="off7"><g id="off7in"></g></g><g id="hand7"><g transform="translate(600 1080)"><ellipse rx="44" ry="56" fill="#E0A27A"/></g></g></svg>
+    <div class="stamp" id="st7" style="left:200px;top:930px;rotate:-6deg;font-size:84px;color:var(--ye);border-color:var(--ye)">GREAT JOB 👏</div>
+  </div>
+
+  <!-- s8 Hanoi: Karte → Straße mit Ratte -->
+  <div class="sc" id="g8">
+    <div class="sc" id="g8a">
+      <div class="bg" style="background:linear-gradient(#141B33, #1E2A4C)"></div>
+      <svg id="map8"></svg>
+      <div class="t" id="h8a" style="top:270px;font-size:66px">HANOI · <span style="color:var(--bl)">1902</span></div>
+      <div class="card" id="rw8" style="left:220px;top:1200px;width:640px;padding:16px 0;text-align:center;font:900 46px Poppins;background:var(--ye)">1 rat tail = money</div>
+    </div>
+    <div class="sc" id="g8b">
+      <div class="bg" style="background:linear-gradient(#3A4470, #5A5F88)"></div>
+      <svg><rect x="0" y="1180" width="1080" height="740" fill="#3A3458"/><rect x="0" y="1180" width="1080" height="14" fill="#2A2440"/>
+        <g id="sew8"><ellipse cx="200" cy="1200" rx="140" ry="34" fill="#141022"/><path d="M70 1200 h260" stroke="#555" stroke-width="10" stroke-dasharray="20 14"/></g>
+        <g id="box8"><g transform="translate(830 1200)"><rect x="-120" y="-150" width="240" height="150" rx="10" fill="#C98E4A"/><text y="-60" text-anchor="middle" font-size="40" font-weight="900" fill="#141022" font-family="Poppins">TAILS</text></g></g>
+        <g id="rat8"><g id="rat8in"></g></g><g id="sc8"></g></svg>
+      <div class="stamp" id="st8" style="left:280px;top:360px;rotate:-8deg;color:#2EAF5A;border-color:#2EAF5A">STILL ALIVE</div>
+    </div>
+  </div>
+
+  <!-- s9 Buch, deutscher Ökonom -->
+  <div class="sc" id="g9">
+    <div class="bg" style="background:linear-gradient(#5A4A6E, #3E3354)"></div>
+    <svg><rect x="0" y="1200" width="1080" height="720" fill="#6E4628"/>
+      <g id="book9"><g transform="translate(540 1200)"><rect x="-260" y="-640" width="520" height="640" rx="18" fill="#141022"/><rect x="-240" y="-630" width="480" height="620" rx="12" fill="#E8B83A"/>
+        <text y="-440" text-anchor="middle" font-size="62" font-weight="900" fill="#141022" font-family="Poppins">DER</text>
+        <text y="-360" text-anchor="middle" font-size="66" font-weight="900" fill="#141022" font-family="Poppins">KOBRA-</text>
+        <text y="-280" text-anchor="middle" font-size="66" font-weight="900" fill="#141022" font-family="Poppins">EFFEKT</text>
+        <g transform="translate(0 -130) scale(.24)" id="bcob"></g></g></g>
+      <g id="gl9"><g transform="translate(540 600)"><circle cx="-80" r="62" fill="none" stroke="#141022" stroke-width="14"/><circle cx="80" r="62" fill="none" stroke="#141022" stroke-width="14"/><path d="M-18 0 Q0 -16 18 0" stroke="#141022" stroke-width="12" fill="none"/></g></g></svg>
+    <div class="t" id="h9" style="top:260px;font-size:62px">German economist, <span style="color:var(--ye)">2001</span></div>
+    <div class="stamp" id="st9" style="left:200px;top:1300px;rotate:-8deg;font-size:96px">OF COURSE</div>
+  </div>
+
+  <!-- s10 Büro: Bonus pro Bug -->
+  <div class="sc" id="g10">
+    <div class="bg" style="background:linear-gradient(#3B3357, #2A2442)"></div>
+    <svg><rect x="0" y="1170" width="1080" height="750" fill="#4A4266"/>
+      <g id="mon10"><g transform="translate(540 860)"><rect x="-380" y="-560" width="760" height="500" rx="26" fill="#141022"/><rect x="-354" y="-534" width="708" height="448" rx="14" fill="#F4F6FB"/>
+        <rect x="-30" y="-60" width="60" height="90" fill="#2A2442"/><rect x="-140" y="26" width="280" height="22" rx="10" fill="#2A2442"/></g></g>
+      <g id="hero10"><g id="hero10in"></g></g><g id="bugs10"></g></svg>
+    <div id="scr10" style="position:absolute;left:186px;top:326px;width:708px;height:448px;padding:30px 36px;color:#141022">
+      <div style="font:800 34px Poppins;color:#888">Team update</div>
+      <div style="font:900 56px Poppins;margin-top:8px">Bonus: <span style="color:#2EAF5A">€10</span><br>per fixed bug</div>
+      <div style="margin-top:30px;font:800 40px Poppins">Bugs fixed: <span id="n10" style="color:var(--re)">0</span></div></div>
+  </div>
+
+  <!-- s11 Fazit + CTA -->
+  <div class="sc" id="g11">
+    <div class="bg" style="background:linear-gradient(#2B1B4A, #4A2A5A)"></div>
+    <div class="t" id="q11" style="top:250px;font-size:70px">Reward a <span style="color:var(--ye)">number</span>,<br>get the <span class="box" style="background:var(--re)">number.</span></div>
+    <div class="card" id="kpi11" style="left:140px;top:560px;width:800px;height:520px;background:#FBF8F1;padding:30px 40px">
+      <div style="font:900 44px Poppins">KPI Dashboard</div>
+      <div style="display:flex;gap:26px;margin-top:30px;align-items:flex-end;height:300px">
+        <div id="k1" style="flex:1;height:40%;background:#7FD3FF;border-radius:12px"></div><div id="k2" style="flex:1;height:65%;background:#FFD23F;border-radius:12px"></div>
+        <div id="k3" style="flex:1;height:100%;background:#2EAF5A;border-radius:12px"></div></div></div>
+    <svg><g id="cob11"><g id="cob11in"></g></g>
+      <g id="arrow"><path d="M540 1140 V1200 M500 1160 L540 1200 L580 1160" stroke="var(--ye)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" fill="none"/></g></svg>
+    <div class="stamp" id="st11" style="left:160px;top:640px;rotate:-8deg;font-size:84px">NOT THE RESULT</div>
+  </div>
+
+</div></div>
+
+<script src="timeline.js"></script>
+<script src="../../kit/vendor/gsap-all.js"></script>
+<script src="../../kit/runtime.js"></script>
+<script src="../../kit/figures.js"></script>
+<script src="../../kit/props.js"></script>
+<script src="../../kit/geo-lib.js"></script>
+<script src="../../kit/geo-data-50m.js"></script>
+<script src="../../kit/map.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+const AT = R.at;
+const W = (sid, text, nth = 0) => {              // wie R.word, warnt aber, wenn das Wort fehlt
+  const n = text.toLowerCase(); const hits = R.TL.words.filter(w => w.scene === sid && w.w.toLowerCase().replace(/[^\p{L}\p{N}%€]/gu, '').startsWith(n));
+  if (!hits[nth]) console.warn('Wort fehlt:', sid, text, nth); return R.word(sid, text, nth);
+};
+R.autoSfx(false);
+const WE = (sid, text, nth = 0) => {
+  const hits = R.TL.words.filter(w => w.scene === sid && w.w.toLowerCase().replace(/[^\p{L}\p{N}]/gu, '').startsWith(text.toLowerCase()));
+  return hits[nth] ? hits[nth].end : R.at(sid);
+};
+const put = (id, html) => ($(id).innerHTML = html);
+const at = (x, y, s, inner) => `<g transform="translate(${x} ${y}) scale(${Array.isArray(s) ? s.join(' ') : s})">${inner}</g>`;
+let seed = 11; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+const hero = (id, x, y, s, o = {}) => at(x, y, s, FIG.human({ id, mood: o.mood || 'neutral', hoodie: o.hoodie, hoodieD: o.hoodieD, arm: o.arm })
+  + (o.hat ? `<g transform="translate(0 -452)">${o.hat}</g>` : ''));
+const official = (id, x, y, s, mood = 'neutral', arm) => hero(id, x, y, s, { hoodie: '#B22234', hoodieD: '#861A28', hat: PROPS.pithHelmet(), mood, arm });
+const farmer = (id, x, y, s, mood = 'neutral', arm) => hero(id, x, y, s, { hoodie: '#F2EFE9', hoodieD: '#CFC8B8', mood, arm });
+const palm = (x, y, s) => at(x, y, s, `<path d="M0 0 Q10 -200 -20 -420" stroke="#2A1428" stroke-width="26" fill="none"/>` +
+  [-60, -20, 20, 60, 100].map(a => `<path d="M-20 -420 q${a * 2} -60 ${a * 3} 30" stroke="#2A1428" stroke-width="22" fill="none" stroke-linecap="round"/>`).join(''));
+
+R.scenes([['s1', 'g1'], ['s2', 'g2', 'zoom'], ['s3', 'g3', 'whip'], ['s4', 'g4', 'push'], ['s5', 'g5', 'iris'],
+  ['s6', 'g6', 'whip'], ['s7', 'g7', 'flash'], ['s8', 'g8', 'spin'], ['s9', 'g9', 'drop'], ['s10', 'g10', 'push'], ['s11', 'g11', 'zoom']]);
+
+/* ---------- s1 Hook ---------- */
+put('palms1', palm(110, 1250, 1) + palm(980, 1230, .85));
+put('bk1', at(540, 1330, 1.3, PROPS.basket('bkA', 240)));
+put('cob1in', at(540, 1300, 1.15, PROPS.cobra('cA')));
+R.hide('cob1'); R.gset('cob1', { autoAlpha: 1 }, .05);
+R.gfromTo('cob1in', { y: 420, scaleY: .4, transformOrigin: '50% 100%' }, { y: 0, scaleY: 1, duration: .7, ease: 'back.out(1.6)' }, .05);
+R.g('bkA_lid', { y: -700, x: 500, rotation: 200, duration: .6, ease: 'power2.in' }, 0);
+R.up('h1a', AT('s1', .05)); R.hide('h1b'); R.chars('h1b', W('s1', 'kill') - .1, { stagger: .03, y: 90 });
+put('coin1', at(860, 760, 1, PROPS.coin(60)));
+R.hide('coin1'); R.popIn('coin1', W('s1', 'paid'), { r: 30 });
+R.g('coin1', { rotationY: 720, duration: 1.2, ease: 'power1.inOut' }, W('s1', 'paid') + .2);
+let mini = ''; [[170, 1500, .32], [340, 1620, .28], [760, 1610, .3], [930, 1490, .34], [250, 1350, .22], [850, 1340, .22], [540, 1700, .3]].forEach(([x, y, s], i) => mini += `<g id="mc${i}">${at(x, y, [s * (i % 2 ? -1 : 1), s], PROPS.cobra('mc' + i, '#B8902E', '#7A5A16'))}</g>`);
+put('mini1', mini);
+const tMore = W('s1', 'more');
+for (let i = 0; i < 7; i++) { R.hide('mc' + i); R.popIn('mc' + i, tMore - .05 + i * .07, { r: 0 }); }
+R.popIn('h1c', tMore, { r: -4 });
+R.g('coin1', { autoAlpha: 0, duration: .2 }, tMore - .2);
+R.cam(tMore, .3, { x: 540, y: 1100, s: 1.12 }, 'out');
+R.wiggle('cob1', tMore + .2, { a: 3, n: 5, d: .6 });
+
+/* ---------- s2 Karte + Amt ---------- */
+const m2 = MAP.create('map2', { box: [60, 390, 960, 790], projection: 'mercator', view: { center: [80, 22], zoom: 3.2 }, style: { ocean: '#1E3554', land: '#5E5878', border: '#2A2440' } });
+R.up('h2a', AT('s2', .05));
+m2.fill(['India', 'Pakistan', 'Bangladesh'], W('s2', 'British') - .1, '#B22234', .4, .1);
+m2.view(AT('s2', .2), 1.6, { center: [77.5, 28], zoom: 7 });
+const pl2 = m2.layer();
+let snakes = ''; for (let i = 0; i < 8; i++) snakes += `<g id="ms${i}">${at(0, 0, .12, PROPS.cobra('ms' + i))}</g>`;
+pl2.insertAdjacentHTML('beforeend', `<g id="dl2"><circle r="16" fill="#FFD23F" stroke="#fff" stroke-width="5"/><g transform="translate(0 -40)"><rect x="-80" y="-30" width="160" height="60" rx="30" fill="#fff"/><text y="12" text-anchor="middle" font-size="36" font-weight="900" fill="#141022">Delhi</text></g></g>${snakes}`);
+m2.pin('dl2', [77.2, 28.6]);
+const SP = [[76.2, 29.4], [78.3, 29.2], [75.9, 27.6], [78.6, 27.5], [77.4, 30.1], [76.6, 26.9], [79.0, 28.4], [75.6, 28.6]];
+SP.forEach((p, i) => { m2.pin('ms' + i, p); R.hide('ms' + i); R.popIn('ms' + i, W('s2', 'many') + i * .06, { r: 0 }); });
+R.hide('dl2'); R.popIn('dl2', W('s2', 'Delhi') + .2, { r: 0 });
+R.hide('story2'); R.popIn('story2', W('s2', 'story'), { r: 3 });
+R.hide('g2b'); R.trans('whip', 'g2a', 'g2b', W('s2', 'plan') - .3, .45);
+put('off2in', official('of2', 300, 1130, .75, 'neutral', 'point'));
+R.gfrom('off2', { x: -600, duration: .5, ease: 'power3.out' }, W('s2', 'plan') - .1);
+R.gfromTo('sign2', { y: -900 }, { y: 0, duration: .8, ease: 'bounce.out' }, W('s2', 'bring') - .4);
+put('dead2', at(640, 1050, [.7, .7], `<g transform="rotate(90)">${PROPS.cobra('dd2', '#9C8A5A', '#6E6040')}</g>`));
+R.hide('dead2'); R.dropIn('dead2', W('s2', 'dead'), { d: .5 });
+let cs = ''; for (let i = 0; i < 6; i++) cs += `<g id="cn2_${i}">${at(820 - i * 6, 1040 - i * 22, 1, `<ellipse rx="56" ry="16" fill="#C99A22"/><ellipse cy="-6" rx="56" ry="16" fill="#F6CE57"/>`)}</g>`;
+put('coins2', cs);
+for (let i = 0; i < 6; i++) { R.hide('cn2_' + i); R.dropIn('cn2_' + i, W('s2', 'cash') + i * .08, { d: .35 }); }
+FIG.mood('of2', [[0, 'neutral'], [W('s2', 'cash'), 'happy']]);
+
+/* ---------- s3 Funktioniert ---------- */
+R.popIn('cnt3', AT('s3', .05), { r: -3 });
+R.count('n3', W('s3', 'disappear') - .2, 1.2, 1000, 12, v => Math.round(v).toLocaleString('en-US'));
+
+put('off3in', official('of3', 330, 1260, .85, 'neutral'));
+put('off3bin', official('of3b', 760, 1270, .8, 'neutral'));
+R.gfrom('off3', { y: 800, duration: .5, ease: 'back.out(1.4)' }, AT('s3', .2));
+R.gfrom('off3b', { y: 800, duration: .5, ease: 'back.out(1.4)' }, AT('s3', .35));
+R.slam('st3', W('s3', 'great'));
+FIG.mood('of3', [[0, 'neutral'], [W('s3', 'disappear'), 'happy'], [W('s3', 'celebrate'), 'bliss']]);
+FIG.mood('of3b', [[0, 'neutral'], [W('s3', 'disappear'), 'happy'], [W('s3', 'celebrate'), 'bliss']]);
+const tCel = W('s3', 'celebrate');
+R.g('off3', { y: -150, duration: .22, ease: 'power2.out', yoyo: true, repeat: 3 }, tCel);
+R.g('off3b', { y: -130, duration: .24, ease: 'power2.out', yoyo: true, repeat: 3 }, tCel + .1);
+R.fadeOut('st3', tCel - .3);
+let conf = ''; for (let i = 0; i < 40; i++) conf += `<rect id="cf3_${i}" x="535" y="900" width="${14 + rnd() * 10}" height="${22 + rnd() * 12}" rx="4" fill="${['#FFD23F', '#FF4D2E', '#7FD3FF', '#2EAF5A', '#FF7A9A'][i % 5]}"/>`;
+put('conf3', conf);
+for (let i = 0; i < 40; i++) { R.hide('cf3_' + i); R.gset('cf3_' + i, { autoAlpha: 1 }, tCel + .05);
+  R.g('cf3_' + i, { duration: 1.6, physics2D: { velocity: 900 + rnd() * 700, angle: -90 + (rnd() - .5) * 120, gravity: 1800 }, rotation: rnd() * 720 - 360, ease: 'none' }, tCel + .05); }
+
+/* ---------- s4 Bauer rechnet ---------- */
+put('face4in', FIG.humanFace({ id: 'f4', mood: 'neutral' }));
+R.gfrom('face4', { y: 900, duration: .5, ease: 'back.out(1.4)' }, AT('s4', .05));
+R.gfromTo('calc4', { y: -500 }, { y: 0, duration: .5, ease: 'back.out(1.5)' }, W('s4', 'math') - .2);
+R.type('typ4', W('s4', 'math'), 1.2, 'hunt: 1 cobra = ₹');
+
+R.type("typ4b", W("s4", "breed") - .1, .9, 'breed: 50 cobras = ₹₹₹');
+R.hide('bulb4'); R.popIn('bulb4', W('s4', 'breed'), { r: 0 });
+FIG.mood('f4', [[0, 'neutral'], [W('s4', 'math'), 'annoyed'], [W('s4', 'breed'), 'bliss']]);
+let eggs = ''; for (let i = 0; i < 6; i++) eggs += `<ellipse id="eg${i}" cx="${180 + i * 34}" cy="${1260 - (i % 2) * 30}" rx="26" ry="34" fill="#F6F1E2" stroke="#D8CFB4" stroke-width="4"/>`;
+put('egg4', at(0, 0, 1, PROPS.basket('bk4', 260).replace('<g id="bk4">', '<g id="bk4"><g transform="translate(250 1330)">').replace(/<\/g>$/, '</g></g>')) + eggs);
+R.hide('egg4'); R.popIn('egg4', W('s4', 'them'), { r: 0 });
+R.cam(W('s4', 'breed'), .35, { x: 600, y: 900, s: 1.12 }, 'out');
+
+/* ---------- s5 Farm ---------- */
+let fe = ''; for (let i = 0; i < 14; i++) fe += `<rect x="${i * 80}" y="1100" width="40" height="140" rx="8" fill="#A8703A"/>`; fe += `<rect x="0" y="1130" width="1080" height="20" fill="#8A5A28"/>`;
+put('fence5', fe);
+let fm = ''; [[180, 1420], [430, 1450], [680, 1420], [300, 1600], [560, 1620], [820, 1590]].forEach(([x, y], i) => fm += `<g id="fb${i}">${at(x, y, .9, PROPS.basket('fbk' + i, 200))}<g id="fc${i}">${at(x, y - 110, .36, PROPS.cobra('fcb' + i))}</g></g>`);
+put('farm5', fm);
+R.gfromTo('sign5', { y: -600, rotation: -20 }, { y: 0, rotation: 0, duration: .7, ease: 'bounce.out' }, AT('s5', .05));
+for (let i = 0; i < 6; i++) { R.hide('fc' + i); R.gfromTo('fc' + i, { y: 120, scaleY: .2, transformOrigin: '50% 100%' }, { y: 0, scaleY: 1, duration: .4, ease: 'back.out(2)' }, W('s5', 'backyard') - .1 + i * .12); R.gset('fc' + i, { autoAlpha: 1 }, W('s5', 'backyard') - .1 + i * .12); }
+put('far5in', farmer('fa5', 920, 1300, .62, 'happy'));
+R.hide('chart5'); R.popIn('chart5', W('s5', 'Business') - .1, { r: 4 });
+R.draw('line5', W('s5', 'Business'), 1.1);
+FIG.mood('fa5', [[0, 'happy'], [W('s5', 'booming'), 'bliss']]);
+R.squash('far5', W('s5', 'booming') + .2);
+R.cam(W('s5', 'booming'), 1.2, { x: 700, y: 700, s: 1.1 }, 'inout');
+
+/* ---------- s6 Gestrichen → frei ---------- */
+put('off6in', official('of6', 820, 1180, .8, 'neutral'));
+R.gfromTo('sign6', { scale: .7, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .4, ease: 'back.out(1.6)' }, AT('s6', .05));
+R.slam('st6', W('s6', 'cancel'));
+FIG.mood('of6', [[0, 'neutral'], [W('s6', 'notice'), 'annoyed']]);
+R.hide('g6b'); R.trans('push', 'g6a', 'g6b', W('s6', 'Now') - .3, .45);
+let b6 = ''; [[180, 1500], [420, 1540], [680, 1500]].forEach(([x, y], i) => b6 += at(x, y, .9, PROPS.basket('b6_' + i, 220)));
+put('bks6', b6);
+put('far6in', farmer('fa6', 880, 1330, .72, 'sad'));
+R.hide('tag6'); R.popIn('tag6', W('s6', 'worthless'), { r: -10 });
+FIG.mood('fa6', [[0, 'sad'], [W('s6', 'So'), 'annoyed']]);
+let esc = ''; for (let i = 0; i < 9; i++) esc += `<g id="es${i}">${at(180 + (i % 3) * 250, 1440 + (i % 3) * 20, [-.34, .34], PROPS.cobra('es_' + i))}</g>`;
+put('esc6', esc);
+const tGo = W('s6', 'go');
+for (let i = 0; i < 3; i++) R.g('b6_' + i + '_lid', { y: -140, rotation: 40, autoAlpha: 0, duration: .35, ease: 'power2.out' }, tGo - .3 + i * .05);
+for (let i = 0; i < 9; i++) { R.hide('es' + i); R.gset('es' + i, { autoAlpha: 1 }, tGo - .1 + i * .08);
+  R.gfromTo('es' + i, { y: 60, x: 0 }, { y: 120 + (i % 3) * 60, x: -700 - rnd() * 300, duration: 1.6, ease: 'power1.in' }, tGo - .1 + i * .08); }
+R.wiggle('far6', tGo + .3, { a: 3, n: 4 });
+
+/* ---------- s7 Endstand ---------- */
+R.popIn('sb7', AT('s7', .05), { r: 0 });
+R.gfromTo('bA', { scaleY: 0, transformOrigin: '50% 100%' }, { scaleY: 1, duration: .5, ease: 'back.out(1.6)' }, W('s7', 'score'));
+R.gfromTo('bB', { scaleY: 0, transformOrigin: '50% 100%' }, { scaleY: 1, duration: .8, ease: 'elastic.out(1,.4)' }, W('s7', 'more'));
+put('off7in', official('of7', 540, 1340, .62, 'neutral'));
+R.gfrom('off7', { y: 600, duration: .4, ease: 'power3.out' }, AT('s7', .3));
+FIG.mood('of7', [[0, 'neutral'], [W('s7', 'before'), 'shock'], [W('s7', 'Great'), 'sad']]);
+R.hide('hand7'); R.gset('hand7', { autoAlpha: 1 }, W('s7', 'Great') - .1); R.gfrom('hand7', { y: 300, duration: .3, ease: 'power2.out' }, W('s7', 'Great') - .1);
+R.slam('st7', W('s7', 'job'));
+R.wiggle('off7', W('s7', 'before') + .1, { a: 5, n: 6, d: .6 });
+R.cam(W('s7', 'more'), .5, { x: 760, y: 600, s: 1.1 }, 'out');
+
+/* ---------- s8 Hanoi ---------- */
+const m8 = MAP.create('map8', { box: [60, 390, 960, 790], projection: 'mercator', view: { center: [104, 16], zoom: 3.4 }, style: { ocean: '#1E3554', land: '#5E5878', border: '#2A2440' } });
+R.up('h8a', AT('s8', .05));
+m8.fill('Vietnam', W('s8', 'France') + .1, '#2B4AA0', .4);
+m8.view(AT('s8', .3), 1.4, { center: [105.8, 21], zoom: 8 });
+const pl8 = m8.layer();
+pl8.insertAdjacentHTML('beforeend', `<g id="hn8"><circle r="16" fill="#FFD23F" stroke="#fff" stroke-width="5"/><g transform="translate(0 -40)"><rect x="-90" y="-30" width="180" height="60" rx="30" fill="#fff"/><text y="12" text-anchor="middle" font-size="36" font-weight="900" fill="#141022">Hanoi</text></g></g>`);
+m8.pin('hn8', [105.85, 21.03]); R.hide('hn8'); R.popIn('hn8', W('s8', 'Hanoi'), { r: 0 });
+R.hide('rw8'); R.popIn('rw8', W('s8', 'Money'), { r: 3 });
+R.hide('g8b'); R.trans('zoom', 'g8a', 'g8b', W('s8', 'So') - .3, .45);
+put('rat8in', at(400, 1290, 1.3, PROPS.rat('rt8')));
+R.gfrom('rat8', { x: -300, duration: .5, ease: 'power2.out' }, W('s8', 'So'));
+const tCut = W('s8', 'cut');
+put('sc8', `<g id="scis8">${at(170, 1200, 1, `<circle cx="-40" cy="40" r="24" fill="none" stroke="#FF4D2E" stroke-width="12"/><circle cx="40" cy="40" r="24" fill="none" stroke="#FF4D2E" stroke-width="12"/><path d="M-26 22 L30 -80 M26 22 L-30 -80" stroke="#D8DCE8" stroke-width="12" stroke-linecap="round"/>`)}</g>`);
+R.hide('scis8'); R.popIn('scis8', tCut - .3, { r: -20 });
+R.g('scis8', { rotation: 25, duration: .12, yoyo: true, repeat: 1, transformOrigin: '50% 50%' }, tCut);
+R.g('rt8_tail', { x: 450, y: -200, rotation: 200, duration: .9, ease: 'power2.in', transformOrigin: '0% 50%' }, tCut + .15);
+R.g('rt8_tail', { autoAlpha: 0, duration: .1 }, tCut + 1);
+R.g('scis8', { autoAlpha: 0, duration: .2 }, tCut + .5);
+R.bob('rat8', W('s8', 'let'), R.end('s8'), { a: -12, d: .14 });
+R.g('rat8', { x: 900, duration: 1.4, ease: 'power1.in' }, W('s8', 'live') - .3);
+R.slam('st8', W('s8', 'live'));
+
+/* ---------- s9 Buch ---------- */
+put('bcob', PROPS.cobra('bc9', '#141022', '#141022'));
+R.up('h9', AT('s9', .05));
+R.dropIn('book9', W('s9', 'economist') - .2, { d: .6 });
+R.hide('gl9'); R.dropIn('gl9', W('s9', 'name') - .1, { d: .5 });
+R.g('book9', { scale: 1.1, duration: .18, yoyo: true, repeat: 1, transformOrigin: '50% 100%' }, W('s9', 'Cobra'));
+R.slam('st9', W('s9', 'German', 1));
+R.cam(W('s9', 'Cobra'), .4, { x: 540, y: 900, s: 1.1 }, 'out');
+
+/* ---------- s10 Büro ---------- */
+R.gfromTo('mon10', { y: 900 }, { y: 0, duration: .5, ease: 'back.out(1.3)' }, AT('s10', .05));
+R.gfromTo('scr10', { autoAlpha: 0 }, { autoAlpha: 1, duration: .2 }, AT('s10', .45));
+put('hero10in', hero('du10', 860, 1300, .7, { mood: 'neutral' }));
+R.gfrom('hero10', { y: 600, duration: .45, ease: 'back.out(1.5)' }, W('s10', 'boss') - .2);
+FIG.mood('du10', [[0, 'neutral'], [W('s10', 'bug'), 'happy'], [W('s10', 'write'), 'bliss']]);
+R.count('n10', W('s10', 'write') - .1, 1.4, 0, 47, v => Math.round(v));
+let bg = ''; for (let i = 0; i < 10; i++) bg += `<g id="bg${i}">${at(140 + rnd() * 800, 1250 + rnd() * 160, .6 + rnd() * .3, PROPS.bug('bu' + i))}</g>`;
+put('bugs10', bg);
+for (let i = 0; i < 10; i++) { R.hide('bg' + i); R.popIn('bg' + i, W('s10', 'write') + i * .1, { r: 20 }); }
+R.cam(W('s10', 'Congrats'), 1, { x: 540, y: 1000, s: 1.12 }, 'inout');
+
+/* ---------- s11 Fazit + CTA ---------- */
+R.popIn('q11', AT('s11', .05), { r: 0 });
+R.gfromTo('kpi11', { y: 900 }, { y: 0, duration: .5, ease: 'back.out(1.3)' }, W('s11', 'number') - .1);
+['k1', 'k2', 'k3'].forEach((id, i) => R.gfromTo(id, { scaleY: 0, transformOrigin: '50% 100%' }, { scaleY: 1, duration: .5, ease: 'back.out(1.8)' }, W('s11', 'get') + i * .12));
+R.slam('st11', W('s11', 'result'));
+R.fadeOut('st11', W('s11', 'Send') - .2);
+put('cob11in', at(820, 1120, .5, PROPS.cobra('cb11')));
+R.hide('cob11'); R.gset('cob11', { autoAlpha: 1 }, W('s11', 'KPIs') - .3);
+R.gfromTo('cob11in', { y: 300 }, { y: 0, duration: .45, ease: 'back.out(2)' }, W('s11', 'KPIs') - .3);
+R.hide('arrow'); R.gset('arrow', { autoAlpha: 1 }, W('s11', 'Send')); R.bob('arrow', W('s11', 'Send'), R.TOTAL, { a: 16, d: .4 });
+
+/* ===== Sounddesign: einzige Stelle für Sounds. Nur Kit-Sounds (kit/sfx), eigene per earshot später. ===== */
+const SND = [
+  [WE('s1', 'paid') + .05, 'ding', .6, 'Münze erscheint (nach "paid")', { len: .3 }],
+  [WE('s1', 'cobras', 1) + .05, 'pop', .7, 'viele Kobras ploppen auf (nach der Pointe)'],
+  [W('s2', 'plan') - .3, 'whoosh', .6, 'Wechsel Karte → Amt'],
+  [W('s2', 'cash') + .1, 'drop', .6, 'Münzstapel fällt'],
+  [WE('s3', 'great') + .05, 'slam', .8, 'Stempel WORKS GREAT'],
+  [W('s4', 'math'), 'type', .6, 'Rechner tippt', { len: .4 }],
+  [WE('s4', 'them') + .05, 'ding', .7, 'Idee (Glühbirne, nach der Frage)', { len: .3 }],
+  [W('s6', 'cancel') + .05, 'slam', .8, 'Stempel CANCELLED'],
+  [WE('s6', 'go') + .05, 'whoosh', .6, 'Kobras hauen ab'],
+  [WE('s7', 'before') + .05, 'fail', .6, 'Balken AFTER schießt hoch (nach "before")'],
+  [W('s8', 'cut') + .05, 'pop', .6, 'Schere schneidet'],
+  [WE('s9', 'German', 1) + .05, 'slam', .7, 'Stempel OF COURSE (nach der Pointe)'],
+  [WE('s10', 'bugs') + .05, 'tick', .6, 'Bug-Zähler rattert', { len: .4 }],
+];
+SND.forEach(([t, name, vol, why, o]) => R.sfx(t, name, vol, { ...(o || {}), why }));
+R.start();
+</script>
+</body>
+</html>

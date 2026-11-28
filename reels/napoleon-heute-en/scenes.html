@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Napoleon Today</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root { --or:#FF7A3D; --ye:#FFD23F; --re:#FF4D2E; --bl:#7FD3FF; --ink:#141022; --gold:#E8B83A; --stone:#E9E1CF; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:100%; height:100%; background:#000; overflow:hidden; font-family:Poppins, system-ui, sans-serif; }
+  #stage { position:relative; width:1080px; height:1920px; overflow:hidden; background:#120E20; }
+  #world, .sc, .bg { position:absolute; inset:0; }
+  .sc { overflow:hidden; }
+  svg { position:absolute; inset:0; width:1080px; height:1920px; overflow:visible; }
+  .t { position:absolute; left:60px; right:60px; text-align:center; color:#fff; font-weight:900; line-height:1.05; letter-spacing:-.02em; text-shadow:0 8px 0 rgba(0,0,0,.25); }
+  .box { display:inline-block; padding:.04em .3em; border-radius:.18em; }
+  .kick { position:absolute; top:110px; left:50%; translate:-50% 0; background:rgba(0,0,0,.45); color:#fff; font:800 30px Poppins; letter-spacing:.14em; padding:10px 28px; border-radius:99px; white-space:nowrap; z-index:45; }
+  .kick b { color:var(--ye); }
+  .stamp { position:absolute; color:var(--re); border:12px solid var(--re); border-radius:22px; font:900 110px Poppins; padding:0 30px; letter-spacing:.02em; white-space:nowrap; background:rgba(255,255,255,.08); }
+  .card { position:absolute; background:#FBF8F1; border-radius:24px; box-shadow:0 18px 0 rgba(0,0,0,.25); color:var(--ink); }
+  .sign { position:absolute; background:#FFD23F; border:12px solid #141022; border-radius:20px; color:#141022; text-align:center; font-weight:900; backface-visibility:hidden; }
+  .bubble { position:absolute; background:#fff; color:var(--ink); border-radius:40px; font:900 64px Poppins; padding:18px 34px; box-shadow:0 12px 0 rgba(0,0,0,.2); white-space:nowrap; }
+  .bubble::after { content:''; position:absolute; bottom:-30px; left:var(--tail, 60px); border:18px solid transparent; border-top:26px solid #fff; }
+  .flap { display:inline-block; width:50px; margin:0 3px; background:#0A1230; border-radius:8px; text-align:center; color:var(--ye); box-shadow:inset 0 -3px 0 rgba(0,0,0,.5); }
+  .blink { animation:blink 4s infinite; transform-box:fill-box; transform-origin:center; }
+  .gallop { animation:gallop .28s ease-in-out infinite alternate; transform-box:fill-box; transform-origin:50% 0; }
+  .spin { animation:spin .5s linear infinite; transform-box:fill-box; transform-origin:center; }
+  .sway { animation:sway 3.2s ease-in-out infinite alternate; transform-box:fill-box; transform-origin:50% 100%; }
+  @keyframes blink { 0%,93%,100% { transform:scaleY(1); } 96% { transform:scaleY(.1); } }
+  @keyframes gallop { to { transform:skewX(-14deg) scaleY(.94); } }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  @keyframes sway { to { transform:rotate(3deg); } }
+</style>
+</head>
+  .fall { animation:fall 2.2s linear infinite; }
+  @keyframes fall { from { transform:translateY(-200px); } to { transform:translateY(1900px); } }
+</style>
+</head>
+<body>
+<div id="stage">
+<div class="kick">WHAT IF … <b>NAPOLEON</b></div>
+<div id="world">
+
+  <!-- s1 Hook: Paris am Abend, Napoleon taucht auf, Handy mit WLAN -->
+  <div class="sc" id="g1">
+    <div class="bg" style="background:linear-gradient(#1E2A5A 0%, #5A3A7A 50%, #E0704E 85%, #F6B25E 100%)"></div>
+    <svg><g id="sky1"></g>
+      <g fill="#2A1E44"><path d="M0 1100 h160 v-140 h90 v80 h120 v-200 h100 v260 h200 v-120 h110 v-60 h120 v180 h180 V1300 H0Z"/></g>
+      <g id="eif1"><path d="M780 560 L700 1100 H740 Q780 1010 820 1100 H860 Z" fill="#141022"/><path d="M745 820 H815 M725 950 H835" stroke="#141022" stroke-width="18"/><path d="M780 520 V560" stroke="#141022" stroke-width="8"/></g>
+      <rect x="0" y="1220" width="1080" height="700" fill="#2A1E44"/>
+      <g id="nap1"><g id="nap1in"></g></g><g id="ph1"></g></svg>
+    <div class="t" id="h1a" style="top:250px;font-size:72px">What if</div>
+    <div class="t" id="h1b" style="top:340px;font-size:128px"><span class="box" style="background:#2B4AA0">NAPOLEON</span></div>
+    <div class="t" id="h1c" style="top:520px;font-size:78px;color:var(--ye)">was alive today?</div>
+  </div>
+
+  <!-- s2 EU-Karte, Brüssel, Formular -->
+  <div class="sc" id="g2">
+    <div class="bg" style="background:linear-gradient(#141B33, #1E2A4C)"></div>
+    <svg id="map2"></svg>
+    <div class="t" id="h2a" style="top:270px;font-size:64px">Who runs <span style="color:var(--ye)">Europe</span> now?</div>
+    <div class="card" id="form2" style="left:560px;top:820px;width:420px;padding:24px 30px;rotate:6deg;background:#fff">
+      <div style="font:900 44px Poppins">FORM EU-1789</div><div style="font:600 28px Poppins;color:#777">Application to conquer</div>
+      <div style="margin-top:14px;height:12px;width:90%;background:#ddd;border-radius:6px"></div><div style="margin-top:12px;height:12px;width:70%;background:#ddd;border-radius:6px"></div></div>
+    <svg><g id="face2"><g transform="translate(210 1080) scale(.42)" id="face2in"></g></g></svg>
+  </div>
+
+  <!-- s3 Karte Paris → Deutschland, dann Bahnsteig -->
+  <div class="sc" id="g3">
+    <div class="sc" id="g3a">
+      <div class="bg" style="background:linear-gradient(#141B33, #1E2A4C)"></div>
+      <svg id="map3"></svg>
+      <div class="t" id="h3a" style="top:270px;font-size:66px"><span class="box" style="background:var(--or)">STEP 1</span> Germany</div>
+    </div>
+    <div class="sc" id="g3b">
+      <div class="bg" style="background:linear-gradient(#232A4A, #3A4470)"></div>
+      <svg><rect x="0" y="1180" width="1080" height="740" fill="#5A5F78"/><rect x="0" y="1180" width="1080" height="24" fill="#FFD23F"/>
+        <g id="train3"><g transform="translate(0 1170)"><rect x="0" y="-360" width="1300" height="320" rx="60" fill="#F4F4F4"/><rect x="0" y="-150" width="1300" height="26" fill="#E8402A"/>
+          ${''}<rect x="80" y="-300" width="180" height="110" rx="16" fill="#2A3458"/><rect x="300" y="-300" width="180" height="110" rx="16" fill="#2A3458"/><rect x="520" y="-300" width="180" height="110" rx="16" fill="#2A3458"/><rect x="740" y="-300" width="180" height="110" rx="16" fill="#2A3458"/></g></g>
+        <g id="nap3"><g id="nap3in"></g></g></svg>
+      <div class="card" id="tk3" style="left:120px;top:320px;width:500px;padding:20px 26px;rotate:-5deg;background:#fff">
+        <div style="font:800 30px Poppins;color:#888">TICKET · Paris → Berlin</div><div style="font:900 60px Poppins">1st class</div><div style="font:700 30px Poppins;color:#888">Passenger: N. Bonaparte</div></div>
+    </div>
+  </div>
+
+  <!-- s4 Anzeigetafel: Zug fällt aus -->
+  <div class="sc" id="g4">
+    <div class="bg" style="background:linear-gradient(#232A4A, #3A4470)"></div>
+    <svg><rect x="0" y="1180" width="1080" height="740" fill="#5A5F78"/><rect x="0" y="1180" width="1080" height="24" fill="#FFD23F"/>
+      <g id="suit4"><rect x="560" y="1130" width="260" height="110" rx="20" fill="#8A5A34"/><rect x="650" y="1100" width="80" height="40" rx="12" fill="none" stroke="#6E4628" stroke-width="12"/></g>
+      <g id="nap4"><g id="nap4in"></g></g><g id="bus4"></g></svg>
+    <div class="card" id="board4" style="left:70px;top:260px;width:940px;padding:28px 34px;background:#13235E;color:#fff">
+      <div style="font:800 34px Poppins;color:#B8C4F0">14:07 · Platform 3 · → Berlin</div>
+      <div id="tr4" style="font:900 72px Poppins;margin-top:10px">Train <span id="cx4" style="color:var(--re)">on time</span></div>
+      <div id="bs4" style="margin-top:12px;padding-top:12px;border-top:3px dashed #2C3E86;font:800 44px Poppins;color:#8FA0D8">Replacement bus: <span style="color:var(--re)">+90 min</span></div></div>
+    <div class="t" id="sv4" style="top:560px;font-size:92px">GERMANY <span class="box" style="background:#2EAF5A">SURVIVES</span></div>
+    <div class="stamp" id="st4" style="left:150px;top:580px;rotate:-8deg;font-size:84px">THANKS, BAHN</div>
+  </div>
+
+  <!-- s5 Russland im Winter, wieder -->
+  <div class="sc" id="g5">
+    <div class="bg" style="background:linear-gradient(#141B33, #1E2A4C)"></div>
+    <svg id="map5"></svg>
+    <div class="t" id="h5a" style="top:270px;font-size:66px"><span class="box" style="background:var(--or)">STEP 2</span> Russia</div>
+    <div class="card" id="yr5" style="left:330px;top:1190px;width:420px;padding:10px 0;text-align:center;font:900 90px Poppins;background:#fff">1812</div>
+    <svg><g id="snow5"></g><g id="face5"><g transform="translate(830 1080) scale(.42)" id="face5in"></g></g></svg>
+  </div>
+
+  <!-- s6 Größe -->
+  <div class="sc" id="g6">
+    <div class="bg" style="background:linear-gradient(#F2EFE9, #DCD6CA)"></div>
+    <div class="card" id="srch6" style="left:120px;top:250px;width:840px;padding:22px 34px;border-radius:60px;background:#fff;font:700 44px Poppins;color:#333">🔍 <span id="typ6"></span></div>
+    <svg><g id="ruler6"></g><g id="nap6"><g id="nap6in"></g></g><g id="avg6"><g id="avg6in"></g></g></svg>
+    <div class="card" id="cm6" style="left:640px;top:440px;width:400px;padding:16px 22px;font:800 34px Poppins;background:#fff;rotate:4deg">@lou: short king 👑</div>
+    <div class="card" id="cm6b" style="left:60px;top:470px;width:400px;padding:16px 22px;font:800 34px Poppins;background:#fff;rotate:-3deg">@max: tiny emperor lol</div>
+    <div class="stamp" id="st6" style="left:300px;top:660px;rotate:-8deg;font-size:96px;color:#2B4AA0;border-color:#2B4AA0">AVERAGE</div>
+  </div>
+
+  <!-- s7 Code civil + Karte -->
+  <div class="sc" id="g7">
+    <div class="bg" style="background:linear-gradient(#1B1530, #3A2350)"></div>
+    <svg id="map7"></svg>
+    <svg><g id="book7"><g transform="translate(540 760)"><rect x="-230" y="-300" width="460" height="560" rx="18" fill="#141022"/><rect x="-212" y="-290" width="424" height="540" rx="12" fill="#2B4AA0"/>
+      <text y="-150" text-anchor="middle" font-size="64" font-weight="900" fill="#E8B83A" font-family="Poppins">CODE</text><text y="-70" text-anchor="middle" font-size="64" font-weight="900" fill="#E8B83A" font-family="Poppins">CIVIL</text>
+      <text y="20" text-anchor="middle" font-size="40" font-weight="800" fill="#fff" font-family="Poppins">1804</text><path d="M-120 100 H120 M-120 150 H120" stroke="#E8B83A" stroke-width="8"/></g></g></svg>
+    <div class="t" id="h7" style="top:260px;font-size:72px">Plot <span class="box" style="background:var(--re)">twist</span></div>
+  </div>
+
+  <!-- s8 Hausnummern -->
+  <div class="sc" id="g8">
+    <div class="bg" style="background:linear-gradient(#8FC8F0, #D6EEFA)"></div>
+    <svg><rect x="0" y="900" width="1080" height="1020" fill="#8A8FA6"/><path d="M540 900 V1920" stroke="#fff" stroke-width="12" stroke-dasharray="60 50"/>
+      <g id="houses8"></g><g id="nap8"><g id="nap8in"></g></g></svg>
+    <div class="card" id="pl8" style="left:290px;top:330px;width:500px;padding:16px 0;text-align:center;background:#2B4AA0;color:#fff;border:8px solid #fff;font:900 54px Poppins">PARIS · 1805</div>
+  </div>
+
+  <!-- s9 Werkstudent -->
+  <div class="sc" id="g9">
+    <div class="bg" style="background:linear-gradient(#3B3357, #2A2442)"></div>
+    <svg><rect x="80" y="1100" width="920" height="40" rx="10" fill="#8A5A34"/><rect x="120" y="1140" width="40" height="300" fill="#6E4628"/><rect x="920" y="1140" width="40" height="300" fill="#6E4628"/>
+      <g id="nap9"><g id="nap9in"></g></g><g id="lap9"></g><g id="mug9"><rect x="800" y="1010" width="80" height="90" rx="12" fill="#FBF8F1"/><path d="M880 1030 q30 0 30 30 t-30 30" stroke="#FBF8F1" stroke-width="12" fill="none"/></g></svg>
+    <div class="card" id="pl9" style="left:90px;top:270px;width:420px;padding:18px 24px;rotate:-4deg;background:#F3E3BF;font:800 38px Poppins">Plan: <span style="color:var(--re)">all of Europe</span></div>
+    <div class="card" id="sl9" style="left:580px;top:300px;width:400px;padding:18px 24px;rotate:3deg;font:800 38px Poppins">Sleep: <span style="color:var(--re)">4 h</span></div>
+    <div class="card" id="cal9" style="left:300px;top:460px;width:480px;padding:18px 24px;text-align:center;font:900 52px Poppins">Deadline: <span style="color:var(--re)">Friday</span></div>
+    <div class="stamp" id="st9" style="left:260px;top:600px;rotate:-10deg;font-size:110px">LATE</div>
+  </div>
+
+  <!-- s10 Fazit + CTA -->
+  <div class="sc" id="g10">
+    <div class="bg" style="background:linear-gradient(#2B1B4A, #4A2A5A)"></div>
+    <div class="t" id="q10" style="top:250px;font-size:70px">Which country<br>should he <span style="color:var(--ye)">try next?</span></div>
+    <svg><g id="stack10"></g><g id="nap10"><g id="nap10in"></g></g>
+      <g id="tro10"><g transform="translate(800 980)"><path d="M-70 -160 H70 Q70 -40 0 -20 Q-70 -40 -70 -160Z" fill="#E8B83A"/><rect x="-14" y="-20" width="28" height="60" fill="#E8B83A"/><rect x="-60" y="40" width="120" height="30" rx="8" fill="#C99A22"/>
+        <text y="-80" text-anchor="middle" font-size="56" font-weight="900" fill="#141022" font-family="Poppins">1 3 5</text></g></g></svg>
+    <div id="cbox" style="position:absolute;left:90px;right:90px;top:1180px;height:110px;border-radius:55px;background:#FBF8F1;padding:28px 36px;font:700 42px Poppins;color:var(--ink);white-space:nowrap"><span id="typ10"></span><span id="caret">|</span></div>
+  </div>
+
+</div></div>
+
+<script src="timeline.js"></script>
+<script src="../../kit/vendor/gsap-all.js"></script>
+<script src="../../kit/runtime.js"></script>
+<script src="../../kit/figures.js"></script>
+<script src="../../kit/props.js"></script>
+<script src="../../kit/geo-lib.js"></script>
+<script src="../../kit/geo-data-50m.js"></script>
+<script src="../../kit/map.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+const AT = R.at;
+const W = (sid, text, nth = 0) => {
+  const n = text.toLowerCase(); const hits = R.TL.words.filter(w => w.scene === sid && w.w.toLowerCase().replace(/[^\p{L}\p{N}%€]/gu, '').startsWith(n));
+  if (!hits[nth]) console.warn('Wort fehlt:', sid, text, nth); return R.word(sid, text, nth);
+};
+R.autoSfx(false);
+const WE = (sid, text, nth = 0) => {
+  const hits = R.TL.words.filter(w => w.scene === sid && w.w.toLowerCase().replace(/[^\p{L}\p{N}]/gu, '').startsWith(text.toLowerCase()));
+  return hits[nth] ? hits[nth].end : R.at(sid);
+};
+const put = (id, html) => ($(id).innerHTML = html);
+const at = (x, y, s, inner) => `<g transform="translate(${x} ${y}) scale(${Array.isArray(s) ? s.join(' ') : s})">${inner}</g>`;
+let seed = 5; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+const nap = (id, x, y, s, mood = 'neutral', arm) => at(x, y, s, FIG.human({ id, mood, hoodie: '#2B4AA0', hoodieD: '#1C3478', arm }) + `<g transform="translate(0 -452)">${PROPS.bicorne()}</g>`);
+const napFace = (id, mood) => FIG.humanFace({ id, mood }) + `<g transform="scale(3.6)">${PROPS.bicorne()}</g>`;
+const STYLE = { ocean: '#1E3554', land: '#5E5878', border: '#2A2440' };
+const PARIS = [2.35, 48.86], BERLIN = [13.4, 52.52], MOSCOW = [37.62, 55.75], BRUSSELS = [4.35, 50.85];
+const lbl = (id, txt, w, bg = '#fff') => `<g id="${id}"><rect x="${-w / 2}" y="-30" width="${w}" height="60" rx="30" fill="${bg}"/><text y="12" text-anchor="middle" font-size="36" font-weight="900" fill="#141022" font-family="Poppins">${txt}</text></g>`;
+
+R.scenes([['s1', 'g1'], ['s2', 'g2', 'zoom'], ['s3', 'g3', 'whip'], ['s4', 'g4', 'push'], ['s5', 'g5', 'iris'],
+  ['s6', 'g6', 'flash'], ['s7', 'g7', 'spin'], ['s8', 'g8', 'whip'], ['s9', 'g9', 'push'], ['s10', 'g10', 'drop']]);
+
+/* ---------- s1 Hook ---------- */
+let st = ''; for (let i = 0; i < 30; i++) st += `<circle cx="${rnd() * 1080}" cy="${rnd() * 700}" r="${2 + rnd() * 3}" fill="#fff" opacity="${.3 + rnd() * .5}"/>`;
+put('sky1', st);
+put('nap1in', nap('n1', 400, 1400, 1.05, 'shock'));
+R.gfromTo('nap1', { y: 800 }, { y: 0, duration: .6, ease: 'back.out(1.5)' }, .05);
+R.up('h1a', AT('s1', .02)); R.hide('h1b'); R.chars('h1b', W('s1', 'Napoleon') - .1, { stagger: .03, y: 90 });
+R.popIn('h1c', W('s1', 'alive'), { r: -4 });
+R.wiggle('nap1', W('s1', 'today') + .1, { a: 4, n: 6, d: .6 });
+put('ph1', `<g id="phone1">${at(700, 1050, 1, `<rect x="-90" y="-170" width="180" height="320" rx="30" fill="#141022"/><rect x="-76" y="-150" width="152" height="280" rx="18" fill="#7FD3FF"/>
+  <path d="M-50 -20 Q0 -70 50 -20 M-32 0 Q0 -32 32 0" stroke="#141022" stroke-width="12" fill="none" stroke-linecap="round"/><circle cy="26" r="12" fill="#141022"/>`)}</g>`);
+R.hide('phone1'); R.popIn('phone1', W('s1', 'Wi') - .1, { r: 15 });
+FIG.mood('n1', [[0, 'shock'], [W('s1', 'right'), 'neutral'], [W('s1', 'Wi'), 'bliss']]);
+R.cam(W('s1', 'Wi'), .4, { x: 560, y: 1000, s: 1.12 }, 'out');
+
+/* ---------- s2 EU ---------- */
+const EU27 = ['Austria', 'Belgium', 'Bulgaria', 'Croatia', 'Cyprus', 'Czechia', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Ireland', 'Italy', 'Latvia', 'Lithuania', 'Luxembourg', 'Malta', 'Netherlands', 'Poland', 'Portugal', 'Romania', 'Slovakia', 'Slovenia', 'Spain', 'Sweden'];
+const m2 = MAP.create('map2', { box: [60, 390, 960, 790], projection: 'mercator', view: { center: [12, 51], zoom: 4 }, style: STYLE });
+R.up('h2a', AT('s2', .05));
+m2.fill(EU27, W('s2', 'Europe') - .1, '#2B4AA0', .3, .5 / 27);
+const pl2 = m2.layer();
+pl2.insertAdjacentHTML('beforeend', `<g id="bxs"><path d="M0 -44 L13 -14 L44 -12 L20 8 L28 40 L0 22 L-28 40 L-20 8 L-44 -12 L-13 -14Z" fill="#FFD23F" stroke="#141022" stroke-width="5"/></g>${lbl('bxl', 'Brussels', 200, '#FFD23F')}`);
+m2.pin('bxs', BRUSSELS); m2.pin('bxl', BRUSSELS, 0, -70);
+R.pop('bxs', W('s2', 'Brussels'), null); R.pop('bxl', W('s2', 'Brussels') + .1, null);
+m2.view(W('s2', 'Answer') - .2, 1, { center: [5, 50], zoom: 9 });
+R.hide('form2'); R.gset('form2', { autoAlpha: 1 }, W('s2', 'form') - .2); R.gfrom('form2', { y: -1200, rotation: -30, duration: .6, ease: 'bounce.out' }, W('s2', 'form') - .2);
+put('face2in', napFace('f2', 'annoyed'));
+R.hide('face2'); R.gset('face2', { autoAlpha: 1 }, W('s2', 'question') - .2);
+R.gfrom('face2', { y: 700, duration: .45, ease: 'back.out(1.6)' }, W('s2', 'question') - .2);
+FIG.mood('f2', [[0, 'neutral'], [W('s2', 'Brussels'), 'shock'], [W('s2', 'form'), 'annoyed']]);
+
+/* ---------- s3 Plan Deutschland ---------- */
+const m3 = MAP.create('map3', { box: [60, 390, 960, 790], projection: 'mercator', view: { center: [8, 50], zoom: 5.5 }, style: STYLE });
+m3.fill('France', -1, '#2B4AA0', .01);
+const pl3 = m3.layer();
+pl3.insertAdjacentHTML('beforeend', `<g id="hd3">${at(0, 0, .22, FIG.human({ id: 'mini3', mood: 'happy', hoodie: '#2B4AA0', hoodieD: '#1C3478' }) + `<g transform="translate(0 -452)">${PROPS.bicorne()}</g>`)}</g>`);
+R.hide('h3a'); R.popIn('h3a', W('s3', 'Step') - .1, { r: -3 });
+m3.fill('Germany', W('s3', 'Germany') - .1, '#C8302A', .3);
+m3.route('r3', [PARIS, BERLIN], W('s3', 'Germany'), 1, { head: 'hd3', rotate: false, keepHead: true, color: '#fff', width: 8 });
+R.hide('g3b'); R.trans('whip', 'g3a', 'g3b', W('s3', 'takes') - .25, .4);
+put('nap3in', nap('n3', 300, 1230, .8, 'happy'));
+R.gfromTo('train3', { x: 1200 }, { x: 0, duration: .9, ease: 'power3.out' }, W('s3', 'train') - .1);
+R.hide('tk3'); R.popIn('tk3', W('s3', 'takes'), { r: -10 });
+R.squash('nap3', W('s3', 'train') + .3);
+
+/* ---------- s4 Bahn ---------- */
+put('nap4in', nap('n4', 690, 1170, .62, 'neutral'));
+R.gfromTo('board4', { rotationX: -90, transformOrigin: '50% 0%', transformPerspective: 1200 }, { rotationX: 0, duration: .5, ease: 'back.out(1.6)' }, AT('s4', .02));
+R.during(W('s4', 'cancelled') - .1, .01, (p) => { $('cx4').textContent = p > 0 ? 'CANCELLED' : 'on time'; });
+R.tw('tr4', W('s4', 'cancelled'), .3, { s: 1.15 }, { s: 1 }, 'back');
+R.hide('bs4'); R.gset('bs4', { autoAlpha: 1 }, W('s4', 'Replacement') - .1);
+let bus = at(0, 1180, 1, `<rect x="0" y="-300" width="560" height="260" rx="40" fill="#FFD23F"/><rect x="40" y="-250" width="120" height="90" rx="12" fill="#2A3458"/><rect x="190" y="-250" width="120" height="90" rx="12" fill="#2A3458"/><rect x="340" y="-250" width="120" height="90" rx="12" fill="#2A3458"/><circle cx="120" cy="-40" r="44" fill="#141022"/><circle cx="440" cy="-40" r="44" fill="#141022"/>`);
+put('bus4', `<g id="busg">${bus}</g>`);
+R.hide('busg'); R.gset('busg', { autoAlpha: 1 }, W('s4', 'late') - .1);
+R.gfromTo('busg', { x: -700 }, { x: -380, duration: 1.4, ease: 'power1.out' }, W('s4', 'late') - .1);
+R.g('busg', { autoAlpha: 0, duration: .2 }, W('s4', 'Germany') - .2);
+FIG.mood('n4', [[0, 'neutral'], [W('s4', 'cancelled'), 'shock'], [W('s4', 'late'), 'annoyed'], [W('s4', 'Deutsche'), 'sad']]);
+R.wiggle('nap4', W('s4', 'cancelled') + .1, { a: 5, n: 6, d: .5 });
+R.popIn('sv4', W('s4', 'survives'), { r: 3 });
+R.g('sv4', { autoAlpha: 0, y: -60, duration: .25 }, W('s4', 'Because') - .1);
+R.slam('st4', W('s4', 'Bahn'));
+R.cam(W('s4', 'Deutsche'), .5, { x: 540, y: 900, s: 1.1 }, 'out');
+
+/* ---------- s5 Russland ---------- */
+const m5 = MAP.create('map5', { box: [60, 390, 960, 790], projection: 'mercator', view: { center: [20, 52], zoom: 3.3 }, style: STYLE });
+m5.fill('France', -1, '#2B4AA0', .01);
+m5.fill('Russia', W('s5', 'Russia') - .1, '#C8302A', .3);
+R.hide('h5a'); R.popIn('h5a', AT('s5', .05), { r: -3 });
+const pl5 = m5.layer();
+pl5.insertAdjacentHTML('beforeend', `<g id="hd5">${at(0, 0, .2, FIG.human({ id: 'mini5', mood: 'neutral', hoodie: '#2B4AA0', hoodieD: '#1C3478' }) + `<g transform="translate(0 -452)">${PROPS.bicorne()}</g>`)}</g>`);
+m5.route('r5', [PARIS, [21, 52.2], MOSCOW], W('s5', 'Russia'), 1.4, { head: 'hd5', rotate: false, keepHead: true, color: '#fff', width: 8 });
+FIG.mood('mini5', [[0, 'happy'], [W('s5', 'winter'), 'shock']]);
+let sn = ''; for (let i = 0; i < 46; i++) sn += `<circle class="fall" cx="${rnd() * 1080}" cy="${rnd() * 300 - 300}" r="${5 + rnd() * 8}" fill="#fff" opacity=".85" style="animation-delay:-${(rnd() * 2.2).toFixed(2)}s;animation-duration:${(1.8 + rnd() * 1.4).toFixed(2)}s"/>`;
+put('snow5', sn); R.hide('snow5'); R.gset('snow5', { autoAlpha: 1 }, W('s5', 'winter'));
+R.hide('yr5'); R.popIn('yr5', W('s5', 'winter') + .1, { r: 0 });
+R.count('yr5', W('s5', 'Again') - .1, .9, 1812, 2026, v => Math.round(v));
+R.g('yr5', { scale: 1.25, duration: .15, yoyo: true, repeat: 1 }, WE('s5', 'Again'));
+put('face5in', napFace('f5', 'neutral'));
+R.hide('face5'); R.gset('face5', { autoAlpha: 1 }, W('s5', 'man') - .2); R.gfrom('face5', { y: 700, duration: .4, ease: 'back.out(1.5)' }, W('s5', 'man') - .2);
+FIG.mood('f5', [[0, 'sad']]);
+R.wiggle('face5', W('s5', 'learn'), { a: 3, n: 10, d: .8, prop: 'x' });
+
+/* ---------- s6 Größe ---------- */
+R.gfromTo('srch6', { y: -400 }, { y: 0, duration: .4, ease: 'back.out(1.5)' }, AT('s6', .05));
+R.type('typ6', W('s6', 'internet'), 1, 'napoleon height');
+let rl = ''; for (let i = 0; i <= 10; i++) rl += `<path d="M90 ${1300 - i * 60} h${i % 5 ? 30 : 60}" stroke="#141022" stroke-width="6"/>`;
+put('ruler6', rl + `<text x="170" y="${1300 - 9 * 60 + 12}" font-size="34" font-weight="900" fill="#141022" font-family="Poppins">169 cm</text>`);
+put('nap6in', nap('n6', 440, 1300, .8, 'neutral'));
+put('avg6in', at(760, 1300, .78, FIG.human({ id: 'av6', mood: 'neutral', hoodie: '#8A8FA6', hoodieD: '#6A6F86' })));
+R.hide('nap6'); R.hide('avg6');
+R.dropIn('nap6', W('s6', 'One') - .2, { d: .5 }); R.dropIn('avg6', W('s6', 'Totally') - .2, { d: .5 });
+R.slam('st6', W('s6', 'average'));
+R.fadeOut('st6', W('s6', 'comments') - .2);
+R.hide('cm6'); R.hide('cm6b'); R.popIn('cm6', W('s6', 'comments'), { r: 4 }); R.popIn('cm6b', W('s6', 'call'), { r: -3 });
+FIG.mood('n6', [[0, 'neutral'], [W('s6', 'average'), 'happy'], [W('s6', 'short'), 'annoyed']]);
+R.wiggle('nap6', W('s6', 'short') + .1, { a: 5, n: 6, d: .5 });
+
+/* ---------- s7 Code civil ---------- */
+const m7 = MAP.create('map7', { box: [60, 900, 960, 380], projection: 'naturalEarth', view: { center: [-40, 38], zoom: 2.4 }, style: STYLE });
+R.popIn('h7', AT('s7', .05), { r: -4 });
+R.dropIn('book7', W('s7', 'law') - .2, { d: .6 });
+R.g('book7', { scale: .55, y: -180, transformOrigin: '540px 760px', duration: .5, ease: 'power2.inOut' }, W('s7', 'shapes') - .2);
+const pl7 = m7.layer();
+pl7.insertAdjacentHTML('beforeend', lbl('lF', 'France', 170) + lbl('lB', 'Belgium', 190) + lbl('lL', 'Louisiana', 210, '#FFD23F') + `<circle id="dL" r="16" fill="#FFD23F" stroke="#fff" stroke-width="5"/>`);
+m7.pin('lF', [2, 46.5], -40, 40); m7.pin('lB', [4.6, 50.6], 40, -50); m7.pin('lL', [-92, 31], 0, -50); m7.pin('dL', [-92, 31]);
+m7.fill('France', W('s7', 'France') - .1, '#2B4AA0', .3); m7.fill('Belgium', W('s7', 'Belgium') - .1, '#2B4AA0', .3);
+R.pop('lF', W('s7', 'France'), null); R.pop('lB', W('s7', 'Belgium'), null); R.pop('dL', W('s7', 'Louisiana') - .1, null); R.pop('lL', W('s7', 'Louisiana'), null);
+R.cam(W('s7', 'Louisiana'), .6, { x: 400, y: 1100, s: 1.1 }, 'out');
+
+/* ---------- s8 Hausnummern ---------- */
+let hs = ''; for (let i = 0; i < 3; i++) {
+  const yL = 980 + i * 150, s = 1;
+  hs += `<g transform="translate(70 ${yL})"><rect width="360" height="130" rx="10" fill="${['#E9D7B0', '#D9C7A0', '#E2CFA8'][i]}"/><rect x="40" y="30" width="60" height="70" fill="#5A6F9A"/><rect x="140" y="30" width="60" height="70" fill="#5A6F9A"/>
+    <g id="hl${i}"><rect x="250" y="20" width="90" height="90" rx="14" fill="#2B4AA0" stroke="#fff" stroke-width="6"/><text x="295" y="85" text-anchor="middle" font-size="60" font-weight="900" fill="#fff" font-family="Poppins">${1 + i * 2}</text></g></g>`;
+  hs += `<g transform="translate(650 ${yL})"><rect width="360" height="130" rx="10" fill="${['#D9C7A0', '#E9D7B0', '#E2CFA8'][i]}"/><rect x="160" y="30" width="60" height="70" fill="#5A6F9A"/><rect x="260" y="30" width="60" height="70" fill="#5A6F9A"/>
+    <g id="hr${i}"><rect x="20" y="20" width="90" height="90" rx="14" fill="#2B4AA0" stroke="#fff" stroke-width="6"/><text x="65" y="85" text-anchor="middle" font-size="60" font-weight="900" fill="#fff" font-family="Poppins">${2 + i * 2}</text></g></g>`; }
+put('houses8', hs);
+for (let i = 0; i < 3; i++) { R.hide('hl' + i); R.popIn('hl' + i, W('s8', 'Odd') + i * .15, { r: 0 }); R.hide('hr' + i); R.popIn('hr' + i, W('s8', 'even') + i * .15, { r: 0 }); }
+put('nap8in', nap('n8', 540, 900, .62, 'neutral', 'point'));
+R.hide('nap8'); R.gset('nap8', { autoAlpha: 1 }, W('s8', 'That') - .2); R.gfrom('nap8', { y: -900, duration: .5, ease: 'bounce.out' }, W('s8', 'That') - .2);
+FIG.mood('n8', [[0, 'neutral'], [W('s8', 'him'), 'bliss']]);
+R.squash('nap8', W('s8', 'him') + .1);
+R.hide('pl8'); R.popIn('pl8', W('s8', 'Paris'), { r: -3 });
+R.cam(W('s8', 'Odd'), 1.5, { x: 540, y: 1100, s: 1.08 }, 'inout');
+
+/* ---------- s9 Werkstudent ---------- */
+put('nap9in', nap('n9', 420, 1130, .78, 'happy'));
+put('lap9', `<g id="lp9g">${at(640, 1100, .7, PROPS.laptop('lp9'))}</g>`);
+R.gfrom('nap9', { x: -600, duration: .45, ease: 'power3.out' }, AT('s9', .05));
+R.gfromTo('lp9g', { y: 600 }, { y: 0, duration: .45, ease: 'back.out(1.4)' }, AT('s9', .2));
+R.hide('pl9'); R.popIn('pl9', W('s9', 'Huge'), { r: -8 });
+R.hide('sl9'); R.popIn('sl9', W('s9', 'sleep'), { r: 6 });
+R.hide('cal9'); R.popIn('cal9', W('s9', 'wrong'), { r: 0 });
+R.slam('st9', W('s9', 'deadline'));
+FIG.mood('n9', [[0, 'happy'], [W('s9', 'sleep'), 'neutral'], [W('s9', 'deadline'), 'shock']]);
+R.bob('nap9', AT('s9'), W('s9', 'deadline'), { a: -6, d: .3 });
+R.wiggle('nap9', W('s9', 'deadline') + .2, { a: 4, n: 6, d: .5 });
+
+/* ---------- s10 Fazit + CTA ---------- */
+let sk = ''; for (let i = 0; i < 18; i++) sk += `<rect x="${170 + (rnd() - .5) * 20}" y="${1120 - i * 26}" width="220" height="22" rx="3" fill="${i % 2 ? '#F3E3BF' : '#fff'}"/>`;
+put('stack10', `<g id="sk10">${sk}</g>`);
+put('nap10in', nap('n10', 480, 1140, .7, 'sad'));
+R.gfromTo('sk10', { scaleY: 0, transformOrigin: '50% 100%' }, { scaleY: 1, duration: .6, ease: 'back.out(1.6)' }, W('s10', 'paperwork') - .2);
+R.gfrom('nap10', { y: 700, duration: .45, ease: 'back.out(1.4)' }, AT('s10', .1));
+R.hide('tro10'); R.popIn('tro10', W('s10', 'house') - .1, { r: 10 });
+FIG.mood('n10', [[0, 'sad'], [W('s10', 'house'), 'bliss'], [W('s10', 'Which'), 'happy']]);
+R.hide('q10'); R.popIn('q10', W('s10', 'Which'), { r: 0 });
+R.hide('cbox'); R.popIn('cbox', W('s10', 'Which') + .2, { r: 0 });
+R.type('typ10', W('s10', 'next') - .2, 1, 'Belgium. Easy. 🇧🇪');
+R.during(AT('s10'), 99, (p, now) => { $('caret').style.opacity = Math.floor(now * 2.5) % 2; });
+
+/* ===== Sounddesign ===== */
+const SND = [
+  [WE('s1', 'Fi') + .05, 'ding', .6, 'Handy / WLAN (nach "Wi-Fi")', { len: .3 }],
+  [W('s2', 'form'), 'drop', .7, 'Formular fällt runter'],
+  [W('s3', 'train') - .1, 'whoosh', .6, 'Zug fährt ein'],
+  [WE('s4', 'cancelled') + .05, 'fail', .7, 'Zug fällt aus (nach dem Wort)'],
+  [WE('s4', 'Bahn') + .05, 'slam', .8, 'Stempel THANKS, BAHN'],
+  [W('s5', 'Again') - .1, 'tick', .6, 'Jahreszahl rattert', { len: .4 }],
+  [W('s6', 'internet'), 'type', .6, 'Suche tippt', { len: .4 }],
+  [WE('s6', 'average') + .05, 'slam', .7, 'Stempel AVERAGE'],
+  [W('s7', 'law') - .1, 'drop', .8, 'Gesetzbuch fällt'],
+  [W('s8', 'Odd'), 'pop', .6, 'Hausnummern ploppen'],
+  [WE('s9', 'deadline') + .05, 'slam', .8, 'Stempel LATE (nach der Pointe)'],
+];
+SND.forEach(([t, name, vol, why, o]) => R.sfx(t, name, vol, { ...(o || {}), why }));
+R.start();
+</script>
+</body>
+</html>

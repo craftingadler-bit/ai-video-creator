@@ -55,15 +55,23 @@
 
   <!-- s2 Karte + Reaktions-Close-up -->
   <div class="sc" id="g2">
-    <div class="bg" style="background:linear-gradient(#141B33, #1E2A4C)"></div>
-    <svg id="map2"></svg>
-    <div class="t" id="h2a" style="top:270px;font-size:68px">IMPERIUM <span style="color:var(--ye)">ROMANUM</span></div>
-    <div class="card" id="cap2" style="left:300px;top:1215px;width:480px;padding:14px 0;text-align:center;font:900 46px Poppins;background:var(--ye)">Capital: ROME</div>
-    <svg><g id="face2"><g transform="translate(250 1010) scale(.62)" id="face2in"></g></g></svg>
+    <div class="sc" id="g2a">
+      <div class="bg" style="background:linear-gradient(#141B33, #1E2A4C)"></div>
+      <svg id="map2"></svg>
+      <div class="t" id="h2a" style="top:270px;font-size:68px">IMPERIUM <span style="color:var(--ye)">ROMANUM</span></div>
+      <div class="card" id="cap2" style="left:300px;top:1215px;width:480px;padding:14px 0;text-align:center;font:900 46px Poppins;background:var(--ye)">Capital: ROME</div>
+    </div>
+    <!-- s2b: Close-up, genervt bei "Shocking." -->
+    <div class="sc" id="g2b">
+      <div class="bg" style="background:radial-gradient(circle at 50% 48%, #4A5590 0%, #1E2A4C 55%, #141B33 100%)"></div>
+      <svg><circle cx="540" cy="860" r="420" fill="#FFD23F" opacity=".12"/>
+        <g id="face2"><g transform="translate(540 860) scale(1.05)" id="face2in"></g></g></svg>
+    </div>
   </div>
 
   <!-- s3 Germania: Ortsschild, Hügel, Kühe -->
   <div class="sc" id="g3">
+   <div class="sc" id="g3a">
     <div class="bg" style="background:linear-gradient(#7CC4F0, #CDEBF7 60%)"></div>
     <svg>
       <g id="cl3"></g>
@@ -72,7 +80,6 @@
       <path d="M-40 1120 Q300 1060 600 1110 T1120 1090 V1920 H-40Z" fill="#5FA548"/>
       <path d="M470 1920 L520 1110 L560 1110 L700 1920Z" fill="#C9A26A" opacity=".8"/>
       <rect x="300" y="760" width="26" height="440" fill="#8F96A6"/><rect x="754" y="760" width="26" height="440" fill="#8F96A6"/>
-      <g id="cowsBack"></g><g id="cowsFront"></g>
     </svg>
     <div style="position:absolute;inset:0;perspective:1600px">
       <div class="sign" id="sign1" style="left:150px;top:480px;width:780px;height:300px;padding-top:60px">
@@ -82,11 +89,25 @@
     </div>
     <svg><path id="strike" d="M170 780 L910 480" stroke="var(--re)" stroke-width="34" stroke-linecap="round" fill="none"/></svg>
     <div class="stamp" id="st3" style="left:250px;top:300px;rotate:-8deg">PROVINCE</div>
-    <div class="card" id="pop3" style="left:250px;top:830px;width:580px;padding:22px;text-align:center;font:800 46px Poppins">Population: <span style="color:var(--re)">12</span><br>Cows: <span id="cows3n" style="color:#2E8B3A">0</span></div>
+   </div>
+   <!-- s3b: Weide bei Abendsonne, Einwohner-Karte, Kühe -->
+   <div class="sc" id="g3b">
+    <div class="bg" style="background:linear-gradient(#F29A5E, #FCD9A0 60%)"></div>
+    <svg>
+      <circle cx="820" cy="700" r="130" fill="#FFE7B8"/>
+      <path d="M-40 980 Q300 900 600 960 T1120 930 V1920 H-40Z" fill="#6FB257"/>
+      <g fill="#8A5A34"><rect x="40" y="1110" width="1000" height="12"/><rect x="40" y="1150" width="1000" height="12"/>
+        <rect x="60" y="1090" width="16" height="90"/><rect x="300" y="1090" width="16" height="90"/><rect x="540" y="1090" width="16" height="90"/><rect x="780" y="1090" width="16" height="90"/><rect x="1000" y="1090" width="16" height="90"/></g>
+      <path d="M-40 1180 Q300 1130 600 1170 T1120 1150 V1920 H-40Z" fill="#5A9E45"/>
+      <g id="cowsBack"></g><g id="cowsFront"></g>
+    </svg>
+    <div class="card" id="pop3" style="left:250px;top:420px;width:580px;padding:22px;text-align:center;font:800 46px Poppins">Population: <span style="color:var(--re)">12</span><br>Cows: <span id="cows3n" style="color:#2E8B3A">0</span></div>
+   </div>
   </div>
 
   <!-- s4 Latein: Straßencafé, alle sagen SALVE -->
   <div class="sc" id="g4">
+   <div class="sc" id="g4a">
     <div class="bg" style="background:linear-gradient(#F2C98A, #E8A86A)"></div>
     <svg>
       <g fill="#D88E58"></g>
@@ -95,18 +116,27 @@
       <g id="awning4"></g>
       <g id="npc4a"></g><g id="npc4b"></g>
       <g id="hero4"><g id="hero4in"></g></g>
-      <g id="conf4"></g>
     </svg>
     <div class="bubble" id="b4a" style="left:70px;top:430px;--tail:80px">SALVE!</div>
     <div class="bubble" id="b4b" style="left:560px;top:430px;--tail:300px">PECUNIA!</div>
     <div class="card" id="ex4" style="left:190px;top:270px;width:700px;padding:22px 30px;display:flex;gap:24px;align-items:center;background:#fff;border-radius:34px">
       <div style="width:90px;height:90px;border-radius:50%;background:#FF7A9A;display:grid;place-items:center;font:900 46px Poppins;color:#fff">❤</div>
       <div><div style="font:700 32px Poppins;color:#888">Ex · now</div><div style="font:900 54px Poppins">VALE. ✋</div></div></div>
+   </div>
+   <!-- s4b: Klassenzimmer, Zertifikat, Freudensprung -->
+   <div class="sc" id="g4b">
+    <div class="bg" style="background:linear-gradient(#3B3357, #2A2442)"></div>
+    <svg><rect x="90" y="250" width="900" height="560" rx="20" fill="#24533A" stroke="#8A5A34" stroke-width="22"/>
+      <text x="540" y="770" text-anchor="middle" font-size="44" font-weight="800" fill="#F4F4EC" opacity=".5">amo · amas · amat</text>
+      <rect x="0" y="1180" width="1080" height="740" fill="#5A4A6E"/><rect x="0" y="1180" width="1080" height="18" fill="#3E3354"/>
+      <g id="hero4b"><g id="hero4bin"></g></g>
+      <g id="conf4"></g></svg>
     <div class="card" id="cert4" style="left:150px;top:300px;width:780px;padding:36px;text-align:center;rotate:-3deg;border:10px solid var(--gold)">
       <div style="font:600 34px Poppins;color:#777">Certificate</div>
       <div style="font:900 78px Poppins;margin-top:6px">6 Years of Latin</div>
       <div style="font:600 34px Poppins;color:#777;margin-top:10px">Finally useful</div></div>
     <div class="stamp" id="st4" style="left:230px;top:520px;rotate:-10deg;color:#2EAF5A;border-color:#2EAF5A">WORTH IT</div>
+   </div>
   </div>
 
   <!-- s5 Bürokratie: Büro → Karte → Kalender -->
@@ -139,6 +169,7 @@
 
   <!-- s6 Bahnsteig: Fallblatt-Anzeige, Bart wächst -->
   <div class="sc" id="g6">
+   <div class="sc" id="g6a">
     <div class="bg" style="background:linear-gradient(#232A4A, #3A4470)"></div>
     <svg>
       <rect x="0" y="1180" width="1080" height="740" fill="#5A5F78"/><rect x="0" y="1180" width="1080" height="24" fill="#FFD23F"/>
@@ -152,24 +183,44 @@
       <div id="via6" style="font:900 64px Poppins;margin-top:12px;white-space:nowrap"></div>
       <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:14px">
         <div style="font:800 40px Poppins;color:#B8C4F0">Delay</div><div id="jh6" style="font:900 74px Poppins;color:var(--re)">+0 years</div></div>
-      <div id="db6" style="margin-top:12px;padding-top:12px;border-top:3px dashed #2C3E86;font:800 40px Poppins;color:#8FA0D8">German train: <span style="color:var(--re)">cancelled</span></div>
     </div>
+   </div>
+   <!-- s6b: Close-up, Bart bis zum Boden, trotzdem zufrieden -->
+   <div class="sc" id="g6b">
+    <div class="bg" style="background:radial-gradient(circle at 50% 50%, #4A5590 0%, #232A4A 70%)"></div>
+    <svg><rect x="0" y="1700" width="1080" height="220" fill="#5A5F78"/><rect x="0" y="1700" width="1080" height="20" fill="#FFD23F"/>
+      <g id="hero6b"><g id="hero6bin"></g></g></svg>
+    <div class="card" id="db6" style="left:110px;top:280px;width:860px;padding:22px 30px;background:#13235E;color:#fff;text-align:center;font:800 44px Poppins">German train: <span style="color:var(--re)">cancelled</span></div>
+   </div>
   </div>
 
   <!-- s7 College: Kolosseum, Lottie-Figur zeigt, Centurio -->
   <div class="sc" id="g7">
+   <div class="sc" id="g7a">
     <div class="bg" style="background:linear-gradient(#6FB6EE, #BFE3F7 70%)"></div>
     <svg><g id="cl7"></g><g id="kol7"><g id="kol7in"></g></g>
       <rect x="0" y="1200" width="1080" height="720" fill="#D9B77A"/><rect x="0" y="1200" width="1080" height="16" fill="#C29A5A"/></svg>
     <div id="walker7" style="position:absolute;left:-260px;top:400px;width:1440px;height:810px"></div>
     <div class="t" id="d7" style="top:260px;font-size:116px"><span class="box" style="background:var(--or)">COLLEGE?</span></div>
+   </div>
+   <!-- s7b: Legionslager, Praktikum beim Centurio -->
+   <div class="sc" id="g7b">
+    <div class="bg" style="background:linear-gradient(#E9A35E, #F6D39A 65%)"></div>
+    <svg><rect x="0" y="1200" width="1080" height="720" fill="#B88A55"/><rect x="0" y="1200" width="1080" height="16" fill="#9A6E3E"/>
+      <path d="M-20 1200 L150 900 L320 1200Z" fill="#C9A86A"/><path d="M150 900 V1200" stroke="#9A7A44" stroke-width="8"/>
+      <path d="M760 1200 L920 920 L1100 1200Z" fill="#C9A86A"/><path d="M920 920 V1200" stroke="#9A7A44" stroke-width="8"/>
+      <rect x="520" y="640" width="14" height="560" fill="#6E4628"/>
+      <rect x="534" y="650" width="190" height="130" rx="6" fill="#A3222A"/><text x="629" y="738" text-anchor="middle" font-size="56" font-weight="900" fill="#FFD23F">SPQR</text>
+    </svg>
     <svg><g id="stud7"><g id="stud7in"></g></g><g id="cent7"><g id="cent7in"></g></g><g id="lap7"><g transform="translate(330 1060) scale(.6)"></g></g></svg>
     <div class="card" id="tag7" style="left:560px;top:300px;width:430px;padding:18px 0;text-align:center;font:800 40px Poppins;background:var(--ye)">Your boss:<br><span style="font-size:58px;font-weight:900">Centurion</span></div>
     <div class="stamp" id="st7" style="left:95px;top:470px;rotate:-6deg;font-size:76px">NO HOME OFFICE</div>
+   </div>
   </div>
 
   <!-- s8 Arena: Wagenrennen, Videobeweis, Daumen -->
   <div class="sc" id="g8">
+   <div class="sc" id="g8a">
     <div class="bg" style="background:linear-gradient(#F0A860, #F6CF8E 60%)"></div>
     <svg><g id="crowd8"></g>
       <rect x="0" y="1000" width="1080" height="920" fill="#E2C08A"/><path d="M0 1000 H1080" stroke="#B8935A" stroke-width="10"/>
@@ -180,6 +231,12 @@
       <div style="font:800 36px Poppins;color:#B8C4F0">FRIDAY NIGHT · LIVE</div>
       <div style="font:900 84px Poppins;color:var(--ye)">CHARIOT RACE</div>
       <div id="fb8" style="font:800 46px Poppins;color:#777;text-decoration:line-through;text-decoration-color:var(--re);text-decoration-thickness:8px">Football</div></div>
+   </div>
+   <!-- s8b: Kaiserloge, Videobeweis -->
+   <div class="sc" id="g8b">
+    <div class="bg" style="background:linear-gradient(#3A1F4A, #6A2A5A)"></div>
+    <svg><path d="M0 0 H200 Q170 600 240 1920 H0Z" fill="#8A1F2A"/><path d="M1080 0 H880 Q910 600 840 1920 H1080Z" fill="#8A1F2A"/>
+      <rect x="0" y="1300" width="1080" height="620" fill="#D9C7A0"/><rect x="0" y="1300" width="1080" height="24" fill="#B59D6E"/></svg>
     <div id="tv8" style="position:absolute;left:90px;top:250px;width:900px;height:900px">
       <div style="position:absolute;inset:0;background:#101820;border-radius:40px;border:16px solid #2A2A3A"></div>
       <div style="position:absolute;left:40px;top:40px;background:var(--re);color:#fff;font:900 44px Poppins;padding:8px 22px;border-radius:12px">● VIDEO REVIEW</div>
@@ -188,28 +245,29 @@
     </div>
     <svg><g id="thumb8"><g transform="translate(760 820)"><g id="thumbRot"><g id="thumbIn"></g></g></g></g></svg>
     <div class="stamp" id="st8" style="left:170px;top:980px;rotate:-8deg;font-size:96px">NO APPEALS</div>
-  </div>
-
-  <!-- s9 Mathe: Tafel, Schwitz-Close-up, Uhr -->
-  <div class="sc" id="g9">
-    <div class="bg" style="background:linear-gradient(#5A4A6E, #3E3354)"></div>
-    <div class="card" id="board9" style="left:70px;top:250px;width:940px;height:600px;background:#24533A;border:22px solid #8A5A34;color:#F4F4EC;text-align:center;padding-top:50px;border-radius:20px">
-      <div id="rz9" style="font:800 66px Poppins;letter-spacing:.06em">I · II · III · IV · V</div>
-      <div style="margin-top:70px;font:900 120px Poppins;white-space:nowrap"><span id="eq9"></span><span id="q9" style="display:inline-block;color:var(--ye)">?</span></div></div>
-    <svg><g id="face9"><g transform="translate(540 1110) scale(.7)" id="face9in"></g></g><g id="sweat9"></g>
-      <g id="clock9"><g transform="translate(860 960) scale(.9)" id="clock9in"></g></g></svg>
-    <div class="stamp" id="st9" style="left:170px;top:560px;rotate:-10deg;font-size:120px">GOOD LUCK</div>
+   </div>
   </div>
 
   <!-- s10 Fazit: Zeitstrahl, Praktikumsbericht -->
   <div class="sc" id="g10">
+   <div class="sc" id="g10a">
     <div class="bg" style="background:linear-gradient(#1B1530, #3A2350)"></div>
     <div class="t" id="yr10" style="top:270px;font-size:124px;color:var(--ye)">0 years</div>
     <div class="t" id="ub10" style="top:410px;font-size:54px">Empire: <span class="box" style="background:#2EAF5A">still standing</span></div>
     <svg><rect x="120" y="580" width="840" height="26" rx="13" fill="#2A2442"/><rect id="bar10" x="120" y="580" width="840" height="26" rx="13" fill="var(--re)"/>
-      <g id="col10"><g transform="translate(540 1230) scale(.9)" id="col10in"></g></g>
+      <g id="col10"><g transform="translate(540 1230) scale(.9)" id="col10in"></g></g></svg>
+   </div>
+   <!-- s10b: Zimmer bei Nacht, Praktikumsbericht -->
+   <div class="sc" id="g10b">
+    <div class="bg" style="background:linear-gradient(#141030, #2A2050)"></div>
+    <svg><rect x="620" y="300" width="340" height="420" rx="16" fill="#0E0C24" stroke="#4A3F78" stroke-width="18"/>
+      <path d="M790 300 V720 M620 510 H960" stroke="#4A3F78" stroke-width="12"/>
+      <circle cx="860" cy="400" r="46" fill="#FFE7B8"/><circle cx="878" cy="388" r="40" fill="#0E0C24"/>
+      <circle cx="680" cy="360" r="5" fill="#fff"/><circle cx="730" cy="620" r="4" fill="#fff"/><circle cx="900" cy="640" r="5" fill="#fff"/>
+      <rect x="0" y="1250" width="1080" height="670" fill="#3A2F5A"/><rect x="420" y="1230" width="560" height="30" rx="10" fill="#8A5A34"/>
       <g id="hero10"><g id="hero10in"></g></g><g id="lap10"><g transform="translate(620 1220)" id="lap10in"></g></g></svg>
     <div class="stamp" id="st10" style="left:200px;top:640px;rotate:-10deg;font-size:100px">NOT DONE.</div>
+   </div>
   </div>
 
   <!-- s11 CTA: Handy mit Kommentaren -->
@@ -256,7 +314,7 @@ const hero = (id, x, y, s, o = {}) => at(x, y, s, FIG.human({ id, mood: o.mood |
 
 /* ===== Szenen + Übergänge (GSAP) + leichte Kamerafahrt pro Szene ===== */
 R.scenes([['s1', 'g1'], ['s2', 'g2', 'zoom'], ['s3', 'g3', 'whip'], ['s4', 'g4', 'push'], ['s5', 'g5', 'iris'],
-  ['s6', 'g6', 'whip'], ['s7', 'g7', 'spin'], ['s8', 'g8', 'push'], ['s9', 'g9', 'flash'], ['s10', 'g10', 'zoom'], ['s11', 'g11', 'drop']]);
+  ['s6', 'g6', 'whip'], ['s7', 'g7', 'spin'], ['s8', 'g8', 'push'], ['s10', 'g10', 'flash'], ['s11', 'g11', 'drop']]);
 
 /* ---------- s1 Hook ---------- */
 put('temple1in', at(540, 1260, .78, PROPS.temple(820)));
@@ -269,7 +327,7 @@ R.popIn('h1c', W('s1', 'never'), { sfx: 'pop' });
 R.g('temple1in', { rotation: 9, duration: .5, ease: 'power2.in', transformOrigin: '0% 100%' }, W('s1', 'fell'));
 R.g('temple1in', { rotation: 0, duration: .9, ease: 'elastic.out(1.2,.35)', transformOrigin: '0% 100%' }, W('s1', 'never', 1) - .1);
  R.shake(W('s1', 'never', 1) + .1, .25, 10);
-R.wiggle('temple1', W('s1', 'little'), { a: 2.5, n: 5, d: .6 });
+R.wiggle('temple1', W('s1', 'never', 1) + .45, { a: 2.5, n: 5, d: .6 });
 R.cam(W('s1', 'never'), .25, { x: 540, y: 560, s: 1.1 }, 'out');
 
 /* ---------- s2 Karte ---------- */
@@ -295,13 +353,12 @@ m2.pin('romstar', [12.5, 41.9]); m2.pin('lblE', [8, 52]); m2.pin('lblA', [12, 27
 R.pop('lblE', tE, null); R.pop('lblA', tA, null); R.pop('lblH', W('s2', 'Asia'), null);
 ['lblE', 'lblA', 'lblH'].forEach(id => R.fadeOut(id, W('s2', 'capital') - .2));
 R.pop('romstar', W('s2', 'Rome', 1), 'ding'); R.pop('cap2', W('s2', 'Rome', 1) + .1);
-R.tw('romstar', W('s2', 'Shocking'), .5, { r: 0, s: 1.5 }, { r: 360, s: 1 }, 'out');
+R.tw('romstar', W('s2', 'Rome', 1) + .3, .5, { r: 0, s: 1.5 }, { r: 360, s: 1 }, 'out');
 // Reaktion: genervtes Close-up, Kamera fährt dramatisch ran
 put('face2in', FIG.humanFace({ id: 'f2', mood: 'annoyed' }));
-R.gfromTo('face2', { y: 700 }, { y: 0, duration: .45, ease: 'back.out(1.6)' }, W('s2', 'Shocking') - .1);
-R.hide('face2'); R.gset('face2', { autoAlpha: 1 }, W('s2', 'Shocking') - .1);
-FIG.mood('f2', [[0, 'annoyed'], [W('s2', 'nobody'), 'neutral'], [W('s2', 'coming'), 'annoyed']]);
-R.cam(W('s2', 'nobody'), 1.3, { x: 360, y: 900, s: 1.2 }, 'inout');
+R.hide('g2b'); R.trans('cut', 'g2a', 'g2b', W('s2', 'Shocking') - .08);
+R.wiggle('face2', W('s2', 'Shocking') + .15, { a: 5, n: 4, d: .45, prop: 'x' });
+R.cam(W('s2', 'Shocking'), .5, { x: 540, y: 880, s: 1.14 }, 'out');
 
 /* ---------- s3 Germania ---------- */
 put('cl3', at(200, 380, 1, PROPS.cloud(280)) + at(860, 300, .8, PROPS.cloud(260)));
@@ -316,7 +373,8 @@ R.gset('strike', { autoAlpha: 0 }, tG - .2);
 R.hide('sign2'); R.gset('sign2', { autoAlpha: 1 }, tG - .02);
 R.gfromTo('sign2', { rotationY: -90 }, { rotationY: 0, duration: .35, ease: 'back.out(2)' }, tG - .02);
 R.slam('st3', W('s3', 'province'));
-R.popIn('pop3', W('s3', 'Population'), { r: 4 });
+R.hide('g3b'); R.trans('push', 'g3a', 'g3b', W('s3', 'Population') - .25, .45);
+R.popIn('pop3', W('s3', 'Population') + .15, { r: 4 });
 R.count('cows3n', W('s3', 'lot'), 1.2, 0, 340, v => Math.round(v));
 // Kühe: vorne fallen 4 rein (Squash), hinten ploppen viele kleine auf
 let cf = '', cb = '';
@@ -343,14 +401,16 @@ R.popIn('b4a', W('s4', 'waiter') + .15, { r: -8 });
 R.gset('npc4b', { autoAlpha: 1 }, W('s4', 'landlord') - .15); R.gfrom('npc4b', { x: 500, duration: .4, ease: 'power3.out' }, W('s4', 'landlord') - .15);
 R.popIn('b4b', W('s4', 'landlord') + .15, { r: 8 });
 R.hide('ex4'); R.gset('ex4', { autoAlpha: 1 }, W('s4', 'ex') - .1); R.gfrom('ex4', { y: -400, duration: .45, ease: 'back.out(1.5)' }, W('s4', 'ex') - .1);
-FIG.mood('du4', [[0, 'neutral'], [W('s4', 'ex'), 'shock'], [W('s4', 'paid'), 'bliss']]);
+FIG.mood('du4', [[0, 'neutral'], [W('s4', 'ex'), 'shock']]);
 R.wiggle('hero4', W('s4', 'ex') + .1, { a: 6, n: 7, d: .6 });
 // Zertifikat, Freudensprung, Konfetti
 const tAll = W('s4', 'All');
-['npc4a', 'npc4b', 'b4a', 'b4b', 'ex4'].forEach((id, i) => R.g(id, { autoAlpha: 0, y: -60, duration: .25, ease: 'power2.in' }, tAll - .2 + i * .03));
+R.hide('g4b'); R.trans('flash', 'g4a', 'g4b', tAll - .15, .4);
+put('hero4bin', hero('du4b', 540, 1290, .9, { mood: 'happy' }));
+FIG.mood('du4b', [[0, 'happy'], [W('s4', 'paid'), 'bliss']]);
 R.hide('cert4'); R.gset('cert4', { autoAlpha: 1 }, tAll); R.gfrom('cert4', { y: -1200, rotation: -20, duration: .7, ease: 'bounce.out' }, tAll);
 R.slam('st4', W('s4', 'paid'));
-R.g('hero4', { y: -140, duration: .22, ease: 'power2.out', yoyo: true, repeat: 1 }, W('s4', 'paid') + .05); R.squash('hero4', W('s4', 'paid') + .5);
+R.g('hero4b', { y: -140, duration: .22, ease: 'power2.out', yoyo: true, repeat: 1 }, W('s4', 'paid') + .05); R.squash('hero4b', W('s4', 'paid') + .5);
 let conf = ''; for (let i = 0; i < 40; i++) conf += `<rect id="cf4_${i}" x="535" y="800" width="${14 + rnd() * 10}" height="${22 + rnd() * 12}" rx="4" fill="${['#FFD23F', '#FF4D2E', '#7FD3FF', '#2EAF5A', '#FF7A9A'][i % 5]}"/>`;
 put('conf4', conf);
 for (let i = 0; i < 40; i++) {
@@ -362,12 +422,12 @@ for (let i = 0; i < 40; i++) {
 let stk = ''; for (let i = 0; i < 5; i++) { const h = 160 + rnd() * 240; stk += `<g id="stk${i}"><g transform="translate(${170 + i * 180} 1130)">${Array.from({ length: Math.round(h / 22) }, (_, k) => `<rect x="${-70 + (rnd() - .5) * 14}" y="${-22 * (k + 1)}" width="140" height="20" rx="3" fill="${k % 2 ? '#F3E3BF' : '#E6D3A8'}"/>`).join('')}</g></g>`; }
 put('stacks5', stk);
 R.gfromTo('scroll5', { scaleY: 0, transformOrigin: '50% 0%' }, { scaleY: 1, duration: .55, ease: 'back.out(1.4)' }, AT('s5', .1));
-for (let i = 0; i < 5; i++) R.gfromTo('stk' + i, { scaleY: 0, transformOrigin: '50% 100%' }, { scaleY: 1, duration: .5, ease: 'back.out(2)' }, W('s5', 'bureaucracy') - .2 + i * .09);
-R.slam('st5', W('s5', 'invented'));
-R.wiggle('stk2', W('s5', 'bureaucracy') + .6, { a: 4, n: 4 });
+for (let i = 0; i < 5; i++) R.gfromTo('stk' + i, { scaleY: 0, transformOrigin: '50% 100%' }, { scaleY: 1, duration: .5, ease: 'back.out(2)' }, W('s5', 'Paperwork') - .1 + i * .09);
+R.slam('st5', W('s5', 'Rome'));
+R.wiggle('stk2', W('s5', 'Paperwork') + .6, { a: 4, n: 4 });
 // Karte: Bote läuft Germania → Rom über die Alpen
 R.hide('g5b'); R.hide('g5c');
-R.trans('whip', 'g5a', 'g5b', W('s5', 'Your') - .25, .45);
+R.trans('whip', 'g5a', 'g5b', W('s5', 'Over') - .3, .45);
 const m5 = MAP.create('map5', { box: [90, 420, 900, 820], projection: 'mercator', view: { center: [9.8, 46.4], zoom: 11 },
   style: { ocean: '#1E3554', land: '#5E5878', border: '#2A2440' } });
 m5.fill('Italy', -1, '#C8302A', .01); m5.fill('Germany', -1, '#4C6A9A', .01); m5.fill(['Switzerland', 'Austria'], -1, '#6A6488', .01);
@@ -380,12 +440,12 @@ pl5.insertAdjacentHTML('beforeend', `<g id="alpsI">${mtn(-70, 10)}${mtn(10, -10)
   <g id="bote"><g id="boteBob">${at(0, 0, .2, FIG.human({ id: 'boteF', mood: 'annoyed' }) + `<g transform="translate(110 -330)"><rect x="-30" y="-40" width="60" height="80" rx="8" fill="#F3E3BF" stroke="#C9A86A" stroke-width="6"/></g>`)}</g></g>`);
 const COL = [6.96, 50.94], ROM = [12.5, 41.9];
 m5.pin('dotG', COL); m5.pin('dotR', ROM); m5.pin('lblG', COL, -150, 0); m5.pin('lblR', ROM, 110, 0); m5.pin('alpsI', [10.2, 46.6]);
-const tb = W('s5', 'travels'), te = W('s5', 'Processing') - .35;
+const tb = W('s5', 'Over') - .1, te = W('s5', 'Processing') - .35;
 m5.route('r5', [COL, [8.6, 47.4], [9.2, 45.5], [11.3, 43.8], ROM], tb, te - tb, { head: 'bote', rotate: false, keepHead: true, color: '#fff', width: 8 });
 R.bob('boteBob', tb, te, { a: -14, d: .18 });
 m5.view(tb, te - tb, { center: [10.6, 45], zoom: 13 });
 R.hide('alpsI'); R.popIn('alpsI', W('s5', 'Alps') - .2, { sfx: 'pop' });
-R.hide('alps5'); R.popIn('alps5', W('s5', 'On') - .05, { r: -4, sfx: false });
+R.hide('alps5'); R.popIn('alps5', W('s5', 'Over') - .05, { r: -4, sfx: false });
 FIG.mood('boteF', [[0, 'annoyed'], [W('s5', 'Alps'), 'shock']]);
 // Kalender: Blätter fliegen weg, Jahre zählen hoch
 R.trans('zoom', 'g5b', 'g5c', W('s5', 'Processing') - .3, .45);
@@ -417,7 +477,11 @@ R.gfromTo('beard6', { scaleY: 0, transformOrigin: '50% 0%' }, { scaleY: 1.25, du
 FIG.mood('du6', [[0, 'neutral'], [W('s6', 'Delay'), 'annoyed'], [W('s6', 'centuries') + .4, 'sad'], [W('s6', 'Still'), 'happy']]);
 R.shake(W('s6', 'centuries') + .4);
 R.hide('db6'); R.gset('db6', { autoAlpha: 1 }, W('s6', 'German') - .1); R.gfrom('db6', { x: 200, duration: .35, ease: 'back.out(2)' }, W('s6', 'German') - .1);
-R.squash('hero6', W('s6', 'beats'));
+R.hide('g6b'); R.trans('cut', 'g6a', 'g6b', W('s6', 'Still') - .1);
+put('hero6bin', hero('du6b', 540, 1900, 2.1, { mood: 'happy', beard: 'beard6b' }));
+R.gset('beard6b', { scaleY: 1.6, transformOrigin: '50% 0%' }, 0);
+R.wiggle('beard6b', W('s6', 'Still') + .1, { a: 3, n: 6, d: .8, prop: 'rotation' });
+R.squash('hero6b', W('s6', 'beats'));
 
 /* ---------- s7 College ---------- */
 put('cl7', at(240, 520, 1, PROPS.cloud(280)) + at(860, 620, .9, PROPS.cloud(220)));
@@ -435,6 +499,7 @@ R.hide('walker7'); R.gset('walker7', { autoAlpha: 1 }, W('s7', 'Lectures') - .2)
 // Praktikum bei der Legion
 put('stud7in', hero('du7', 330, 1240, .78, { hat: PROPS.helmet(false), mood: 'happy' }));
 put('cent7in', hero('cent', 760, 1260, 1.05, { hat: PROPS.helmet(true), hoodie: '#A3222A', hoodieD: '#7A161D', mood: 'annoyed' }));
+R.hide('g7b'); R.trans('whip', 'g7a', 'g7b', W('s7', 'Internship') - .3, .45);
 R.hide('stud7'); R.gset('stud7', { autoAlpha: 1 }, W('s7', 'Internship') - .1); R.gfrom('stud7', { x: -700, duration: .45, ease: 'power3.out' }, W('s7', 'Internship') - .1);
 R.hide('cent7'); R.dropIn('cent7', W('s7', 'boss') - .2, { d: .7 }); R.shake(W('s7', 'boss') + .25, .3, 14);
 R.popIn('tag7', W('s7', 'centurion'), { r: 6 }); R.g('tag7', { autoAlpha: 0, duration: .2 }, W('s7', 'office'));
@@ -462,9 +527,9 @@ R.gset('lines8', { autoAlpha: 1 }, tCh + .3); R.g('lines8', { x: -400, duration:
 // Videobeweis
 put('emp8in', hero('emp', 450, 860, 1.05, { hat: PROPS.laurelHat(), hoodie: '#6A2A8A', hoodieD: '#4A1A66', mood: 'neutral' }));
 put('thumbIn', PROPS.thumb());
-R.g('score8', { autoAlpha: 0, scale: .8, duration: .25 }, W('s8', 'Video') - .2);
+R.hide('g8b'); R.trans('push', 'g8a', 'g8b', W('s8', 'Video') - .3, .45);
 R.hide('tv8'); R.gset('tv8', { autoAlpha: 1 }, W('s8', 'Video') - .2);
-R.gfromTo('tv8', { scale: 0, rotation: -8 }, { scale: 1, rotation: 0, duration: .5, ease: 'back.out(1.7)' }, W('s8', 'Video') - .2);
+R.gfromTo('tv8', { scale: .6, rotation: -8 }, { scale: 1, rotation: 0, duration: .5, ease: 'back.out(1.7)' }, W('s8', 'Video') - .2);
 FIG.mood('emp', [[0, 'neutral'], [W('s8', 'thumb'), 'annoyed']]);
 R.hide('thumb8'); R.popIn('thumb8', W('s8', 'With') + .2, { sfx: 'pop', r: 0 });
 R.g('thumbRot', { rotation: 180, duration: .45, ease: 'back.out(2.2)', svgOrigin: '0 0' }, W('s8', 'thumb'));
@@ -473,26 +538,6 @@ R.wiggle('thumb8', W('s8', 'thumb') + .45, { a: 5, n: 5, d: .5, origin: '50% 50%
 R.slam('st8', W('s8', 'No'));
 R.cam(W('s8', 'emperor'), 1.2, { x: 560, y: 820, s: 1.12 }, 'inout');
 
-/* ---------- s9 Mathe ---------- */
-put('face9in', FIG.humanFace({ id: 'f9', mood: 'neutral' }));
-put('clock9in', PROPS.clock('ck9'));
-R.gfromTo('board9', { y: -1000 }, { y: 0, duration: .7, ease: 'bounce.out' }, AT('s9', .05));
-R.init('rz9', { o: 0 }); R.fadeIn('rz9', W('s9', 'Roman'));
-R.type('eq9', W('s9', 'Try'), 1.1, 'XL ÷ XII = ');
-R.hide('q9'); R.popIn('q9', W('s9', 'twelve') + .3, { r: 20 });
-R.hide('face9'); R.gset('face9', { autoAlpha: 1 }, W('s9', 'dividing'));
-R.gfrom('face9', { y: 900, duration: .45, ease: 'back.out(1.5)' }, W('s9', 'dividing'));
-FIG.mood('f9', [[0, 'neutral'], [W('s9', 'twelve'), 'shock'], [W('s9', 'wait'), 'annoyed']]);
-let sw = ''; for (let i = 0; i < 6; i++) sw += `<g id="sw9_${i}">${at(i % 2 ? 690 : 390, 920, .9, PROPS.sweat())}</g>`;
-put('sweat9', sw);
-for (let i = 0; i < 6; i++) { R.hide('sw9_' + i); R.gset('sw9_' + i, { autoAlpha: 1 }, W('s9', 'twelve') + .2 + i * .25);
-  R.g('sw9_' + i, { duration: .9, physics2D: { velocity: 300, angle: i % 2 ? -40 : -140, gravity: 1600 }, ease: 'none' }, W('s9', 'twelve') + .2 + i * .25); }
-R.wiggle('face9', W('s9', 'twelve') + .1, { a: 4, n: 8, d: .8, prop: 'x' });
-R.slam('st9', W('s9', 'Good'));
-R.hide('clock9'); R.popIn('clock9', W('s9', 'ill') - .1);
-R.g('ck9_m', { rotation: 360 * 10, duration: 1.2, ease: 'power1.in', svgOrigin: '0 0' }, W('s9', 'wait'));
-R.g('ck9_h', { rotation: 360, duration: 1.2, ease: 'power1.in', svgOrigin: '0 0' }, W('s9', 'wait'));
-
 /* ---------- s10 Fazit ---------- */
 put('col10in', PROPS.column(420, 150));
 R.popIn('yr10', AT('s10', .1), { r: 0 });
@@ -500,7 +545,7 @@ R.count('yr10', W('s10', 'two') - .1, 1, 0, 2000, v => Math.round(v).toLocaleStr
 R.gfromTo('bar10', { scaleX: 0, transformOrigin: '0% 50%' }, { scaleX: 1, duration: 1.4, ease: 'power2.inOut' }, W('s10', 'empire'));
 R.hide('ub10'); R.popIn('ub10', W('s10', 'survive'), { r: 3 });
 R.hide('col10'); R.dropIn('col10', W('s10', 'empire') - .1, { d: .6 }); R.wiggle('col10', W('s10', 'years'), { a: 3, n: 5 });
-R.g('col10', { x: -900, rotation: -30, duration: .4, ease: 'power3.in' }, W('s10', 'Your') - .4);
+R.hide('g10b'); R.trans('cut', 'g10a', 'g10b', W('s10', 'Your') - .2);
 put('hero10in', hero('du10', 360, 1260, .8, { mood: 'neutral' }));
 put('lap10in', PROPS.laptop('lp10'));
 $('lp10_screen').insertAdjacentHTML('beforeend', `<text x="0" y="-150" text-anchor="middle" font-size="34" font-weight="900" fill="#141022">Report</text><text x="0" y="-100" text-anchor="middle" font-size="26" font-weight="700" fill="#141022">Page 1 of 40</text>`);
@@ -538,7 +583,7 @@ const SND = [
   [WE('s3', 'cows') + .05, 'moo', .5, 'Kühe (nach der Pointe)', { len: .35 }],
   [WE('s4', 'ex') + .05, 'ding', .7, 'Nachricht vom Ex (nach dem Wort)', { len: .3 }],
   [WE('s4', 'off') + .05, 'popper', .7, 'Konfetti (nach "paid off")', { len: .3 }],
-  [W('s5', 'travels'), 'steps', .8, 'Bote läuft', { len: .35 }],
+  [W('s5', 'Over'), 'steps', .8, 'Bote läuft', { len: .35 }],
   [W('s5', 'time'), 'pages', 1, 'Kalenderblätter fliegen', { len: .35 }],
   [W('s6', 'Via') - .1, 'flaps', .8, 'Anzeigetafel klackert'],
   [W('s6', 'two') - .2, 'clockfast', .9, 'Uhr rast, Bart wächst', { len: .4 }],
