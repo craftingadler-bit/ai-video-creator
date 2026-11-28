@@ -250,7 +250,7 @@ export function forceAlign(dir, wav, words, log = console.log) {
   try { const c = JSON.parse(fs.readFileSync(cache, 'utf8')); if (c.key === key) { log(`  Wortzeiten: Forced Alignment (${c.engine}, Cache)`); return c.words; } } catch {}
   const inp = path.join(dir, 'audio', '.align_in.json');
   fs.writeFileSync(inp, JSON.stringify({ language: cfg.voicestudio?.language || 'en', words: words.map(w => ({ w: w.w, scene: w.scene, start: w.start, end: w.end })) }));
-  const r = spawnSync(T.python, [path.join(ROOT, 'kit', 'align.py'), wav, inp], { encoding: 'utf8', maxBuffer: 1 << 26, timeout: 20 * 60e3 });
+  const r = spawnSync(T.python.includes('/') ? path.resolve(ROOT, T.python) : T.python, [path.join(ROOT, 'kit', 'align.py'), wav, inp], { encoding: 'utf8', maxBuffer: 1 << 26, timeout: 20 * 60e3 });
   fs.rmSync(inp, { force: true });
   if (r.status !== 0) { log(`  Wortzeiten: Whisper (Forced Alignment nicht verfügbar: ${(r.stderr || r.error?.message || '').trim().split('\n').at(-1)})`); return null; }
   let res; try { res = JSON.parse(r.stdout); } catch { log('  Wortzeiten: Whisper (Alignment-Ausgabe unlesbar)'); return null; }

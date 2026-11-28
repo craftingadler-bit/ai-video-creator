@@ -1,41 +1,42 @@
 # What if the Roman Empire never fell?
 hook: What if + cliché escalation
+stimme: "Jannis 1 radikal locker" (Tempo 1.1, num_step 24), lockerer Erzählton
 
 ## s1 Hook
-VO: What if the *Roman Empire* never fell? / Like, never.
+VO: Okay so, what if the *Roman Empire* just never fell? / Like, never.
 BILD: Columns, laurel wreath, SPQR, title slams in
 
 ## s2 The map
-VO: // Then Rome owns all of Europe, North Africa, and half of Asia. / And the capital? / *Rome.* Shocking.
-BILD: Real map, regions fill red word by word, star on Rome
+VO: // Then Rome basically owns all of Europe, North Africa, half of Asia. / And the capital is, wait for it... / *Rome.* Shocking.
+BILD: Real map, regions fill red word by word, star on Rome → close-up annoyed face on "Shocking"
 
 ## s3 Germania
-VO: // Germany doesn't exist. / You live in *Germania.* A province. / Population: twelve people and a lot of cows.
-BILD: Town sign GERMANY crossed out, GERMANIA, stamp PROVINCE, population card
+VO: // Germany? Doesn't exist. / You live in *Germania* now. A province. / Population: twelve people and, like, a lot of cows.
+BILD: Town sign GERMANY crossed out, GERMANIA, stamp PROVINCE → meadow, population card, cows
 
 ## s4 Latin
-VO: // Everyone speaks Latin. Your waiter, your landlord, your ex. / All those Latin classes finally *paid off.*
-BILD: Student says SALVE, Latin certificate, stamp WORTH IT
+VO: // Everyone speaks Latin. Your waiter, your landlord, even your ex. / So all those Latin classes? Finally *paid off.*
+BILD: Café, everyone says SALVE → classroom, Latin certificate, stamp WORTH IT
 
 ## s5 Bureaucracy
-VO: // Paperwork? Your form walks to Rome. Over the Alps. / Processing time: three *years.*
-BILD: Scroll FORM XIV, © ROME stamp, real map route Germania → Rome, counter 3 years
+VO: // Paperwork? Your form walks to Rome. Over the Alps. / Processing time? Three *years.*
+BILD: Scroll FORM XIV, © ROME stamp → real map route Germania → Rome → calendar, 3 years
 
 ## s6 Train
-VO: // The train is now the Via Appia Express. / Delay: two *centuries.* / Still beats German trains.
-BILD: Departure board VIA APPIA EXPRESS, delay +200 years
+VO: // The train is now the Via Appia Express. / Delay? Two *centuries.* / Honestly, still beats German trains.
+BILD: Departure board VIA APPIA EXPRESS, delay +200 years → close-up, beard to the floor
 
 ## s7 College
-VO: // College? / Lectures at the Colosseum. Internship with the *legion.* / Your boss is a centurion. And he does not do home office.
-BILD: Colosseum, student with helmet, centurion boss
+VO: // And college? / Lectures at the Colosseum. Internship with the *legion.* / Your boss is a centurion, and he does not do home office.
+BILD: Colosseum → legion camp, centurion boss, laptop flies
 
 ## s8 Free time
-VO: // Friday night: chariot races instead of football. / Video review? Done by the emperor. / With his *thumb.* No appeals.
-BILD: Scoreboard, video review, giant thumb turns down
+VO: // Friday night? Chariot races instead of football. / Video review? Done by the emperor. / With his *thumb.* No appeals.
+BILD: Chariot race → imperial box, video review, giant thumb turns down
 
 ## s10 Bottom line
-VO: // Bottom line: the empire would survive two thousand years. / Your internship report? / *Still not done.*
-BILD: Column, counter 2,000 years, report falls, stamp NOT DONE
+VO: // So yeah, the empire survives two thousand years. / And your internship report? / *Still not done.*
+BILD: Column, counter 2,000 years → room at night, report, stamp NOT DONE
 
 ## s11 CTA
 VO: // Which province would you live in? Tell me in the comments. / I'm taking Germania Inferior.
